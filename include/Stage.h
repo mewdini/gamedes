@@ -11,7 +11,8 @@ class Stage{
     //void StartStage();
     int getGold();
     void setGold(int g);
-    
+    void build(/*Defense defense*/);      //trigger build event
+
     private:
     int level;
     //int difficulty;
@@ -19,6 +20,7 @@ class Stage{
     int enemylist[5];         //the list of enemeies for this level
     int gold;                //used to build defense, increase when enemies are killed (maybe has a static growth rate)
     //Character player;
+    //Enemy? 
     
 };
 
