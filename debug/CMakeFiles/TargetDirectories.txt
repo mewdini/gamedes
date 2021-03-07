@@ -1,0 +1,4 @@
+C:/Users/pablo/Documents/classes/gamedes/gamedes/debug/CMakeFiles/gamedes_core.dir
+C:/Users/pablo/Documents/classes/gamedes/gamedes/debug/CMakeFiles/edit_cache.dir
+C:/Users/pablo/Documents/classes/gamedes/gamedes/debug/CMakeFiles/main.dir
+C:/Users/pablo/Documents/classes/gamedes/gamedes/debug/CMakeFiles/rebuild_cache.dir
