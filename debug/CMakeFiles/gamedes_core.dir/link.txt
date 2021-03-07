@@ -1,2 +1,0 @@
-C:\ProgramData\chocolatey\bin\ar.exe qc libgamedes_core.a CMakeFiles/gamedes_core.dir/src/Actor.cpp.obj CMakeFiles/gamedes_core.dir/src/DynamicActor.cpp.obj CMakeFiles/gamedes_core.dir/src/Game.cpp.obj CMakeFiles/gamedes_core.dir/src/Player.cpp.obj CMakeFiles/gamedes_core.dir/src/PlayerView.cpp.obj CMakeFiles/gamedes_core.dir/src/Stage.cpp.obj
-C:\ProgramData\chocolatey\bin\ranlib.exe libgamedes_core.a
