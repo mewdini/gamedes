@@ -31,5 +31,9 @@
 *.out
 *.app
 
+# Compilation directories
+debug
+release
+
 # OS Files
 .DS_Store

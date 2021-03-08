@@ -6,7 +6,7 @@
 class Player{
     public:
     Player();
-    Player(/*Weapon w*/int x,int y, int s); //x,y position and speed 
+    Player(/*Weapon w*/int x, int y, int s); //x,y position and speed 
     void movePlayer(int a); //trigger move event Are we creating a Direction class or should we just use numbers?
     void attack();     //trigger attack event
     

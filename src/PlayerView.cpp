@@ -12,3 +12,12 @@ void PlayerView::init(){
 void PlayerView::update(){
     //Will likely want to change return type to better react to this call
 }
+
+// void Game::render()
+// {
+//     this->app.clear();
+//     this->app.draw(this->player);
+//     this->app.display();
+// }
+
+// interpret events here, then send queueEvent to EventManager

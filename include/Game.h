@@ -6,6 +6,7 @@
 #define COVIDGAME_GAME_H
 
 #include <SFML/Graphics.hpp>
+#include "Player.h"
 
 
 class Game
@@ -13,18 +14,17 @@ class Game
 {
 public:
     Game();
-    ~Game();
+    // ~Game();
     void run();
-private:
-    void processEvents();
-    void update(sf::Time elapsedTime);
-    void render();
-    void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+    Player player;
 
 private:
-    static const float PlayerSpeed;
-    static const float sf::Time TimePerFrame;
-    sf::RenderWindow mGameWindow;
+    void processEvents();
+    void update(sf::Time);
+    void render();
+    void handlePlayerInput(sf::Keyboard::Key, bool);
+    static float PlayerSpeed;
+    static sf::Time TimePerFrame;
     sf::CircleShape mPlayer;
 
 };
