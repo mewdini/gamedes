@@ -1,18 +1,13 @@
 #include "Stage.h"
-
+#include <SFML/Graphics.hpp>
 Stage::Stage(void)
 {
 };
 
-Stage::Stage(int lev,int m[800][600],int list[5],int g){
-    Stage::level=lev;
-    map[800][600]=m[800][600];
-    enemylist[5]=list[5];
-    gold=g;
-
-
-};
-void Stage::DisplayStage(){
+int* Stage::getMap(){
+    return Stage::map;
+}
+void Stage::draw(sf::RenderWindow &window){
     //draw the terrain and road
     //draw character
     //draw defense towers
@@ -28,7 +23,9 @@ int Stage::getGold(){
 void Stage::setGold(int g){
     Stage::gold=g;
 };
-
+int Stage::getValueOnMap(int x,int y){
+    return Stage::map[x*10+y];
+}
 void Stage::build(/* Defense defense*/){    //If the player clicks on a slot, the position of the slot should be defense object
     //Stage::gold-=defense.getCost();
     //dposx=defense.getx();

@@ -1,9 +1,9 @@
-//Edited by Yixuan Xu on 02/28
+//Edited by Yixuan Xu on 02/28,03/24
 
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-class Player{
+class Player {
     public:
     Player();
     Player(/*Weapon w*/int x,int y, int s); //x,y position and speed 
