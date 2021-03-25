@@ -3,9 +3,14 @@
 #ifndef _EventListener_H_
 #define _EventListener_H_
 
-class EventInterface
+class EventListener
 {
+    private:
+
     public:
+    EventListener();
+    void checkEvent(sf::RenderWindow App);
+
 };
 
 
