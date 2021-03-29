@@ -9,10 +9,10 @@ CountryMap::CountryMap(){
          e[i]==0;
      }; 
 
-     static int m[100];
+     static int m[width*height];
      Stage::map=m; //pointer for map
      //initialize map
-     for(int i=0;i<100;i++){
+     for(int i=0;i<width*height;i++){
          if (i==18||i==27||i==36||i==51){ //some blocks represents levels/cities
              m[i]=1;
          }
@@ -25,7 +25,7 @@ CountryMap::CountryMap(){
 }
 void CountryMap::startLevel(){
     //notify process manager?
-    //update player
+    //CountryMap::player.update(); update player
     //CountryMap::draw(window);
 };
 

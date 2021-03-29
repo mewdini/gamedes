@@ -17,6 +17,8 @@ class Stage{
     void build(/*Defense defense*/);      //trigger build event
     int getValueOnMap(int x,int y);
     protected:
+    int width;
+    int height;
     int level;
     //int difficulty;
     int* map;      //might need to import the size of screen from other files instead of hardcoding

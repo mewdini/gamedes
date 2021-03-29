@@ -12,6 +12,7 @@ class Level1: public Stage{
     void startLevel1();
     private:
     void spawnEnemy();
+    int startGold=100;
     //int objects[];
 };
 

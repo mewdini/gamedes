@@ -3,27 +3,27 @@
 
 Level1::Level1(){
      Level1::level=1;
-     static int e[100];
+     static int e[width*height];
      Stage::enemylist=e;//pointer for enemylist
      //initialize enemylist
-     static int m[100];
+     static int m[width*height];
      Stage::map=m; //pointer for map
      //initialize map, use 0 for background, 1 for base, 2 for path, 3 for tower positions 
-     for(int i=0;i<100;i++){
-         if(i==54){
+     for(int i=0;i<width*height;i++){
+         if(i==5*width+5){
              m[i]=1;
          }
-         else if(54<i<60){
+         else if(5*width+4<i<6*width){
              m[i]=2;
          }
-         else if(i==48||i==68||i==46||i==66){
+         else if(i==4*width+8||i==6*width+8||i==4*width+6||i==6*width+6){
              m[i]=3;
          }
          else{
              m[i]=0;
          }
      };
-     gold=100; //set start gold
+     gold=Stage; //set start gold
 };
 void Level1::startLevel1(){
     //notify process manager?
