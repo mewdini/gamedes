@@ -10,8 +10,9 @@
 class DynamicActor{
 
     public:
-        void move(int, int);
+        void move(float, float);
     private:
+        float vel;
     
 
 };

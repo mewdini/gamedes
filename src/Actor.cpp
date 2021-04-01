@@ -1,18 +1,18 @@
 // Updated by Zack on 3/1
 #include "Actor.h"
 
-int Actor::getOriginX(){
+float Actor::getOriginX(){
     return origin.x;
 }
 
-void Actor::setOriginX(int newX){
+void Actor::setOriginX(float newX){
     origin.x = newX;
 }
 
-int Actor::getOriginY(){
+float Actor::getOriginY(){
     return origin.y;
 }
 
-void Actor::setOriginY(int newY){
+void Actor::setOriginY(float newY){
     origin.y = newY;
 }

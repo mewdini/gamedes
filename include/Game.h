@@ -14,18 +14,13 @@ class Game
 {
 public:
     Game();
-    // ~Game();
-    void run();
-    Player player;
 
 private:
-    void processEvents();
     void update(sf::Time);
     void render();
     void handlePlayerInput(sf::Keyboard::Key, bool);
     static float PlayerSpeed;
     static sf::Time TimePerFrame;
-    sf::CircleShape mPlayer;
 
 };
 

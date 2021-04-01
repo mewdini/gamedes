@@ -1,4 +1,3 @@
-//
 // Created by M on 2/28/21.
 
 #include "Game.h"
@@ -8,14 +7,6 @@
 Game::Game()
 {
     this->player = Player();
-}
-
-
-
-// This function will me measure time each frame takes.
-void Game::run()
-{
-    ;
 }
 
 // This functions handles user input

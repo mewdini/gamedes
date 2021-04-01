@@ -14,9 +14,9 @@ class Actor{
 
     public:
         int getOriginX();
-        void setOriginX(int);
+        void setOriginX(float);
         int getOriginY();
-        void setOriginY(int);
+        void setOriginY(float);
 
     private:
         sf::Vector2f origin;
