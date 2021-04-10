@@ -1,11 +1,11 @@
 //
 // Created by M on 2/28/21.
 
-//#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Player.h"
 
-int main()
+int main(int argc, char** argv)
 {
     sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Covid Champion", sf::Style::Close);
     
@@ -41,6 +41,14 @@ int main()
                 // Unpause Game
                 case(sf::Event::GainedFocus):
                 paused = false;
+                break;
+
+                // Mouse Clicked
+                case(sf::Event::MouseButtonPressed):
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    game.click(event.mouseButton.x, event.mouseButton.y);
+                }
                 break;
             }
         }
