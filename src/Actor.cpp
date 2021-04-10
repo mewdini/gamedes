@@ -1,18 +1,29 @@
-// Updated by Zack on 3/1
+// Updated by Zack on 4/10
 #include "Actor.h"
 
-float Actor::getOriginX(){
-    return origin.x;
+Actor::Actor(){
+    // Default constructor
+    gridX = 0;
+    gridY = 0;
 }
 
-void Actor::setOriginX(float newX){
-    origin.x = newX;
+Actor::Actor(int x, int y){
+    gridX = x;
+    gridY = y;
 }
 
-float Actor::getOriginY(){
-    return origin.y;
+int Actor::getGridX(){
+    return gridX;
 }
 
-void Actor::setOriginY(float newY){
-    origin.y = newY;
+void Actor::setGridX(int x){
+    gridX = x;
+}
+
+int Actor::getGridY(){
+    return gridY;
+}
+
+void Actor::setGridY(int y){
+    gridY = y;
 }

@@ -1,7 +1,8 @@
-//Edited by Zack on 3/1
+//Edited by Zack on 3/28
 
 #ifndef PlayerView_h
 #define PlayerView_h
+#include <SFML/Graphics.hpp>
 
 class PlayerView{
 
@@ -9,8 +10,13 @@ class PlayerView{
         PlayerView();
         void init();
         void update();
+
     private:
-    
+        sf::RenderWindow window;
+        sf::Texture texture; 
+        // May need multiple textures, pending based on art
+        sf::Font font;
+        // # of fonts needed depends on art direction
 
 };
 
