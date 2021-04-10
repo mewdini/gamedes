@@ -10,7 +10,7 @@ class Virus
 {
 private:
     //Virus speeds
-    const float COVID_VIRUS_SPEED = 40;
+    const float COVID_VIRUS_SPEED = 45;
     const float RESISTANT_STRAIN_SPEED= 60;
     const float CONTAGIOUS_STRAIN_SPEED = 70;
     const float AIRBORN_STRAIN_SPEED = 80;

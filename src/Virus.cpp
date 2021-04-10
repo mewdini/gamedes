@@ -7,6 +7,7 @@
 #include <ctime>
 using namespace  std;
 
+
 void Virus::spawn(float startX, float startY, int type, int seed)
 {
     switch(type)
