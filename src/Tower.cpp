@@ -1,5 +1,6 @@
 //
 // Created by Miodrag
+#define _USE_MATH_DEFINES
 #include "Tower.h"
 #include <cmath>
 
@@ -24,7 +25,7 @@ void Tower::TowerLevel(int lvl);
     this->level = lvl;
     this->radius = 128;
     this->gold_cost = 100 * lvl;
-    this->tower_sprite.setTexture(*tower_tex);
+    this->tower_sprite.setTexture(*this->tower_tex);
 
     switch(lvl)
     {
@@ -57,9 +58,9 @@ void Tower::TowerLevel(int lvl);
 
 void Tower::angle_to_point(double x, double y)
 {
-    double dx = x - (tower_sprite.getPosition().x);
-    double dy = y - (tower_srpite.getPosition().y);
-    double angle = atan2(dx,dy) * 180 / (atan(1) * 4);
+    double dx = x - (this->tower_sprite.getPosition().x);
+    double dy = y - (this->tower_sprite.getPosition().y);
+    double angle = 2 * std::atan(dx,dy) * 180 / M_PI;
     return angle;
 }
 
@@ -71,12 +72,12 @@ void Tower::Update(float elapsedTime)
 
 const int Tower::GetX()
 {
-    return (int)tower_sprite.getPosition().x;
+    return (int) this->tower_sprite.getPosition().x;
 }
 
 const int Tower::GetY()
 {
-    return (int)tower_sprite.getPosition().y;
+    return (int) this->tower_sprite.getPosition().y;
 }
 
 const float Tower::GetRadius()
@@ -107,8 +108,8 @@ const FloatRect Tower::GetBoundingBox()
 const Vector2f Tower::GetCenteredPosition()
 {
     Vector2f vec = this->tower_sprite.getPosition();
-    vec.x += GetBoundingBox().width / 2;
-    vec.y += GetBoundingBox().height / 2;
+    vec.x += this->GetBoundingBox().width / 2;
+    vec.y += this->GetBoundingBox().height / 2;
     return vec;
 }
 
