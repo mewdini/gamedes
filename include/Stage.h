@@ -26,17 +26,19 @@ class Stage{
     int level;
     //int difficulty;
     int* map;                           //might need to import the size of screen from other files instead of hardcoding
-    Virus::Virus* viruslist;                 //the list of enemeies/towers for this level
-    Tower::Tower* towerlist;
+    int towercount=20;
+    int enemycount=100;
+    int curtower=0;
+    int curenemy=0;
+    Virus viruslist[Stage::enemycount];                 //the list of enemeies/towers for this level
+    Tower towerlist[20];
     void attackFirstEnemy();          //choose the enemy to attack   
     void updateTowers();              //check all towers if they can attack an enemy
     int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)
     int start1;                         //where enemies are spawned
     int start2;
-    int towercount;
-    int curtower=0;
-    int enemycount;
-    int curenemy=0;
+    
+    
     
 };
 

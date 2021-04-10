@@ -1,4 +1,5 @@
 #include "Level1.h"
+#include "Stage.h"
 #include <SFML/Graphics.hpp>
 
 Level1::Level1(){
@@ -36,10 +37,15 @@ Level1::Level1(){
              m[i]=0;
          }
      };
+     Stage::viruslist=v;
+     for(int i=0;i<Stage::enemycount;i++){
+         v[i]=Virus virus;
+         virus.setStage(this);
+     }
      Stage::setGold(100);
-     start1=59;     //the position on the map where the enemies are spawned
-     enemycount=10; //set number of enemies in the level and the number of towers
-     towercount=5;
+     startx=15;
+     stary=6;     //the position on the map where the enemies are spawned
+     
 };
 void Level1::startLevel1(){
     //notify process manager?
