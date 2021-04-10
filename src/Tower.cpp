@@ -58,11 +58,11 @@ void Tower::TowerLevel(int lvl);
 
 }
 
-void Tower::angle_to_point(double x, double y)
+double Tower::angle_to_point(double x, double y)
 {
     double dx = x - (this->tower_sprite.getPosition().x);
     double dy = y - (this->tower_sprite.getPosition().y);
-    double angle = 2 * std::atan(dx,dy) * 180 / M_PI;
+    double angle =  atan2(dx,dy) * 180 / M_PI;
     return angle;
 }
 
