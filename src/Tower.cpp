@@ -22,55 +22,37 @@ Tower::Tower()
 
 void Tower::TowerLevel(int lvl);
 {
-    level = lvl;
-    if (lvl == 1)
+    this->level = lvl;
+    this->radius = 128;
+    this->gold_cost = 100 * lvl;
+    this->tower_sprite.setTexture(*tower_tex);
+
+    switch(lvl)
     {
-        tower_sprite.setTexture(*tower_tex);
-        radius = 128;
-        attack_speed = 1.0f;
-        damage = 15;
-        gold_cost = 100
-    }
+        case 1:
+            this->attack_speed = 1.0f;
+            this->damage = 15;
+            break;
+
+        case 2:
+            this->attack_speed = 2.0f;
+            this->damage = 30;
+            break;
 
 
-    if (lvl == 2)
-    {
-        tower_sprite.setTexture(*tower_tex);
-        radius = 128;
-        attack_speed = 2.0f;
-        damage = 30;
-        gold_cost = 200
-    }
+        case 3:
+            this->attack_speed = 3.0f;
+            this->damage = 40;
+            break;
 
+        case 4:
+            this->attack_speed = 4.0f;
+            this->damage = 50;
+            break;
 
-    if (lvl == 3)
-    {
-        tower_sprite.setTexture(*tower_tex);
-        radius = 128;
-        attack_speed = 3.0f;
-        damage = 40;
-        gold_cost = 300
-    }
-
-
-
-    if (lvl == 4)
-    {
-        tower_sprite.setTexture(*tower_tex);
-        radius = 128;
-        attack_speed = 4.0f;
-        damage = 50;
-        gold_cost = 400
-    }
-
-
-    if (lvl == 5)
-    {
-        tower_sprite.setTexture(*tower_tex);
-        radius = 128;
-        attack_speed = 4.0f;
-        damage = 60;
-        gold_cost = 500
+        case 5:
+            this->attack_speed = 4.0f;
+            this->damage = 60;
     }
 
 }
@@ -107,17 +89,17 @@ const int Tower::GetY()
 
 const float Tower::GetRadius()
 {
-    return radius;
+    return this->radius;
 }
 
 const float Tower::GetAttackSpeed()
 {
-    return attack_speed;
+    return this->attack_speed;
 }
 
 const float Tower::GetDamage()
 {
-    return damage;
+    return this->damage;
 }
 
 const Vector2f Tower::GetPosition()
@@ -141,12 +123,12 @@ const Vector2f Tower::GetCenteredPosition()
 
 const int Tower::GetGoldCost()
 {
-    return gold_cost;
+    return this->gold_cost;
 }
 
 const int Tower::GetUpgradeLevel()
 {
-    return upgrade_level;
+    return this->upgrade_level;
 }
 
 
