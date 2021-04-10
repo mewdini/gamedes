@@ -13,7 +13,7 @@ Game::Game(sf::RenderWindow* window)
 void Game::update(sf::Int64 elapsed_time)
 {
     this->time_per_frame = elapsed_time;
-    // all towers attack
+    this->level.allAttack();
     // germs move
 }
 

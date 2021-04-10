@@ -25,7 +25,7 @@ class Stage {
         int height;
         int level;
         //int difficulty;
-        int map[width][height];             //might need to import the size of screen from other files instead of hardcoding
+        int map;             //might need to import the size of screen from other files instead of hardcoding
         std::list<Enemy*> enemy_list;       //the list of enemies/towers for this level
         std::list<Tower*> tower_list;
         //void attackFirstEnemy();          //choose the enemy to attack   

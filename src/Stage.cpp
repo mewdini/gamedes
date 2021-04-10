@@ -4,12 +4,14 @@ Stage::Stage()
 {
     this->height = 16;
     this->width = 12;
+    this->map[192];
 };
 
 Stage::Stage(int x, int y)
 {
     this->width = x;
     this->heigth = y;
+    this->map[width*height];
 }
 
 int* Stage::getMap()
