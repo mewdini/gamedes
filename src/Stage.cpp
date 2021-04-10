@@ -31,18 +31,23 @@ int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the 
 void Stage::setValueOnMap(int x, int y, int v){
     Stage::map[y*width+x]=v;
 }
-void Stage::build(/*Tower1 tower, int posx,int posy */){    //If the player clicks on a slot, the position of the slot should be defense object
+bool Stage::build(/*Tower1 tower, int posx,int posy */){    //If the player clicks on a slot, the position of the slot should be defense object
+    if(Stage::map[posx+Stage::width*posy]!=3){
+        return false;   //position is not valid;
+
+    }
     //Stage::gold-=tower.getCost();
     //posx=tower.getx();?
     //posy=tower.gety();?
     //Stage::map[posx+Stage::width*posy]=4;
     //Stage::towerlist[curtower]=tower;
     //curtower+=1;
+    return true;
 
 };
 void Stage::spawnEnemy(){
     if(Stage::curenemy<Stage::enemycount){
-        //enemy=enemylist[curenemy];
+        //enemy=viruslist[curenemy];
         //enemy.setAlive();
         //enemy.setPosition(start1);
         //curenemy+=1;
@@ -51,15 +56,15 @@ void Stage::spawnEnemy(){
 };
 void Stage::allAttack(){
     for(int i=0;i<towercount;i++){
-        //tower=&towerlist[i];?
-        //tower.attack();
+        tower=towerlist[i];?
+        tower.attack();
 
     })
 }
 
-/*void Stage::attackFirstEnemyInRange(Tower tower){  //x,y are coordinates of the tower, and r is the range of the tower 
+void Stage::attackFirstEnemyInRange(Tower tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i=0;i<enemycount;i++){
-        enemy=enemylist[i];
+        enemy=viruslist[i];
         if(!enemy.isAlive()){
             posx=enemy.getx();
             posy=enemy.gety();
@@ -67,13 +72,13 @@ void Stage::allAttack(){
             y=tower.gety();
             r=tower.getRange();
             if ((posx-x)*(posx-x)+(posy-y)*(posy-y)<=r*r){
-                tower.attack(enemy);
+                //tower.attack(enemy);
             }
         }
     }
 }
-*/
-/*void Stage::updateTowers(){
+
+void Stage::updateTowers(){
     for(int i=0;i<curtower;i++){
         
             tower=towerlist[i];
@@ -82,4 +87,3 @@ void Stage::allAttack(){
     }
 }
 
-*/
