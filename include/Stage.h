@@ -35,7 +35,7 @@ class Stage{
         int cur_virus;
         std::list<Tower*> tower_list;
         std::list<Virus*> virus_list;                 //the list of enemeies/towers for this level
-        void attackFirstEnemy();          //choose the enemy to attack   
+        void attackFirstVirus();          //choose the enemy to attack   
         void updateTowers();              //check all towers if they can attack an enemy
         void spawnVirus();
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)

@@ -66,7 +66,7 @@ void Stage::spawnVirus()
     };
 };
 
-void Stage::attackFirstEnemy(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower 
+void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i = 0; i < enemy_count; i++){
         Virus* enemy = this->virus_list[i];
         if(!enemy->isAlive()){
