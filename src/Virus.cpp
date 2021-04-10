@@ -55,6 +55,8 @@ void Virus::spawn(float startX, float startY, int type, int seed)
             m_Health = COUGHING_PERSON_HEALTH;
             break;
 
+
+            
     }
 
     //Every virus has a unique speed
