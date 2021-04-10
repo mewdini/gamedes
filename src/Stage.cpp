@@ -28,35 +28,6 @@ void Stage::setGold(int g)
 {
     this->gold = g;
 };
-<<<<<<< HEAD
-
-int Stage::getValueOnMap(int x,int y) //inputs are coordinates on the map, top-left is (0,0)
-{
-    return this->map[x][y];
-};
-
-void Stage::setValueOnMap(int x, int y, int v)
-{
-    this->map[x][y] = v;
-};
-
-void Stage::build(/*Tower1 tower, int posx,int posy */){    //If the player clicks on a slot, the position of the slot should be defense object
-    //Stage::gold-=tower.getCost();
-    //posx=tower.getx();?
-    //posy=tower.gety();?
-    //Stage::map[posx+Stage::width*posy]=4;
-    //Stage::towerlist[curtower]=tower;
-    //curtower+=1;
-    ;
-};
-void Stage::spawnEnemy(){
-    if(this->cur_enemy < this->enemy_count){
-        //enemy=enemylist[curenemy];
-        //enemy.setAlive();
-        //enemy.setPosition(start1);
-        //curenemy+=1;
-        ;
-=======
 int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the map, top-left is (0,0)
     return Stage::map[y*width+x];
 }
@@ -86,10 +57,8 @@ void Stage::spawnEnemy(){
         enemy.setAlive();
         enemy.spawn(Stage::startx,Stage::starty,0,13);
         curenemy+=1;
->>>>>>> JerrySprint2
     };
 };
-<<<<<<< HEAD
 void Stage::allAttack(){
     for(int i = 0; i < this->tower_count; i++)
     {
@@ -98,9 +67,6 @@ void Stage::allAttack(){
         ;
     }
 };
-=======
-
->>>>>>> JerrySprint2
 
 void Stage::attackFirstEnemyInRange(Tower tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i=0;i<enemycount;i++){
