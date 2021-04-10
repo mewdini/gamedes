@@ -1,36 +1,42 @@
 #include "Stage.h"
 #include <SFML/Graphics.hpp>
-Stage::Stage(void)
+Stage::Stage()
 {
-    Stage::height=10;
-    Stage::width=10;
+    this->height = 16;
+    this->width = 12;
 };
 
-int* Stage::getMap(){
-    return Stage::map;
+Stage::Stage(int x, int y)
+{
+    this->width = x;
+    this->heigth = y;
 }
-void Stage::draw(sf::RenderWindow &window){
-    //draw the terrain and road
-    //draw character
-    //draw defense towers
-    //draw enemies
-    //draw components, (gold,remaining enemies,texts)
-    //draw effects (of attacks)
-};
 
-int Stage::getGold(){
+int* Stage::getMap()
+{
+    return this->map;
+}
+
+int Stage::getGold()
+{
     return gold;
 };
 
-void Stage::setGold(int g){
-    Stage::gold=g;
+void Stage::setGold(int g)
+{
+    this->gold = g;
 };
-int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the map, top-left is (0,0)
-    return Stage::map[y*width+x];
-}
-void Stage::setValueOnMap(int x, int y, int v){
-    Stage::map[y*width+x]=v;
-}
+
+int Stage::getValueOnMap(int x,int y) //inputs are coordinates on the map, top-left is (0,0)
+{
+    return this->map[x][y];
+};
+
+void Stage::setValueOnMap(int x, int y, int v)
+{
+    this->map[x][y] = v;
+};
+
 void Stage::build(/*Tower1 tower, int posx,int posy */){    //If the player clicks on a slot, the position of the slot should be defense object
     //Stage::gold-=tower.getCost();
     //posx=tower.getx();?
@@ -38,24 +44,25 @@ void Stage::build(/*Tower1 tower, int posx,int posy */){    //If the player clic
     //Stage::map[posx+Stage::width*posy]=4;
     //Stage::towerlist[curtower]=tower;
     //curtower+=1;
-
+    ;
 };
 void Stage::spawnEnemy(){
-    if(Stage::curenemy<Stage::enemycount){
+    if(this->cur_enemy < this->enemy_count){
         //enemy=enemylist[curenemy];
         //enemy.setAlive();
         //enemy.setPosition(start1);
         //curenemy+=1;
+        ;
     };
-    
 };
 void Stage::allAttack(){
-    for(int i=0;i<towercount;i++){
+    for(int i = 0; i < this->tower_count; i++)
+    {
         //tower=&towerlist[i];?
         //tower.attack();
-
-    })
-}
+        ;
+    }
+};
 
 /*void Stage::attackFirstEnemyInRange(Tower tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i=0;i<enemycount;i++){
