@@ -8,6 +8,11 @@
 using namespace  std;
 
 
+void Virus::setStage(Stage* s)
+{
+    Virus::stage = s;
+}
+
 void Virus::spawn(float startX, float startY, int type, int seed)
 {
     switch(type)
@@ -86,6 +91,14 @@ bool Virus::hit()
     return false;
 
 }
+
+void Virus::movement()
+{
+    &Virus::stage.getValueOnMap();
+    move(1,1);
+
+}
+
 
 
 bool Virus::isAlive()
