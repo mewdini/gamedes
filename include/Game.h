@@ -23,6 +23,7 @@ private:
     void click(int x, int y); // event.mouseButton is int
     Stage level;
     sf::RenderWindow* app;
+    enum Towers {first};
 };
 
 

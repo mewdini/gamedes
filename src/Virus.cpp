@@ -8,6 +8,11 @@
 using namespace  std;
 
 
+void Virus::setStage(Stage* s)
+{
+    Virus::stage = s;
+}
+
 void Virus::spawn(float startX, float startY, int type, int seed)
 {
     switch(type)
@@ -50,6 +55,8 @@ void Virus::spawn(float startX, float startY, int type, int seed)
             m_Health = COUGHING_PERSON_HEALTH;
             break;
 
+
+
     }
 
     //Every virus has a unique speed
@@ -86,6 +93,14 @@ bool Virus::hit()
     return false;
 
 }
+
+void Virus::movement()
+{
+    &Virus::stage.getValueOnMap();
+    move(1,1);
+
+}
+
 
 
 bool Virus::isAlive()

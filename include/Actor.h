@@ -1,25 +1,25 @@
-//Edited by Zack on 3/1
+//Edited by Zack on 4/10
+
 #ifndef Actor_h
 #define Actor_h
-#include <SFML/Graphics.hpp>
 
-/* Basic idea is that an origin point is only thing common to all rendered objects. Will
-    need to discuss how exactly objects are rendered but drawing shapes based on an origin
-    to form our player and enemy models seems like a relatively easy solution
-
-    No constructor, assuming origin will be initialized by more specific constructor down the line
+/* Actor store and has get/set methods for the location of the object on the map grid
 */
 
 class Actor{
 
     public:
-        int getOriginX();
-        void setOriginX(float);
-        int getOriginY();
-        void setOriginY(float);
+        Actor();
+        Actor(int, int);
+        int getGridX();
+        void setGridX(int);
+        int getGridY();
+        void setGridY(int);
 
     private:
-        sf::Vector2f origin;
+        int gridX;
+        int gridY;
+
 
 };
 

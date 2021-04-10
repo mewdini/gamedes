@@ -3,6 +3,9 @@
 
 PlayerView::PlayerView(){
     //Will need better idea of what this is keeping track of before implementing
+    window.create(sf::VideoMode(800,600,32), "COVID Champion");
+    font.loadFromFile("insert font here");
+    texture.loadFromFile("insert texture here");
 }
 
 void PlayerView::init(){
