@@ -58,7 +58,7 @@ void Game::click(int x, int y)
     // try to build tower here (tower build function should return false if not enough money or invalid position)
     bool worked;
     auto mouse_pos = sf::Mouse::getPosition(app);
-    worked = level.build(towerType, mouse_pos.x, mouse_pos.y);
+    worked = this->level.build(first, mouse_pos.x, mouse_pos.y);
     
     if (!worked)
     {
