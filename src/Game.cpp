@@ -4,49 +4,17 @@
 #include "Player.h"
 
 
-Game::Game()
+Game::Game(sf::RenderWindow* window)
 {
-    this->player = Player();
+    this->app = window;
 }
 
-// This functions handles user input
-// It will close the game if the user taps Escape button or click close
-// We can implement later handlePlayerInput case, to check if the player
-// pressed the key or not
-
-void Game::processEvents()
-{
-    sf::Event event;
-
-    while (mGameWindow.pollEvent(event))
-    {
-        switch (event.type)
-        {
-            // case sf::Event::Closed:
-            //     // this->app.close();
-            //     break;
-
-            // case sf::Event::KeyPressed:
-            //     if (event.key.code == sf::Keyboard::Escape)
-            //         // this->app.close();
-            //     break;
-
-            default:
-                break;
-        }
-    }
-}
 // it updates the game logic, everything that happens in the game.
-void Game::update(elapsedTime)
+void Game::update(sf::Int64 elapsed_time)
 {
-// player movesUP
-// player movesDown
-// player Shoots
-// player rotates
-// ETC..
-// virus attacks
-// virus coughs
-    ;
+    this->time_per_frame = elapsed_time;
+    this->level.allAttack();
+    // germs move
 }
 
 // TODO never hardcode keys, use config files
@@ -64,6 +32,24 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 
     else if (key == sf::Keyboard::D)
         //player is moving Right;
+}
 
+void Game::click(int x, int y)
+{
+    while (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        // draw tower at cursor location 
+        ;
+    }
 
+    // try to build tower here (tower build function should return false if not enough money or invalid position)
+    bool worked;
+    auto mouse_pos = sf::Mouse::getPosition(app);
+    worked = level.build(towerType, mouse_pos.x, mouse_pos.y);
+    
+    if (!worked)
+    {
+        // show that failed
+        ;
+    }
 }
