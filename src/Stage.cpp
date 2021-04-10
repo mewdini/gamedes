@@ -63,14 +63,6 @@ void Stage::spawnEnemy(){
         curenemy+=1;
     };
 };
-void Stage::allAttack(){
-    for(int i = 0; i < this->tower_count; i++)
-    {
-        //tower=&towerlist[i];?
-        //tower.attack();
-        ;
-    }
-};
 
 void Stage::attackFirstEnemyInRange(Tower tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i=0;i<enemycount;i++){
