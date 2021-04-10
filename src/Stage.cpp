@@ -1,10 +1,14 @@
 #include "Stage.h"
 #include <SFML/Graphics.hpp>
+
 Stage::Stage()
 {
     this->height = 16;
     this->width = 12;
     this->map[192];
+    this->tower_count = 20;
+    this->virus_count = 100;
+    this->cur_tower, this->cur_enemy = 0;
 };
 
 Stage::Stage(int x, int y)
@@ -70,7 +74,7 @@ void Stage::allAttack(){
 
 void Stage::attackFirstEnemyInRange(Tower tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i=0;i<enemycount;i++){
-        enemy=viruslist[i];
+        Virus enemy = this->virus_list[i];
         if(!enemy.isAlive()){
             posx=enemy.getx();
             posy=enemy.gety();

@@ -29,12 +29,12 @@ class Stage{
         int level;
         //int difficulty;
         int* map;                           //might need to import the size of screen from other files instead of hardcoding
-        int tower_count = 20;
-        int enemy_count = 100;
-        int cur_tower = 0;
-        int cur_enemy = 0;
-        std::list<Virus*> virus_list;                 //the list of enemeies/towers for this level
+        int tower_count;
+        int virus_count;
+        int cur_tower;
+        int cur_enemy;
         std::list<Tower*> tower_list;
+        std::list<Virus*> virus_list;                 //the list of enemeies/towers for this level
         void attackFirstEnemy();          //choose the enemy to attack   
         void updateTowers();              //check all towers if they can attack an enemy
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)
