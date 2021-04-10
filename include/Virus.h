@@ -4,11 +4,11 @@
 #pragma once
 #ifndef GAMEDES_VIRUSES_H
 #define GAMEDES_VIRUSES_H
-#include "DynamicActor.h"
+
 #include <SFML/Graphics.hpp>
 #include "Stage.h"
 using namespace sf;
-class Virus: public DynamicActor
+class Virus:
 {
 private:
     //Virus speeds
@@ -34,6 +34,8 @@ private:
 
     //Sprite for Virus
     Sprite m_Sprite;
+
+    Texture m_Texture;
 
     //How fast can virus move
     float m_Speed;
