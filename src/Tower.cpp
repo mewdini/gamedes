@@ -2,6 +2,7 @@
 // Created by Miodrag
 #define _USE_MATH_DEFINES
 #include "Tower.h"
+
 #include <cmath>
 
 using namespace sf;
@@ -13,6 +14,7 @@ Tower::Tower(int x, int y, int level)
 
     TowerLevel(lvl);
     this->tower_sprite.setPosition(x, y);
+
 }
 
 Tower::Tower()
@@ -102,7 +104,7 @@ const Vector2f Tower::GetPosition()
 
 const FloatRect Tower::GetBoundingBox()
 {
-    return this->tower_sprite.getGlobalBounds;
+    return this->tower_sprite.getGlobalBounds();
 }
 
 const Vector2f Tower::GetCenteredPosition()
@@ -113,7 +115,7 @@ const Vector2f Tower::GetCenteredPosition()
     return vec;
 }
 
-const int Tower::GetGoldCost()
+const int Tower::GetGoldCost(int level)
 {
     return this->gold_cost;
 }

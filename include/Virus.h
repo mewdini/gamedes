@@ -53,6 +53,7 @@ public:
     //Find out if virus is alive
     bool isAlive();
 
+    void movement();
     //Spawn a new virus
     void spawn(float startX, float startY, int type, int seed);
 
