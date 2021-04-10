@@ -8,7 +8,7 @@ Level1::Level1(){
      //initialize enemylist
      static int m[width*height];
      Stage::map=m; //pointer for map
-     //initialize map, use 0 for background, 1 for base, 2 for path, 3 for tower positions 
+     //initialize map, use 0 for background, 1 for base, 2 for path, 3 for tower positions, 4 for built towers
      for(int i=0;i<width*height;i++){
          if(i==5*width+5){
              m[i]=1;
@@ -24,6 +24,9 @@ Level1::Level1(){
          }
      };
      gold=Stage; //set start gold
+     start1=60;     //the position on the map where the enemies are spawned
+     enemycount=10; //set number of enemies in the level and the number of towers
+     towercount=5;
 };
 void Level1::startLevel1(){
     //notify process manager?

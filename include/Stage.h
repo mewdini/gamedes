@@ -14,17 +14,30 @@ class Stage{
     int getGold();
     void setGold(int g);
     int* getMap();
-    void build(/*Defense defense*/);      //trigger build event
+    void build(/*Tower tower*/);        //trigger build event
     int getValueOnMap(int x,int y);
+    void setValueOnMap(int x, int y, int v);
+    void allAttack();
+    
     protected:
     int width;
     int height;
     int level;
     //int difficulty;
-    int* map;      //might need to import the size of screen from other files instead of hardcoding
-    int* enemylist;         //the list of enemeies for this level
-    int gold;                //used to build defense, increase when enemies are killed (maybe has a static growth rate)
-    //Character player;
+    int* map;                           //might need to import the size of screen from other files instead of hardcoding
+    //Enemy* enemylist;                 //the list of enemeies/towers for this level
+    //Tower* towerlist;
+    //void attackFirstEnemy();          //choose the enemy to attack   
+    //void updateTowers();              //check all towers if they can attack an enemy
+    int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)
+    int start1;                         //where enemies are spawned
+    int start2;
+    int towercount;
+    int curtower=0;
+    int enemycount;
+    int curenemy=0;
+
+    //Player player;
     //Enemy? 
     
 };

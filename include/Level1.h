@@ -14,6 +14,7 @@ class Level1: public Stage{
     void spawnEnemy();
     int startGold=100;
     //int objects[];
+    
 };
 
 #endif
