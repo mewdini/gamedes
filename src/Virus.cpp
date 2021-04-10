@@ -56,7 +56,7 @@ void Virus::spawn(float startX, float startY, int type, int seed)
             break;
 
 
-            
+
     }
 
     //Every virus has a unique speed
