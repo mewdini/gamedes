@@ -5,8 +5,9 @@
 #define _STAGE_H_
 
 #include <SFML/Graphics.hpp>
+#include <list>
 
-class Stage{
+class Stage {
     public:
         Stage();
         Stage(int, int);
@@ -18,7 +19,7 @@ class Stage{
         int getValueOnMap(int x,int y);
         void setValueOnMap(int x, int y, int v);
         void allAttack();
-    
+
     protected:
         int width;
         int height;
@@ -38,8 +39,7 @@ class Stage{
         int cur_enemy = 0;
 
         //Player player;
-        //Enemy? 
-    
+        //Enemy?
 };
 
 

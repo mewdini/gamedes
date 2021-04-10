@@ -3,16 +3,17 @@
 
 //#include <SFML/Graphics.hpp>
 #include "Game.h"
+#include "Player.h"
 
-int main(sf::VideoMode(800,600,32), "Pong", sf::Style::Close)
+int main()
 {
     sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Covid Champion", sf::Style::Close);
     
     sf::Clock delta;
     sf::Time dt;
 
-    Game game(App);
-    Player player(App, game);
+    Game::Game game(App);
+    Player::Player player(App, game);
 
     bool paused = false;
     
@@ -51,7 +52,7 @@ int main(sf::VideoMode(800,600,32), "Pong", sf::Style::Close)
         // update game logic if the game is in focus
         if(!paused) {
             player.update();
-            ai.update();
+            // ai.update();
             game.update(deltaMicro);
         }
 
