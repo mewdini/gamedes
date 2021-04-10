@@ -7,21 +7,23 @@
 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Stage.h"
 
 
 class Game
 
 {
 public:
-    Game();
+    Game(sf::RenderWindow*);
 
 private:
-    void update(sf::Time);
-    void render();
+    void update(sf::Int64);
     void handlePlayerInput(sf::Keyboard::Key, bool);
-    static float PlayerSpeed;
-    static sf::Time TimePerFrame;
-
+    static sf::Int64 time_per_frame;
+    void click(int x, int y); // event.mouseButton is int
+    Stage level;
+    sf::RenderWindow* app;
+    enum Towers {first};
 };
 
 

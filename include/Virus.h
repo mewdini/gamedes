@@ -4,9 +4,11 @@
 #pragma once
 #ifndef GAMEDES_VIRUSES_H
 #define GAMEDES_VIRUSES_H
+#include "DynamicActor.h"
 #include <SFML/Graphics.hpp>
+#include "Stage.h"
 using namespace sf;
-class Virus
+class Virus: public DynamicActor
 {
 private:
     //Virus speeds
