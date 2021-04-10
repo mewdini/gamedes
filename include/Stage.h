@@ -8,6 +8,7 @@
 #include <Virus.h>
 #include <Tower.h>
 #include <list>
+
 class Stage{
     public:
         Stage();
@@ -40,6 +41,5 @@ class Stage{
         int start1;                         //where enemies are spawned
         int start2;
 };
-
 
 #endif /* _STAGE_H_ */
