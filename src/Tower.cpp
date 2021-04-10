@@ -7,17 +7,16 @@ using namespace sf;
 Tower::Tower(int x, int y, int level)
 {
     // these are sf::
-    tower_sprite = Sprite();
-    tower_tex = Texture();
+    this->tower_sprite = Sprite();
+    this->tower_tex = Texture();
 
     TowerLevel(lvl);
-    tower_sprite.setPosition(x, y);
-
+    this->tower_sprite.setPosition(x, y);
 }
 
 Tower::Tower()
 {
-    radius = 128.0f;
+    this->radius = 128.0f;
 }
 
 void Tower::TowerLevel(int lvl);
@@ -39,7 +38,6 @@ void Tower::TowerLevel(int lvl);
             this->damage = 30;
             break;
 
-
         case 3:
             this->attack_speed = 3.0f;
             this->damage = 40;
@@ -57,7 +55,6 @@ void Tower::TowerLevel(int lvl);
 
 }
 
-
 void Tower::angle_to_point(double x, double y)
 {
     double dx = x - (tower_sprite.getPosition().x);
@@ -71,11 +68,6 @@ void Tower::Update(float elapsedTime)
     ;   //still have to figure out how we going to update
 
 }
-
-//void Tower::Draw(RenderTarget *something)
-//{
-
-//}
 
 const int Tower::GetX()
 {
@@ -104,22 +96,21 @@ const float Tower::GetDamage()
 
 const Vector2f Tower::GetPosition()
 {
-    return tower_sprite.getPosition();
+    return this->tower_sprite.getPosition();
 }
 
 const FloatRect Tower::GetBoundingBox()
 {
-    return tower_sprite.getGlobalBounds;
+    return this->tower_sprite.getGlobalBounds;
 }
 
 const Vector2f Tower::GetCenteredPosition()
 {
-    Vector2f vec = tower_sprite.getPosition();
+    Vector2f vec = this->tower_sprite.getPosition();
     vec.x += GetBoundingBox().width / 2;
     vec.y += GetBoundingBox().height / 2;
     return vec;
 }
-
 
 const int Tower::GetGoldCost()
 {
@@ -130,8 +121,3 @@ const int Tower::GetUpgradeLevel()
 {
     return this->upgrade_level;
 }
-
-
-
-//
-
