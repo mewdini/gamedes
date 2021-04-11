@@ -7,7 +7,6 @@
 */
 
 class Actor{
-
     public:
         Actor();
         Actor(int, int);
@@ -19,8 +18,6 @@ class Actor{
     private:
         int gridX;
         int gridY;
-
-
 };
 
 #endif

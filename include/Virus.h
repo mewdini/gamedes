@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Stage.h"
 using namespace sf;
-class Virus:
+class Virus
 {
 private:
     //Virus speeds
@@ -66,7 +66,7 @@ public:
     //Update Virus Each Frame, baseLocation is the location of the
     //base that is on the end of the road, we are updating the virus
     //while its chasing towards the base on the end of the road
-    void update(float elapsedTime, Vector2f baseLocation)
+    void update(float elapsedTime, Vector2f baseLocation);
 
 };
 
