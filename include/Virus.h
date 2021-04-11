@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Stage.h"
+#include "SpriteActor.h"
 using namespace sf;
 class Virus: public SpriteActor{
 private:
