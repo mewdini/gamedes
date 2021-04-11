@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Stage.h"
+#include "PlayerView.h"
 
 
 
@@ -15,7 +16,7 @@ class Game
 
 {
 public:
-    Game(sf::RenderWindow*);
+    Game(sf::RenderWindow*, PlayerView*);
 
 private:
     void update(sf::Int64);
@@ -24,6 +25,7 @@ private:
     void click(int x, int y); // event.mouseButton is int
     Stage level;
     sf::RenderWindow* app;
+    PlayerView* view;
     enum Towers {first};
 };
 
