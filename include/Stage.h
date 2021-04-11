@@ -18,11 +18,10 @@ class Stage{
         int getGold();
         void setGold(int g);
         int* getMap();
-        void build(/*Tower tower*/);        //trigger build event
         int getValueOnMap(int x,int y);
         void setValueOnMap(int x, int y, int v);
         void allAttack();
-        bool build(/*Tower1 tower, int posx,int posy */);
+        bool build(Tower tower, int posx, int posy);
     protected:
         int width;
         int height;
