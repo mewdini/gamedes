@@ -69,7 +69,7 @@ void PlayerView::createBG(int* map){
     }
 }
 
-void Playerview::drawBG(){
+void PlayerView::drawBG(){
     //Draws everything contained in the list of background tiles
     int i;
     for(i = 0; i < sizeof(background)/sizeof(background[0]); i++){
@@ -77,9 +77,51 @@ void Playerview::drawBG(){
     }
 }
 
-void PlayerView::update(){
+void PlayerView::drawTowers(std::list<Tower*> towers){
+    //Draws everything contained in the list of towers
+    int i;
+    for(i = 0; i < sizeof(towers)/sizeof(towers[0]); i++){
+        window.draw(towers[i].getSprite());
+    }
+}
+
+void PlayerView::drawViruses(std::list<Virus*> viruses){
+    //Draws everything contained in the list of viruses
+    int i;
+    for(i = 0; i < sizeof(viruses)/sizeof(viruses[0]); i++){
+        window.draw(viruses[i].getSprite());
+    }
+}
+
+void PlayerView::update(Stage stage){
     //Will likely want to change return type to better react to this call
-    drawBG();
+    // Needs to draw everything and accept player input
+
+    if(window.isOpen()){
+        // Draws the background, then the towers, then the enemies
+        drawBG();
+        // These gets don't exist yet
+        drawTowers(stage.getTowerList());
+        drawViruses(stage.getVirusList());
+
+        // Leaving room for potential additions
+        window.display();
+
+        // Using pollEvent to check for input, should this go to event manager?
+        sf::Event event;
+        while(window.pollEvent(event)){
+            if(event.type == sf::Event::Closed){
+                window.close();
+            }
+            if(Event.type == sf::Event::KeyPressed){
+                // Need to agree on controls, will at least include ability to close window with escape
+                if(Event.key.code == sf::Keyboard::Escape){
+                    window.close();
+                }
+            }
+            
+        }
+    }
 }
 
 // void Game::render()
