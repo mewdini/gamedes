@@ -8,8 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Stage.h"
 using namespace sf;
-class Virus
-{
+class Virus: public SpriteActor{
 private:
     //Virus speeds
     const float COVID_VIRUS_SPEED = 45;

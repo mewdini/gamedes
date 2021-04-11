@@ -17,7 +17,7 @@ class Actor{
         int getGridY();
         void setGridY(int);
 
-    private:
+    protected:
         int gridX;
         int gridY;
         sf::Shape shape;

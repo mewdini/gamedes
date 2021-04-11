@@ -1,24 +1,29 @@
-//Edited by Zack on 3/28
+//Edited by Zack on 4/10
 
 #ifndef PlayerView_h
 #define PlayerView_h
 #include <SFML/Graphics.hpp>
+#include "SpriteActor.h"
+#include "Virus.h"
+#include "Tower.h"
+#include "Stage.h"
+
 
 class PlayerView{
 
     public:
         PlayerView();
         void init();
-        void update();
-        sf::Vector2i getMousePos(sf::Window);
-        bool isButtonPressed(sf::Mouse::Button);
-
+        void createBG(int*);
+        void drawBG();
+        void drawTowers(std::list<Tower*>);
+        void drawViruses(std::list<Virus*>);
+        void update(Stage);
     private:
         sf::RenderWindow window;
-        sf::Texture texture; 
-        // May need multiple textures, pending based on art
         sf::Font font;
-        // # of fonts needed depends on art direction
+        sf::Texture texture;
+        SpriteActor* background;
 
 };
 

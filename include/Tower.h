@@ -9,7 +9,7 @@
 
 using namespace std;
 using namespace sf;
-class Tower
+class Tower : public SpriteActor
 {
 public:
     Tower();

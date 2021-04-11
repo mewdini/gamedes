@@ -3,6 +3,7 @@
 #define TextActor_h
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "Actor.h"
 
 /* TextActor inherits from Actor, and additionally stores a text object for displaying text
     on the renderwindow. Methods allow for tracking/moving the text object, and also changing
