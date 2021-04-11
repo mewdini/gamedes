@@ -22,7 +22,7 @@ class SpriteActor : public Actor{
         void setTexture(sf::Texture);
         sf::Sprite getSprite();
 
-    private:
+    protected:
         sf::Sprite sprite;
 
 

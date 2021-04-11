@@ -107,7 +107,7 @@ void PlayerView::update(Stage stage){
         // Leaving room for potential additions
         window.display();
 
-        // Using pollEvent to check for input, should this go to event manager?
+        // Using pollEvent to check for input, event manager handles something else?
         sf::Event event;
         while(window.pollEvent(event)){
             if(event.type == sf::Event::Closed){
@@ -119,7 +119,7 @@ void PlayerView::update(Stage stage){
                     window.close();
                 }
             }
-            
+
         }
     }
 }

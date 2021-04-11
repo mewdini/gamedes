@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Stage.h"
 using namespace sf;
-class Virus: public DynamicActor
+class Virus: public SpriteActor
 {
 private:
     //Virus speeds
