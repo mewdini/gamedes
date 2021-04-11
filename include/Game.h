@@ -20,7 +20,6 @@ public:
 
 private:
     void update(sf::Int64);
-    void handlePlayerInput(sf::Keyboard::Key, bool);
     static sf::Int64 time_per_frame;
     void click(int x, int y); // event.mouseButton is int
     Stage level;
