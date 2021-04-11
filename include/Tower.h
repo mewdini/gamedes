@@ -27,7 +27,7 @@ public:
     const Vector2f GetCenteredPosition();
     const FloatRect GetBoundingBox();
     const int GetUpgradeLevel();
-    const int GetGoldCost();
+    const int GetGoldCost(int level);
     void TowerLevel(int lvl);
 
 private:
