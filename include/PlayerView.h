@@ -10,6 +10,8 @@ class PlayerView{
         PlayerView();
         void init();
         void update();
+        sf::Vector2i getMousePos(sf::Window);
+        bool isButtonPressed(sf::Mouse::Button);
 
     private:
         sf::RenderWindow window;
