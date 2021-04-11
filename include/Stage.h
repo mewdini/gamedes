@@ -18,11 +18,10 @@ class Stage{
         int getGold();
         void setGold(int g);
         int* getMap();
-        void build(/*Tower tower*/);        //trigger build event
         int getValueOnMap(int x,int y);
         void setValueOnMap(int x, int y, int v);
         void allAttack();
-        bool build(/*Tower1 tower, int posx,int posy */);
+        bool build(Tower tower, int posx, int posy);
     protected:
         int width;
         int height;
@@ -35,7 +34,7 @@ class Stage{
         int cur_virus;
         std::list<Tower*> tower_list;
         std::list<Virus*> virus_list;                 //the list of enemeies/towers for this level
-        void attackFirstVirus();          //choose the enemy to attack   
+        void attackFirstVirus(Tower *tower);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         void spawnVirus();
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)

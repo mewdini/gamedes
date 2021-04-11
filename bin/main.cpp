@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Player.h"
+#include "Virus.h"
+#include "Tower.h"
 
 int main(int argc, char** argv)
 {

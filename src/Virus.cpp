@@ -22,7 +22,9 @@ void Virus::spawn(float startX, float startY, int type, int seed)
             //this m_Sprite variable will pull the sprite of the Zombie
             //We should probably create a TextureHolder Class from where we
             // load it
-            // m_Sprite = Sprite(TextureHolder)
+            m_Texture.loadFromFile("../data/coronaviurs_0.png");
+            m_Sprite.setTexture(m_Texture);
+            m_Sprite.setOrigin(15, 6);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
             break;

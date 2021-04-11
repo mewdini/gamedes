@@ -1,4 +1,5 @@
-// Updated by Zack on 4/10
+// Updated by Zack on 3/1
+#include <SFML/Graphics.hpp>
 #include "PlayerView.h"
 
 PlayerView::PlayerView(){
@@ -132,3 +133,13 @@ void PlayerView::update(Stage stage){
 // }
 
 // interpret events here, then send queueEvent to EventManager
+
+sf::Vector2i getMousePos(sf::Window window)
+{
+    sf::Mouse::getPosition(window);
+}
+
+bool isButtonPressed(sf::Mouse::Button button)
+{
+    sf::Mouse::isButtonPressed(button);
+}

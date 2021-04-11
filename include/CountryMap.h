@@ -8,8 +8,9 @@ class CountryMap: public Stage{
     public:
     CountryMap();
     void startLevel();  //start CountryMap i.e. level selection
- 
+    void draw(sf::RenderWindow &window);
     private:
+
     //Player player;
 };
 

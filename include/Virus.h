@@ -4,12 +4,11 @@
 #pragma once
 #ifndef GAMEDES_VIRUSES_H
 #define GAMEDES_VIRUSES_H
-#include "DynamicActor.h"
+
 #include <SFML/Graphics.hpp>
 #include "Stage.h"
 using namespace sf;
-class Virus: public SpriteActor
-{
+class Virus: public SpriteActor{
 private:
     //Virus speeds
     const float COVID_VIRUS_SPEED = 45;
@@ -35,6 +34,8 @@ private:
     //Sprite for Virus
     Sprite m_Sprite;
 
+    Texture m_Texture;
+
     //How fast can virus move
     float m_Speed;
 
@@ -51,6 +52,7 @@ public:
     //Find out if virus is alive
     bool isAlive();
 
+    void movement();
     //Spawn a new virus
     void spawn(float startX, float startY, int type, int seed);
 
@@ -63,7 +65,7 @@ public:
     //Update Virus Each Frame, baseLocation is the location of the
     //base that is on the end of the road, we are updating the virus
     //while its chasing towards the base on the end of the road
-    void update(float elapsedTime, Vector2f baseLocation)
+    void update(float elapsedTime, Vector2f baseLocation);
 
 };
 

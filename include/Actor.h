@@ -1,5 +1,7 @@
 //Edited by Zack on 4/10
 
+#include <SFML/Graphics.hpp>
+
 #ifndef Actor_h
 #define Actor_h
 
@@ -7,7 +9,6 @@
 */
 
 class Actor{
-
     public:
         Actor();
         Actor(int, int);
@@ -19,8 +20,7 @@ class Actor{
     protected:
         int gridX;
         int gridY;
-
-
+        sf::Shape shape;
 };
 
 #endif
