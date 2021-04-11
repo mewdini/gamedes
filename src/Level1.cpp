@@ -34,8 +34,6 @@ Level1::Level1(){
         //horizontal paths
          else if((1*width+3<i && i<1*width+10)||(10*width+3<i && i<10*width+7)||(10*width+10<i && i<10*width+14)||i==6*width+15){
              m[i]=6;
-         }{
-             m[i]=6;
          }
          //vertical paths
          else if(2*width<i<width*9){                
