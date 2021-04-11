@@ -1,22 +1,20 @@
-//Edited by Zack on 3/28
+//Edited by Zack on 4/10
 
 #ifndef PlayerView_h
 #define PlayerView_h
 #include <SFML/Graphics.hpp>
-
 class PlayerView{
 
     public:
         PlayerView();
         void init();
+        void drawBG(int*);
         void update();
-
     private:
         sf::RenderWindow window;
-        sf::Texture texture; 
-        // May need multiple textures, pending based on art
         sf::Font font;
-        // # of fonts needed depends on art direction
+        sf::Texture texture;
+        BlockActor* background;
 
 };
 
