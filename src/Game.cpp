@@ -18,36 +18,6 @@ void Game::update(sf::Int64 elapsed_time)
     // germs move
 }
 
-// TODO never hardcode keys, use config files
-// also, user input should be handled in player view and sent as event to eventmanager
-void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
-{
-    // TODO all depends on whether on USA map
-    if (key == sf::Keyboard::W)
-    {
-        //player is moving UP;
-        ;
-    }
-
-    else if (key == sf::Keyboard::S)
-    {
-        //player is moving DOWN;
-        ;
-    }
-
-    else if (key == sf::Keyboard::A)
-    {
-        //player is moving Left;
-        ;
-    }
-
-    else if (key == sf::Keyboard::D)
-    {
-        //player is moving Right;
-        ;
-    }
-}
-
 void Game::click(int x, int y)
 {
     while (view->isButtonPressed(sf::Mouse::Left))
