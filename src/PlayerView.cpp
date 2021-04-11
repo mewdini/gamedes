@@ -2,7 +2,7 @@
 #include "PlayerView.h"
 
 PlayerView::PlayerView(){
-    //Will need better idea of what this is keeping track of before implementing
+    //Might want additional fonts/textures in future, but early build will just have one texture
     window.create(sf::VideoMode(800,600,32), "COVID Champion");
     font.loadFromFile("insert font here");
     texture.loadFromFile("..\\data\\ThirdSpriteSheet.png");
@@ -20,9 +20,9 @@ void PlayerView::createBG(int* map){
     for(i = 0; i < sizeof(map)/sizeof(map[0]); i++){
         // Creates sprite for each tile and gives Texture to the sprite
         // Calculates position using integer division before applying to sprite, which uses floats
-        Xpos = 50*i%16;
-        Ypos = 50*i/16;
-        background[i] = BlockActor(Xpos, Ypos, 450, 0, 50, 50);
+        Xpos = 50*(i%16);
+        Ypos = 50*(i/16);
+        background[i] = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
         background[i].setTexture(texture);
 
         // Sets the IntRect's location to where the desired image is
@@ -33,7 +33,7 @@ void PlayerView::createBG(int* map){
             case 0:
                 // No change necessary, input in constructor defaulted to Basic BG
                 break;
-            // Home Base
+            // Home Base. 2 is skipped due to current design
             case 1:
                 background[i].setViewLocation(0, 0);
                 break;
@@ -69,8 +69,17 @@ void PlayerView::createBG(int* map){
     }
 }
 
+void Playerview::drawBG(){
+    //Draws everything contained in the list of background tiles
+    int i;
+    for(i = 0; i < sizeof(background)/sizeof(background[0]); i++){
+        window.draw(background[i].getSprite());
+    }
+}
+
 void PlayerView::update(){
     //Will likely want to change return type to better react to this call
+    drawBG();
 }
 
 // void Game::render()
