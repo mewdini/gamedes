@@ -8,7 +8,7 @@ class PlayerView{
     public:
         PlayerView();
         void init();
-        void drawBG(int*);
+        void createBG(int*);
         void update();
     private:
         sf::RenderWindow window;

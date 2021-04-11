@@ -2,31 +2,37 @@
 #include "BlockActor.h"
 
 BlockActor::BlockActor(){
-    block.setPosition(0,0);
+    sprite.setPosition(0,0);
 }
 
-BlockActor::BlockActor(float posX, float posY){
-    block.setPosition(posX, posY);
+BlockActor::BlockActor(float posX, float posY, int left, int top, int width, int height){
+    sprite.setPosition(posX, posY);
+    sf::IntRect rect(left, top, width, height);
+    sprite.setTextureRect(rect);
 }
 
-int BlockActor::getLocationX(){
-    return block.getPosition().x;
+float BlockActor::getLocationX(){
+    return sprite.getPosition().x;
 }
 
-int BlockActor::getLocationY(){
-    return block.getPosition().y;
+float BlockActor::getLocationY(){
+    return sprite.getPosition().y;
 }
 
-void BlockActor::setViewLocation(int x, int y){
-    view.left = x;
-    view.top = y;
+void BlockActor::setViewLocation(int newLeft, int newTop){
+    sprite.getTextureRect().left = newLeft;
+    sprite.getTextureRect().top = newTop;
 }
 
-void BlockActor::setViewDimensions(int width, int height){
-    view.width = width;
-    view.height = height;
+void BlockActor::setViewDimensions(int newWidth, int newHeight){
+    sprite.getTextureRect().width = newWidth;
+    sprite.getTextureRect().height = newHeight;
 }
 
 void BlockActor::move(float deltaX, float deltaY){
-    block.move(deltaX, deltaY);
+    sprite.move(deltaX, deltaY);
+}
+
+void BlockActor::setTexture(sf::Texture texture){
+    sprite.setTexture(texture);
 }

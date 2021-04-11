@@ -12,13 +12,16 @@ class BlockActor : public Actor{
 
     public:
         BlockActor();
-        BlockActor(int, int, int, int);
-        int getLocationX();
-        int getLocationY();
+        BlockActor(float, float, int, int, int, int);
+        float getLocationX();
+        float getLocationY();
+        void setViewLocation(int, int);
+        void setViewDimensions(int, int);
         void move(float, float);
+        void setTexture(sf::Texture);
 
     private:
-        sf::RectangleShape block;
+        sf::Sprite sprite;
 
 
 };
