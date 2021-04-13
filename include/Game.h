@@ -17,6 +17,7 @@ class Game
 {
 public:
     Game(sf::RenderWindow*, PlayerView*);
+    ~Game();
 
 private:
     void update(sf::Int64);
