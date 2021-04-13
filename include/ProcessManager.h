@@ -20,7 +20,7 @@ using TypeContainer = std::vector<StateType>;
 using StateFactory = std::unordered_map<StateType, std::function<BaseState*(void)>>;
 
 
-/* Forward Declaration of StateManager
+/* Forward Declaration of ProcessManager
  * The reason all the methods through out the
  * states are virtual is because each class
  * that inherits from BaseState has to implement
@@ -29,11 +29,11 @@ using StateFactory = std::unordered_map<StateType, std::function<BaseState*(void
  * to indicate if this state we are currently in has to render
  * or update the state that came before it */
 
-class StateManager
+class ProcessManager
 {
 public:
-    StateManager(SharedContext* l_shared);
-    ~StateManager();
+    ProcessManager(SharedContext* l_shared);
+    ~ProcessManager();
 
     void Update(const sf::Time& l_time);
     void Draw();

@@ -9,14 +9,14 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
-class StateManager;
+class ProcessManager;
 class BaseState
 {
-    friend class StateManager;
+    friend class ProcessManager;
 
 public:
-    BaseState(StateManager* l_stateManager):
-            m_stateMgr(l_stateManager), m_transparent(false),
+    BaseState(ProcessManager* l_processManager):
+            m_stateMgr(l_processManager), m_transparent(false),
             m_transcendent(false){}
     virtual ~BaseState(){}
 
@@ -47,13 +47,13 @@ public:
         return m_transcendent;
     }
 
-    StateManager* GetStateManager()
+    ProcessManager* GetProcessManager()
     {
         return m_stateMgr;
     }
 
 protected:
-    StateManager* m_stateMgr;
+    ProcessManager* m_stateMgr;
     bool m_transparent;
     bool m_transcendent;
     sf::View m_view;
