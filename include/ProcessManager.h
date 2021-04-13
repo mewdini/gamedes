@@ -1,7 +1,7 @@
 //CREATED BY MIODRAG 13/4/2020
 #ifndef PROCESSMANAGER_H
 #define PROCESSMANAGER_H
-#include <SharedContext.h>
+#include "SharedContext.h"
 #include "BaseState.h"
 #include <vector>
 #include <unordered_map>
