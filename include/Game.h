@@ -24,7 +24,7 @@ private:
     void update(sf::Int64);
     static sf::Int64 time_per_frame;
     void click(int x, int y); // event.mouseButton is int
-    Stage level;
+    //Stage level; omitted for testing
     sf::RenderWindow* app;
     PlayerView* view;
 };
