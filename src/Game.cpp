@@ -12,8 +12,8 @@ Game::Game(PlayerView* p_view)
 // it updates the game logic, everything that happens in the game.
 void Game::update(sf::Int64 elapsed_time)
 {
-    this->time_per_frame = elapsed_time;
-    this->level.allAttack();
+    time_per_frame = elapsed_time;
+    level.allAttack();
     // germs move
 }
 

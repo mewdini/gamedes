@@ -140,9 +140,9 @@ void PlayerView::update(Stage stage){
 
 // void Game::render()
 // {
-//     this->app.clear();
-//     this->app.draw(this->player);
-//     this->app.display();
+//     app.clear();
+//     app.draw(player);
+//     app.display();
 // }
 
 // interpret events here, then send queueEvent to EventManager
