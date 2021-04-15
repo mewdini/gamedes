@@ -4,9 +4,8 @@
 #include "Player.h"
 
 
-Game::Game(sf::RenderWindow* window, PlayerView* p_view)
+Game::Game(PlayerView* p_view)
 {
-    app = window;
     view = p_view;
 }
 

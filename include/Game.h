@@ -16,7 +16,7 @@ class Game
 
 {
 public:
-    Game(sf::RenderWindow*, PlayerView*);
+    Game(PlayerView*);
     ~Game();
 
 private:
