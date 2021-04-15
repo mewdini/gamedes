@@ -2,13 +2,13 @@
 
 // default constructor
 Player::Player() {
-    this->setOriginX(0);
-    this->setOriginY(0);
+    setOriginX(0);
+    setOriginY(0);
 };
 
 // constructor
 Player::Player(/*Weapon w*/float x, float y, float vel) {
     //Player::weapon=w;
-    this->setOriginX(x);
-    this->setOriginY(y);
+    setOriginX(x);
+    setOriginY(y);
 };

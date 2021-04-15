@@ -4,91 +4,112 @@
 
 Stage::Stage()
 {
-    this->height = 16;
-    this->width = 12;
-    this->map[192];
-    this->tower_count = 20;
-    this->virus_count = 100;
-    this->cur_tower, this->cur_enemy = 0;
+    height = 16;
+    width = 12;
+    map[192];
+    tower_count = 20;
+    virus_count = 100;
+    cur_tower = tower_list.begin();
+    cur_virus = virus_list.begin();
 };
 
 Stage::Stage(int x, int y)
 {
-    this->width = x;
-    this->heigth = y;
-    this->map[this->width*this->height];
+    width = x;
+    height = y;
+    map[width*height];
 }
 
 int* Stage::getMap()
 {
-    return this->map;
+    return map;
 }
 
 int Stage::getGold()
 {
-    return this->gold;
+    return gold;
 };
 
 void Stage::setGold(int g)
 {
-    this->gold = g;
+    gold = g;
 };
 int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the map, top-left is (0,0)
-    return this->map[y * this->width + x];
+    return map[y * width + x];
 }
 void Stage::setValueOnMap(int x, int y, int v){
-    this->map[y * this->width + x] = v;
+    map[y * width + x] = v;
 }
-bool Stage::build(first, int posx,int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
-    if(this->map[posx + this->width * posy] != 3){
+bool Stage::build(Game::Towers tower, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
+    if(map[posx + width * posy] != 3){
         return false;   //position is not valid;
     }
-    if(this->gold < this->tower.getCost()){
+    int tower_cost;
+    switch (tower)
+    {
+        case Game::Towers::first:
+            tower_cost = 100;
+            break;
+    }
+
+    if(gold < tower_cost){
         return false;
     }
-    this->gold -= this->tower.getCost();
+
+    gold -= tower_cost;
     
-    this->setValueOnMap(posx,posy,4);
-    //determine by enum 
-    this->towerlist[cur_tower] = Tower(posx,posy,1);
-    this->cur_tower++;
+    setValueOnMap(posx,posy,4);
+
+    //determine by enum
+    *cur_tower = &Tower(posx,posy,1);
+    cur_tower++;
     return true;
 
 };
 void Stage::spawnVirus()
 {
-    if (this->cur_virus < this->virus_count)
+    if (virus_count > 0)
     {
-        Virus* enemy = this->virus_list[this->cur_virus];
+        Virus* enemy = *cur_virus;
         enemy->setAlive();
-        enemy->spawn(this->startx,this->starty,0,13);
-        this->cur_virus++;
+        enemy->spawn(startx,starty,0,13);
+        cur_virus++;
+        virus_count--;
     };
 };
 
 void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i = 0; i < enemy_count; i++){
-        Virus* enemy = this->virus_list[i];
+        Virus* enemy = virus_list[i];
         if(!enemy->isAlive()){
             posx = enemy->getx();
             posy = enemy->gety();
-            x = this->tower->getx();
-            y = this->tower->gety();
-            r = this->tower->getRange();
+            x = tower->getx();
+            y = tower->gety();
+            r = tower->getRange();
             if ((posx-x)*(posx-x)+(posy-y)*(posy-y)<=r*r)
             {
-                this->tower->attack(enemy);
+                tower->attack(enemy);
             }
         }
     }
 }
 
 void Stage::updateTowers(){
-    for(int i = 0; i < this->cur_tower; i++){
+    for(int i = 0; i < cur_tower; i++){
         
-            Tower* tower = this->tower_list[i];
-            this->attackFirstEnemy(tower);
+            Tower* tower = tower_list[i];
+            attackFirstEnemy(tower);
         
     }
 }
 
+std::list<Tower*> Stage::getTowerList()
+{
+    return tower_list;
+}
+
+std::list<Virus*> Stage::getVirusList()
+{
+    return virus_list;
+}
