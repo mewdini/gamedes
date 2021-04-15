@@ -9,7 +9,7 @@
 // BUG stop early if supposed to move beyond destination
 void DynamicActor::move(float deltaX, float deltaY){
     // get x and y vel
-    auto pos = this->shape.getPosition();
+    auto pos = shape.getPosition();
     float xPos = deltaX - pos.x;
     float yPos = deltaY - pos.y;
     float theta = std::atan(xPos/yPos) * 180 / M_PI;
@@ -17,11 +17,11 @@ void DynamicActor::move(float deltaX, float deltaY){
     float yVel = 2 * std::cos(theta) * 180 / M_PI;
 
     // move that many units in each direction
-    float xFinal = this->getOriginX() + xVel;
-    float yFinal = this->getOriginY() + yVel;
+    float xFinal = getOriginX() + xVel;
+    float yFinal = getOriginY() + yVel;
 
-    this->setOriginX(xFinal);
-    this->setOriginY(yFinal);
+    setOriginX(xFinal);
+    setOriginY(yFinal);
 }
 
 

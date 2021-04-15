@@ -19,11 +19,15 @@ class PlayerView{
         void drawTowers(std::list<Tower*>);
         void drawViruses(std::list<Virus*>);
         void update(Stage);
+        sf::RenderWindow* getWindow();
+        bool isButtonPressed(sf::Mouse::Button);
+        sf::Vector2i getMousePos();
+
     private:
         sf::RenderWindow window;
         sf::Font font;
         sf::Texture texture;
-        SpriteActor* background;
+        std::list<SpriteActor*> background;
 
 };
 

@@ -5,8 +5,9 @@
 #define _STAGE_H_
 
 #include <SFML/Graphics.hpp>
-#include <Virus.h>
-#include <Tower.h>
+#include "Virus.h"
+#include "Tower.h"
+#include "Game.h"
 #include <list>
 
 class Stage{
@@ -22,7 +23,9 @@ class Stage{
         int getValueOnMap(int x,int y);
         void setValueOnMap(int x, int y, int v);
         void allAttack();
-        bool build(Tower tower, int posx, int posy);
+        bool build(Game::Towers tower, int posx, int posy);
+        std::list<Tower*> getTowerList();
+        std::list<Virus*> getVirusList();
     protected:
         int width;
         int height;
@@ -31,8 +34,8 @@ class Stage{
         int* map;                           //might need to import the size of screen from other files instead of hardcoding
         int tower_count;
         int virus_count;
-        int cur_tower;
-        int cur_virus;
+        std::list<Tower*>::iterator cur_tower;
+        std::list<Virus*>::iterator cur_virus;
         std::list<Tower*> tower_list;
         std::list<Virus*> virus_list;                 //the list of enemeies/towers for this level
         void attackFirstVirus(Tower *tower);          //choose the enemy to attack

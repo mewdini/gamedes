@@ -16,7 +16,9 @@ class Game
 
 {
 public:
-    Game(sf::RenderWindow*, PlayerView*);
+    Game(PlayerView*);
+    enum Towers {first};
+    ~Game();
 
 private:
     void update(sf::Int64);
@@ -25,7 +27,6 @@ private:
     Stage level;
     sf::RenderWindow* app;
     PlayerView* view;
-    enum Towers {first};
 };
 
 

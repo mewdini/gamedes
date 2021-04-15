@@ -3,14 +3,14 @@
 #include <SFML/Graphics.hpp>
 
 Level1::Level1(){
-     this->level=1;
-     this->width=16;
-     this->height=12;
+     level=1;
+     width=16;
+     height=12;
      static int e[width*height];
-     this->enemylist=e;//pointer for enemylist
+     enemylist=e;//pointer for enemylist
      //initialize enemylist
      static int m[width*height];
-     this->map=m; //pointer for map
+     map=m; //pointer for map
      //initialize map, use 0 for background, 1 for base, 3 for tower positions, 4 for built towers， 5 for north-south path, 6 for east-west path, 7 for corner connecting south-east path, 8 for south-west, 9 for north-east, 10 for north-west
      for(int i=0;i<width*height;i++){
          //base
@@ -52,12 +52,12 @@ Level1::Level1(){
              m[i]=0;
          }
      };
-     this->viruslist=v;
-     for(int i=0;i<this->enemycount;i++){
+     viruslist=v;
+     for(int i=0;i<enemycount;i++){
          v[i]=Virus virus;
          virus.setStage(this);
      }
-     this->setGold(100);
+     setGold(100);
      startx=15;
      stary=6;     //the position on the map where the enemies are spawned
      

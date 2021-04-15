@@ -9,59 +9,59 @@ using namespace sf;
 Tower::Tower(int x, int y, int level)
 {
     // these are sf::
-    this->tower_sprite = Sprite();
-    this->tower_tex = Texture();
+    tower_sprite = Sprite();
+    tower_tex = Texture();
 
     TowerLevel(lvl);
-    this->tower_sprite.setPosition(x, y);
+    tower_sprite.setPosition(x, y);
 
 }
 
 Tower::Tower()
 {
-    this->radius = 128.0f;
+    radius = 128.0f;
 }
 
 void Tower::TowerLevel(int lvl);
 {
-    this->level = lvl;
-    this->radius = 128;
-    this->gold_cost = 100 * lvl;
-    this->tower_sprite.setTexture(*this->tower_tex);
+    level = lvl;
+    radius = 128;
+    gold_cost = 100 * lvl;
+    tower_sprite.setTexture(*tower_tex);
 
     switch(lvl)
     {
         case 1:
-            this->attack_speed = 1.0f;
-            this->damage = 15;
+            attack_speed = 1.0f;
+            damage = 15;
             break;
 
         case 2:
-            this->attack_speed = 2.0f;
-            this->damage = 30;
+            attack_speed = 2.0f;
+            damage = 30;
             break;
 
         case 3:
-            this->attack_speed = 3.0f;
-            this->damage = 40;
+            attack_speed = 3.0f;
+            damage = 40;
             break;
 
         case 4:
-            this->attack_speed = 4.0f;
-            this->damage = 50;
+            attack_speed = 4.0f;
+            damage = 50;
             break;
 
         case 5:
-            this->attack_speed = 4.0f;
-            this->damage = 60;
+            attack_speed = 4.0f;
+            damage = 60;
     }
 
 }
 
 double Tower::angle_to_point(double x, double y)
 {
-    double dx = x - (this->tower_sprite.getPosition().x);
-    double dy = y - (this->tower_sprite.getPosition().y);
+    double dx = x - (tower_sprite.getPosition().x);
+    double dy = y - (tower_sprite.getPosition().y);
     double angle =  atan2(dx,dy) * 180 / M_PI;
     return angle;
 }
@@ -74,53 +74,53 @@ void Tower::Update(float elapsedTime)
 
 const int Tower::GetX()
 {
-    return (int) this->tower_sprite.getPosition().x;
+    return (int) tower_sprite.getPosition().x;
 }
 
 const int Tower::GetY()
 {
-    return (int) this->tower_sprite.getPosition().y;
+    return (int) tower_sprite.getPosition().y;
 }
 
 const float Tower::GetRadius()
 {
-    return this->radius;
+    return radius;
 }
 
 const float Tower::GetAttackSpeed()
 {
-    return this->attack_speed;
+    return attack_speed;
 }
 
 const float Tower::GetDamage()
 {
-    return this->damage;
+    return damage;
 }
 
 const Vector2f Tower::GetPosition()
 {
-    return this->tower_sprite.getPosition();
+    return tower_sprite.getPosition();
 }
 
 const FloatRect Tower::GetBoundingBox()
 {
-    return this->tower_sprite.getGlobalBounds();
+    return tower_sprite.getGlobalBounds();
 }
 
 const Vector2f Tower::GetCenteredPosition()
 {
-    Vector2f vec = this->tower_sprite.getPosition();
-    vec.x += this->GetBoundingBox().width / 2;
-    vec.y += this->GetBoundingBox().height / 2;
+    Vector2f vec = tower_sprite.getPosition();
+    vec.x += GetBoundingBox().width / 2;
+    vec.y += GetBoundingBox().height / 2;
     return vec;
 }
 
 const int Tower::GetGoldCost(int level)
 {
-    return this->gold_cost;
+    return gold_cost;
 }
 
 const int Tower::GetUpgradeLevel()
 {
-    return this->upgrade_level;
+    return upgrade_level;
 }
