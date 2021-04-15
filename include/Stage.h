@@ -12,6 +12,7 @@
 class Stage{
     public:
         Stage();
+        Stage(int); // Just for testing
         Stage(int, int);
         void draw(sf::RenderWindow &window);
         //void StartStage();
