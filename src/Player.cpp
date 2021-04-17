@@ -1,14 +1,15 @@
 #include "Player.h"
+#include "Actor.h"
 
 // default constructor
 Player::Player() {
-    setOriginX(0);
-    setOriginY(0);
+    setGridX(0);
+    setGridY(0);
 };
 
 // constructor
 Player::Player(/*Weapon w*/float x, float y, float vel) {
     //Player::weapon=w;
-    setOriginX(x);
-    setOriginY(y);
+    setGridX(x);
+    setGridY(y);
 };

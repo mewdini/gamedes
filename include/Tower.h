@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #ifndef GAMEDES_TOWER_H
 #define GAMEDES_TOWER_H
+#include "SpriteActor.h"
 
 using namespace std;
 using namespace sf;

@@ -8,10 +8,15 @@
 using namespace  std;
 
 
-void Virus::setStage(Stage* s)
+Virus::Virus()
 {
-    Virus::stage = s;
+    ;
 }
+
+//void Virus::setStage(Stage* s)
+//{
+//    Virus::stage = s;
+//}
 
 void Virus::spawn(float startX, float startY, int type, int seed)
 {
