@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #ifndef GAMEDES_TOWER_H
 #define GAMEDES_TOWER_H
-#include "SpriteActor.h"
+#include "Virus.h"
 
 using namespace std;
 using namespace sf;
@@ -20,8 +20,6 @@ public:
     //draw function needs a target to draw
     //void Draw(RenderTarget *something);
     void Update(float elapsedTime);
-    const int GetX();
-    const int GetY();
     const float GetRadius();
     const float GetAttackSpeed();
     const float GetDamage();
@@ -31,9 +29,10 @@ public:
     const int GetUpgradeLevel();
     const int GetGoldCost(int level);
     void TowerLevel(int lvl);
+    void Attack(Virus*);
 
 private:
-    Texture *tower_tex;
+    Texture tower_tex;
     Sprite tower_sprite;
     int level;
     float radius;
