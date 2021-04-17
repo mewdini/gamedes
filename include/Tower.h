@@ -13,6 +13,7 @@ class Tower : public SpriteActor
 {
 public:
     Tower();
+    enum Towers {first};
     //void Draw(RenderTarget *Whatever)
     explicit Tower(int x, int y, int level);
     //draw function needs a target to draw

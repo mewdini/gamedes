@@ -6,9 +6,7 @@
 
 class Level1: public Stage{
     public:
-    Level1():Stage(){
-
-    };
+    Level1();
     void startLevel1();
     private:
     void spawnEnemy();

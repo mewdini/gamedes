@@ -2,12 +2,12 @@
 #include "Stage.h"
 #include <SFML/Graphics.hpp>
 
-Level1::Level1(){
+Level1::Level1():Stage(){
      level=1;
      width=16;
      height=12;
      static int e[width*height];
-     enemylist=e;//pointer for enemylist
+     virus_list=e;//pointer for enemylist
      //initialize enemylist
      static int m[width*height];
      map=m; //pointer for map
@@ -52,24 +52,18 @@ Level1::Level1(){
              m[i]=0;
          }
      };
-     viruslist=v;
-     for(int i=0;i<enemycount;i++){
-         v[i]=Virus virus;
-         virus.setStage(this);
+     auto v = virus_list;
+     for(auto const& i : virus_list){
+         *i=Virus();
+         i->setStage(this);
      }
      setGold(100);
-     startx=15;
-     stary=6;     //the position on the map where the enemies are spawned
+     start1=15;
+     start2=6;     //the position on the map where the enemies are spawned
      
 };
 void Level1::startLevel1(){
     //notify process manager?
     //update every actors in Level
     //Level1::draw(window);
-};
-void Level1::draw(sf::RenderWindow &window){
-    /*sf::Texture texture;
-    //...
-    //for each objects/actors, call draw();
-    texture.update(window);*/
 };
