@@ -2,7 +2,6 @@
 // Created by Miodrag
 #define _USE_MATH_DEFINES
 #include "Tower.h"
-
 #include <cmath>
 
 using namespace sf;

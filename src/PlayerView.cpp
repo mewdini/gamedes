@@ -33,13 +33,15 @@ void PlayerView::createBG(int* map){
     // Creates the inital background state based on map provided by Stage
     int i;
     int Xpos, Ypos;
-    for(i = 0; i < sizeof(map)/sizeof(map[0]); i++){
+    for(i = 0; i < 192; i++){
         // Creates sprite for each tile and gives Texture to the sprite
         // Calculates position using integer division before applying to sprite, which uses floats
         Xpos = 50*(i%16);
         Ypos = 50*(i/16);
         auto new_bg = std::next(background.begin(), i);
-        *new_bg = &SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
+        auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
+        *new_bg = &sprite_bg;
+
         (*new_bg)->setTexture(texture);
 
         // Sets the IntRect's location to where the desired image is
@@ -110,49 +112,49 @@ void PlayerView::drawViruses(std::list<Virus*> viruses){
     }
 }
 
-void PlayerView::update(Stage stage){
-    //Will likely want to change return type to better react to this call
-    // Needs to draw everything and accept player input
-
-    if(window.isOpen()){
-        // Draws the background, then the towers, then the enemies
-        drawBG();
-        // These gets don't exist yet
-        drawTowers(stage.getTowerList());
-        drawViruses(stage.getVirusList());
-
-        // Leaving room for potential additions
-        window.display();
-
-        // Using pollEvent to check for input, event manager handles something else?
-        sf::Event event;
-        while(window.pollEvent(event)){
-            if(event.type == sf::Event::Closed){
-                window.close();
-            }
-            if(event.type == sf::Event::KeyPressed){
-                // Need to agree on controls, will at least include ability to close window with escape
-                if(event.key.code == sf::Keyboard::Escape){
-                    window.close();
-                }
-            }
-            // switch (Event.type) {
-            //     // Exit
-            //     case(sf::Event::Closed):
-            //     App.close();
-            //     break;
-
-            //     // Mouse Clicked
-            //     case(sf::Event::MouseButtonPressed):
-            //     if (event.mouseButton.button == sf::Mouse::Left)
-            //     {
-            //         game.click(event.mouseButton.x, event.mouseButton.y);
-            //     }
-            //     break;
-            // }
-        }
-    }
-}
+//void PlayerView::update(Stage stage){
+//    //Will likely want to change return type to better react to this call
+//    // Needs to draw everything and accept player input
+//
+//    if(window.isOpen()){
+//        // Draws the background, then the towers, then the enemies
+//        drawBG();
+//        // These gets don't exist yet
+//        drawTowers(stage.getTowerList());
+//        drawViruses(stage.getVirusList());
+//
+//        // Leaving room for potential additions
+//        window.display();
+//
+//        // Using pollEvent to check for input, event manager handles something else?
+//        sf::Event event;
+//        while(window.pollEvent(event)){
+//            if(event.type == sf::Event::Closed){
+//                window.close();
+//            }
+//            if(event.type == sf::Event::KeyPressed){
+//                // Need to agree on controls, will at least include ability to close window with escape
+//                if(event.key.code == sf::Keyboard::Escape){
+//                    window.close();
+//                }
+//            }
+//            // switch (Event.type) {
+//            //     // Exit
+//            //     case(sf::Event::Closed):
+//            //     App.close();
+//            //     break;
+//
+//            //     // Mouse Clicked
+//            //     case(sf::Event::MouseButtonPressed):
+//            //     if (event.mouseButton.button == sf::Mouse::Left)
+//            //     {
+//            //         game.click(event.mouseButton.x, event.mouseButton.y);
+//            //     }
+//            //     break;
+//            // }
+//        }
+//    }
+//}
 
 // void Game::render()
 // {

@@ -6,10 +6,10 @@ Level1::Level1():Stage(){
      level=1;
      width=16;
      height=12;
-     static int e[width*height];
-     virus_list=e;//pointer for enemylist
+     //static int e[width*height];
+     //pointer for enemylist
      //initialize enemylist
-     static int m[width*height];
+     int m[width*height];
      map=m; //pointer for map
      //initialize map, use 0 for background, 1 for base, 3 for tower positions, 4 for built towers， 5 for north-south path, 6 for east-west path, 7 for corner connecting south-east path, 8 for south-west, 9 for north-east, 10 for north-west
      for(int i=0;i<width*height;i++){
@@ -52,14 +52,16 @@ Level1::Level1():Stage(){
              m[i]=0;
          }
      };
-     auto v = virus_list;
-     for(auto const& i : virus_list){
-         *i=Virus();
-         i->setStage(this);
-     }
-     setGold(100);
-     start1=15;
-     start2=6;     //the position on the map where the enemies are spawned
+//     auto v = virus_list;
+//     for(auto const& i : virus_list){
+
+         //wont work if the attributes in virus.h are set to const
+//         *i=Virus();
+         //i->setStage(this);
+//     }
+//     setGold(100);
+//     start1=15;
+//     start2=6;     //the position on the map where the enemies are spawned
      
 };
 void Level1::startLevel1(){

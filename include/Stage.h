@@ -5,11 +5,13 @@
 #define _STAGE_H_
 
 #include <SFML/Graphics.hpp>
-#include "Virus.h"
 #include "Tower.h"
-#include <list>
+#include "Virus.h"
 
-class Stage{
+#include <list>
+#include <iostream>
+using namespace std;
+class Stage {
     public:
         Stage();
         Stage(int); // Just for testing

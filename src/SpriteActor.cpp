@@ -20,14 +20,18 @@ float SpriteActor::getLocationY(){
 }
 
 void SpriteActor::setViewLocation(int newLeft, int newTop){
-    sprite.getTextureRect().left = newLeft;
-    sprite.getTextureRect().top = newTop;
+    sprite.setPosition(newLeft * 50, newTop * 50);
+
+    //    sprite.getTextureRect().left = newLeft;
+    //    sprite.getTextureRect().top = newTop;
+
+
 }
 
-void SpriteActor::setViewDimensions(int newWidth, int newHeight){
-    sprite.getTextureRect().width = newWidth;
-    sprite.getTextureRect().height = newHeight;
-}
+//void SpriteActor::setViewDimensions(int newWidth, int newHeight){
+//    sprite.getTextureRect().width = newWidth;
+//    sprite.getTextureRect().height = newHeight;
+//}
 
 void SpriteActor::move(float deltaX, float deltaY){
     sprite.move(deltaX, deltaY);
