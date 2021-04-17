@@ -11,6 +11,22 @@ PlayerView::PlayerView(){
 
 void PlayerView::init(){
     //Sets up initial state, probably loads up main menu or something
+
+    // Initial code just making sure window is created and started, will change later
+    if(window.isOpen()){
+
+        sf::Event event;
+
+        window.clear(sf::Color::Black);
+        window.display();
+
+        // Waits for any keypress before continuing
+        while(window.waitEvent(event)){
+            if(event.type == sf::Event::KeyPressed){
+                return;
+            }
+        }
+    }
 }
 
 void PlayerView::createBG(int* map){

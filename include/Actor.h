@@ -20,7 +20,7 @@ class Actor{
     protected:
         int gridX;
         int gridY;
-        sf::Shape shape;
+        //sf::Shape shape;
 };
 
 #endif

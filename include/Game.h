@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Stage.h"
+#include "Tower.h"
 #include "PlayerView.h"
 
 
@@ -17,7 +18,6 @@ class Game
 {
 public:
     Game(PlayerView*);
-    enum Towers {first};
     ~Game();
 
 private:

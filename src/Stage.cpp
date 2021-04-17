@@ -2,6 +2,8 @@
 #include "Game.h"
 #include <SFML/Graphics.hpp>
 
+// Zack - Removed a bunch of ; at end of methods
+
 Stage::Stage()
 {
     height = 16;
@@ -11,7 +13,19 @@ Stage::Stage()
     virus_count = 100;
     cur_tower = tower_list.begin();
     cur_virus = virus_list.begin();
-};
+}
+
+Stage::Stage(int x){
+    // Test to set up first stage
+    this->height = 16;
+    this->width = 12;
+    this->map[192] = {0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,7,6,6,6,6,6,6,8,0,0,0,0,0,0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,
+    0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,1,0,0,5,0,0,0,7,6,0,0,0,5,0,0,0,5,0,0,5,0,0,0,5,3,0,0,0,5,0,0,0,5,0,3,5,3,0,3,5,0,0,0,0,5,3,0,3,5,0,0,9,6,6,6,10,0,0,0,0,9,6,6,6,10,0,0,0,0,3,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    this->tower_count = 20;
+    this->virus_count = 100;
+    this->cur_tower, this->cur_enemy = 0;
+}
 
 Stage::Stage(int x, int y)
 {
@@ -28,12 +42,12 @@ int* Stage::getMap()
 int Stage::getGold()
 {
     return gold;
-};
+}
 
 void Stage::setGold(int g)
 {
     gold = g;
-};
+}
 int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the map, top-left is (0,0)
     return map[y * width + x];
 }
@@ -65,7 +79,7 @@ bool Stage::build(Game::Towers tower, int posx, int posy ){    //If the player c
     cur_tower++;
     return true;
 
-};
+}
 void Stage::spawnVirus()
 {
     if (virus_count > 0)
@@ -76,7 +90,7 @@ void Stage::spawnVirus()
         cur_virus++;
         virus_count--;
     };
-};
+}
 
 void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower 
     for(int i = 0; i < enemy_count; i++){

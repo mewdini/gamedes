@@ -1,7 +1,7 @@
 #include "CountryMap.h"
 #include <SFML/Graphics.hpp>
 CountryMap::CountryMap(){
-    Stage::level=0;
+    //Stage::level=0; omitting for testing
 
 }
 void CountryMap::startLevel(){

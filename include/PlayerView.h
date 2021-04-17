@@ -7,6 +7,7 @@
 #include "Virus.h"
 #include "Tower.h"
 #include "Stage.h"
+#include <list>
 
 
 class PlayerView{
@@ -18,7 +19,7 @@ class PlayerView{
         void drawBG();
         void drawTowers(std::list<Tower*>);
         void drawViruses(std::list<Virus*>);
-        void update(Stage);
+        //void update(Stage); omitted for testing
         sf::RenderWindow* getWindow();
         bool isButtonPressed(sf::Mouse::Button);
         sf::Vector2i getMousePos();
