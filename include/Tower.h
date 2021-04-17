@@ -20,8 +20,6 @@ public:
     //draw function needs a target to draw
     //void Draw(RenderTarget *something);
     void Update(float elapsedTime);
-    const int GetX();
-    const int GetY();
     const float GetRadius();
     const float GetAttackSpeed();
     const float GetDamage();

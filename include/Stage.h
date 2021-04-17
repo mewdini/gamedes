@@ -24,8 +24,8 @@ class Stage {
         void setValueOnMap(int, int, int);
         void allAttack();
         bool build(Tower::Towers, int, int);
-        std::list<Tower*> getTowerList();
-        std::list<Virus*> getVirusList();
+        std::list<Tower*>* getTowerList();
+        std::list<Virus*>* getVirusList();
     protected:
         int width;
         int height;
@@ -37,7 +37,7 @@ class Stage {
         std::list<Tower*>::iterator cur_tower;
         std::list<Virus*>::iterator cur_virus;
         std::list<Tower*> tower_list;
-        std::list<Virus*> virus_list;                 //the list of enemeies/towers for this level
+        std::list<Virus*> virus_list;                 //the list of enemies/towers for this level
         void attackFirstVirus(Tower*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         void spawnVirus();

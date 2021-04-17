@@ -6,7 +6,6 @@
 #define GAMEDES_VIRUSES_H
 
 #include <SFML/Graphics.hpp>
-#include "Stage.h"
 #include "SpriteActor.h"
 using namespace sf;
 class Virus: public SpriteActor{
@@ -15,7 +14,7 @@ public:
     Virus();
     
     //When virus is hit
-    bool hit();
+    bool hit(float);
 
     //Find out if virus is alive
     bool isAlive();
@@ -24,8 +23,8 @@ public:
     //Spawn a new virus
     void spawn(float startX, float startY, int type, int seed);
 
-    //Return a rectangle that is position in the world
-    FloatRect getPosition();
+    //Return position
+    Vector2f getPosition();
 
     //Get a copy of the sprite to draw
     Sprite getSprite();
@@ -65,12 +64,11 @@ private:
     //How fast can virus move
     float m_Speed;
 
-    //How much health does it got
+    //How much health does the virus have
     float m_Health;
 
     //Is it still alive?
     bool m_Alive;
-
 
 };
 

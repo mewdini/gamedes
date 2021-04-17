@@ -13,11 +13,12 @@ Virus::Virus()
     ;
 }
 
-//void Virus::setStage(Stage* s)
-//{
-//    Virus::stage = s;
-//}
+// void Virus::setStage(Stage* s)
+// {
+//    stage = s;
+// }
 
+// TODO make virus enum
 void Virus::spawn(float startX, float startY, int type, int seed)
 {
     switch(type)
@@ -66,6 +67,8 @@ void Virus::spawn(float startX, float startY, int type, int seed)
 
     }
 
+    m_Alive = true;
+
     //Every virus has a unique speed
     srand((int)time(0) * seed);
     float modifier = (rand() % MAX_VARIANCE) + OFFSET;
@@ -81,16 +84,16 @@ void Virus::spawn(float startX, float startY, int type, int seed)
 
 }
 
-bool Virus::hit()
+bool Virus::hit(float damage)
 {
-    m_Health--;
-    if (m_Health < 0)
+    m_Health -= damage;
+    if (m_Health <= 0)
     {
         //DEAD
         m_Alive = false;
         //m_Sprite.setTexture(TextureHolder::GetTexture("graphicsHere")
         //this sprite creates a dead Virus on the map if we want that
-        // we can just make it disapear
+        // we can just make it disappear
         return true;
 
 
@@ -101,12 +104,12 @@ bool Virus::hit()
 
 }
 
-void Virus::movement()
-{
-    &Virus::stage.getValueOnMap();
-    move(1,1);
+// void Virus::movement()
+// {
+//     stage.getValueOnMap();
+//     move(1,1);
 
-}
+// }
 
 
 
@@ -115,16 +118,16 @@ bool Virus::isAlive()
     return m_Alive;
 }
 
-//FloatRect Virus::getPosition()
-//{
-    // return m_Sprite.getGlobalBounds();
-//}
+Vector2f Virus::getPosition()
+{
+    return m_Sprite.getPosition();
+}
 
 
-//Sprite Virus::getSprite()
-//{
-  //  return m_Sprite;
-//}
+Sprite Virus::getSprite()
+{
+   return m_Sprite;
+}
 
 
 
