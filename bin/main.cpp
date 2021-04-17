@@ -14,8 +14,8 @@ int main(int argc, char** argv)
 
     // TODO handle time
 
-    PlayerView::PlayerView p_view;
-    Game::Game game(&p_view);
+    PlayerView *p_view = new PlayerView();
+    Game game(p_view);
 
     // Done.
     return 0;

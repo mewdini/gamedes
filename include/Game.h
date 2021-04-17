@@ -18,11 +18,10 @@ class Game
 {
 public:
     Game(PlayerView*);
-    ~Game();
 
 private:
     void update(sf::Int64);
-    static sf::Int64 time_per_frame;
+    sf::Int64 time_per_frame;
     void click(int x, int y); // event.mouseButton is int
     Stage level;
     sf::RenderWindow* app;

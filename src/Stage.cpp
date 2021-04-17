@@ -27,6 +27,8 @@ Stage::Stage(int x){
     virus_count = 100;
     cur_tower = tower_list.begin();
     cur_virus = virus_list.begin();
+    start1 = 15;
+    start2 = 6;
 }
 
 Stage::Stage(int x, int y)
@@ -77,7 +79,7 @@ bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player 
     setValueOnMap(posx,posy,4);
 
     //determine by enum
-    static Tower new_tower = Tower(posx,posy,tower);
+    Tower new_tower = Tower(posx,posy,tower);
     tower_list.push_back(&new_tower);
     cur_tower++;
     return true;
@@ -106,7 +108,7 @@ void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower,
             float r = tower->GetRadius();
             if ((posx-x)*(posx-x)+(posy-y)*(posy-y)<=r*r)
             {
-                tower->attack(enemy);
+                tower->Attack(enemy);
             }
         }
     }
@@ -126,4 +128,12 @@ std::list<Tower*>* Stage::getTowerList()
 std::list<Virus*>* Stage::getVirusList()
 {
     return &virus_list;
+}
+
+// TODO make towers attack at different speeds
+void Stage::allAttack()
+{
+    for (auto const& tower : tower_list) {
+        attackFirstVirus(tower);
+    }
 }

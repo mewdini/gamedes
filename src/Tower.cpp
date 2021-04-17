@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 #include "Tower.h"
 #include <cmath>
+#include <memory>
 
 using namespace sf;
 Tower::Tower(int x, int y, int level)
@@ -11,7 +12,7 @@ Tower::Tower(int x, int y, int level)
     tower_sprite = Sprite();
     tower_tex = Texture();
 
-    TowerLevel(lvl);
+    TowerLevel(level);
     tower_sprite.setPosition(x, y);
 
 }
@@ -21,12 +22,12 @@ Tower::Tower()
     radius = 128.0f;
 }
 
-void Tower::TowerLevel(int lvl);
+void Tower::TowerLevel(int lvl)
 {
     level = lvl;
     radius = 128;
     gold_cost = 100 * lvl;
-    tower_sprite.setTexture(*tower_tex);
+    tower_sprite.setTexture(tower_tex);
 
     switch(lvl)
     {
@@ -71,16 +72,6 @@ void Tower::Update(float elapsedTime)
 
 }
 
-const int Tower::GetX()
-{
-    return (int) tower_sprite.getPosition().x;
-}
-
-const int Tower::GetY()
-{
-    return (int) tower_sprite.getPosition().y;
-}
-
 const float Tower::GetRadius()
 {
     return radius;
@@ -122,4 +113,10 @@ const int Tower::GetGoldCost(int level)
 const int Tower::GetUpgradeLevel()
 {
     return upgrade_level;
+}
+
+void Tower::Attack(Virus* virus)
+{
+    // TODO animate attack
+    virus->hit(damage);
 }

@@ -4,10 +4,10 @@
 #include "Stage.h"
 
 int main(int argc, char** argv){
-    PlayerView pview();
+    PlayerView* pView = new PlayerView();
     Stage stage(7);
 
-    pView.init();
-    pView.createBG(stage.getMap());
-    pView.drawBG();
+    pView->init();
+    pView->createBG(stage.getMap());
+    pView->drawBG();
 }
