@@ -7,8 +7,8 @@ SpriteActor::SpriteActor(){
 
 SpriteActor::SpriteActor(float posX, float posY, int left, int top, int width, int height){
     sprite.setPosition(posX, posY);
-    sf::IntRect rect(left, top, width, height);
-    sprite.setTextureRect(rect);
+    textureRect = sf::IntRect(left, top, width, height);
+    sprite.setTextureRect(textureRect);
 }
 
 float SpriteActor::getLocationX(){
@@ -20,18 +20,16 @@ float SpriteActor::getLocationY(){
 }
 
 void SpriteActor::setViewLocation(int newLeft, int newTop){
-    sprite.setPosition(newLeft * 50, newTop * 50);
-
-    //    sprite.getTextureRect().left = newLeft;
-    //    sprite.getTextureRect().top = newTop;
-
-
+    textureRect.left = newLeft;
+    textureRect.top = newTop;
+    sprite.setTextureRect(textureRect);
 }
 
-//void SpriteActor::setViewDimensions(int newWidth, int newHeight){
-//    sprite.getTextureRect().width = newWidth;
-//    sprite.getTextureRect().height = newHeight;
-//}
+void SpriteActor::setViewDimensions(int newWidth, int newHeight){
+    textureRect.width = newWidth;
+    textureRect.height = newHeight;
+    sprite.setTextureRect(textureRect);
+}
 
 void SpriteActor::move(float deltaX, float deltaY){
     sprite.move(deltaX, deltaY);

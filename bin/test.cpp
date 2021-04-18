@@ -9,5 +9,7 @@ int main(int argc, char** argv){
 
     pView->init();
     pView->createBG(stage.getMap());
-    pView->drawBG();
+    while(pView->getWindow()->isOpen()){
+        pView->drawBG();
+    }
 }
