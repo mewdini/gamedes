@@ -40,12 +40,11 @@ void PlayerView::createBG(int* map){
         // Calculates position using integer division before applying to sprite, which uses floats
         Xpos = 50*(i%16);
         Ypos = 50*(i/16);
-        auto new_bg = std::next(background.begin(), 1); //second param is i?
+
         // These params set initial textureRect to the basic background
         auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
-        *new_bg = &sprite_bg;
-
-        (*new_bg)->setTexture(texture);
+        sprite_bg.setTexture(texture);
+        background.push_back(&sprite_bg);
 
         std::cout << "Map[" << i << "] = " << *(map + i) << std::endl;
         // Sets the IntRect's location to where the desired image is
@@ -58,42 +57,42 @@ void PlayerView::createBG(int* map){
                 break;
             // Home Base. 2 is skipped due to current design
             case 1:
-                (*new_bg)->setViewLocation(0, 0);
+                sprite_bg.setViewLocation(0, 0);
                 std::cout << i << " Case 1" << std::endl;
                 break;
             // Potential Tower Location, skips 4 since shouldn't be any prebuilt towers
             case 3:
-                (*new_bg)->setViewLocation(300, 0);
+                sprite_bg.setViewLocation(300, 0);
                 std::cout << i << " Case 3" << std::endl;
                 break;
             // North-South Path
             case 5:
-                (*new_bg)->setViewLocation(200, 0);
+                sprite_bg.setViewLocation(200, 0);
                 std::cout << i << " Case 5" << std::endl;
                 break;
             // East-West Path
             case 6:
-                (*new_bg)->setViewLocation(150, 0);
+                sprite_bg.setViewLocation(150, 0);
                 std::cout << i << " Case 6" << std::endl;
                 break;
             // South-East Corner
             case 7:
-                (*new_bg)->setViewLocation(100, 0);
+                sprite_bg.setViewLocation(100, 0);
                 std::cout << i << " Case 7" << std::endl;
                 break;
             // South-West Corner
             case 8:
-                (*new_bg)->setViewLocation(400, 0);
+                sprite_bg.setViewLocation(400, 0);
                 std::cout << i << " Case 8" << std::endl;
                 break;
             // North-East Corner
             case 9:
-                (*new_bg)->setViewLocation(50, 0);
+                sprite_bg.setViewLocation(50, 0);
                 std::cout << i << " Case 9" << std::endl;
                 break;
             // North-West Corner
             case 10:
-                (*new_bg)->setViewLocation(350, 0);
+                sprite_bg.setViewLocation(350, 0);
                 std::cout << i << " Case 10" << std::endl;
                 break;
             default:
