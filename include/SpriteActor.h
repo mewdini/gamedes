@@ -24,6 +24,7 @@ class SpriteActor : public Actor{
 
     protected:
         sf::Sprite sprite;
+        sf::IntRect textureRect;
 
 
 };

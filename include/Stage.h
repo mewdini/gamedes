@@ -31,7 +31,7 @@ class Stage {
         int height;
         int level;
         //int difficulty;
-        int* map;                           //might need to import the size of screen from other files instead of hardcoding
+        int map[192];                           //might need to import the size of screen from other files instead of hardcoding
         int tower_count;
         int virus_count;
         std::list<Tower*>::iterator cur_tower;
