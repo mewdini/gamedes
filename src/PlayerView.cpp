@@ -40,13 +40,11 @@ void PlayerView::createBG(int* map){
         // Calculates position using integer division before applying to sprite, which uses floats
         Xpos = 50*(i%16);
         Ypos = 50*(i/16);
-        //auto new_bg = std::next(background.begin(), i);
+
         // These params set initial textureRect to the basic background
         auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
-        //*new_bg = &sprite_bg;
-
-        //(*new_bg)->setTexture(texture);
         sprite_bg.setTexture(texture);
+        background.push_back(&sprite_bg);
 
         std::cout << "Map[" << i << "] = " << *(map + i) << std::endl;
         // Sets the IntRect's location to where the desired image is
@@ -101,7 +99,6 @@ void PlayerView::createBG(int* map){
             // Shouldn't reach this
                 break;
         }
-        background.push_back(&sprite_bg);
     }
 }
 
