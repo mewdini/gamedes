@@ -23,12 +23,14 @@ class PlayerView{
         sf::RenderWindow* getWindow();
         bool isButtonPressed(sf::Mouse::Button);
         sf::Vector2i getMousePos();
+        sf::Texture getTexture(); // Will need copies if multiple textures used
+        void setTexture(sf::Texture);
 
     private:
         sf::RenderWindow window;
         sf::Font font;
         sf::Texture texture;
-        std::list<SpriteActor*> background;
+        SpriteActor background[192];
 
 };
 

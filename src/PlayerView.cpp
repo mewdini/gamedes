@@ -43,13 +43,13 @@ void PlayerView::createBG(int* map){
 
         // These params set initial textureRect to the basic background
         auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
-        sprite_bg.setTexture(texture);
-        background.push_back(&sprite_bg);
+        background[i] = sprite_bg;
+        background[i].setTexture(texture);
 
         std::cout << "Map[" << i << "] = " << *(map + i) << std::endl;
         // Sets the IntRect's location to where the desired image is
         // Currently using ThirdSpriteSheet's layout, will need to update alongside art changes
-        switch(*(map + i)){
+        switch(map[i]){
 
             // Basic Background
             case 0:
@@ -58,57 +58,61 @@ void PlayerView::createBG(int* map){
             // Home Base. 2 is skipped due to current design
             case 1:
                 //(*new_bg)->setViewLocation(0, 0);
-                sprite_bg.setViewLocation(0, 0);
+                background[i].setViewLocation(0, 0);
                 break;
             // Potential Tower Location, skips 4 since shouldn't be any prebuilt towers
             case 3:
                 //(*new_bg)->setViewLocation(300, 0);
-                sprite_bg.setViewLocation(300, 0);
+                background[i].setViewLocation(300, 0);
                 break;
             // North-South Path
             case 5:
                 //(*new_bg)->setViewLocation(200, 0);
-                sprite_bg.setViewLocation(200, 0);
+                background[i].setViewLocation(200, 0);
                 break;
             // East-West Path
             case 6:
                 //(*new_bg)->setViewLocation(150, 0);
-                sprite_bg.setViewLocation(150, 0);
+                background[i].setViewLocation(150, 0);
                 break;
             // South-East Corner
             case 7:
                 //(*new_bg)->setViewLocation(100, 0);
-                sprite_bg.setViewLocation(100, 0);
+                background[i].setViewLocation(100, 0);
                 break;
             // South-West Corner
             case 8:
                 //(*new_bg)->setViewLocation(400, 0);
-                sprite_bg.setViewLocation(400, 0);
+                background[i].setViewLocation(400, 0);
                 break;
             // North-East Corner
             case 9:
                 //(*new_bg)->setViewLocation(50, 0);
-                sprite_bg.setViewLocation(50, 0);
+                background[i].setViewLocation(50, 0);
                 break;
             // North-West Corner
             case 10:
                 //(*new_bg)->setViewLocation(350, 0);
-                sprite_bg.setViewLocation(350, 0);
+                background[i].setViewLocation(350, 0);
                 break;
             default:
             // Shouldn't reach this
                 break;
         }
+
+        //background[i] = sprite_bg;
+
     }
 }
 
 void PlayerView::drawBG(){
     //Draws everything contained in the list of background tiles
     std::cout << "start" << std::endl;
-    for (auto const& i : background)
+    int i;
+    for (i = 0; i < 192; i++)
     {
-        std::cout << "draw" << std::endl;
-        window.draw(i->getSprite());
+        window.draw(background[i].getSprite());
+        std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl;
     }
     std::cout << "done" << std::endl;
 }
@@ -195,4 +199,12 @@ bool PlayerView::isButtonPressed(sf::Mouse::Button button)
 sf::RenderWindow* PlayerView::getWindow()
 {
     return &window;
+}
+
+sf::Texture PlayerView::getTexture(){
+    return texture;
+}
+
+void PlayerView::setTexture(sf::Texture newText){
+    texture = newText;
 }
