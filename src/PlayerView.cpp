@@ -57,47 +57,46 @@ void PlayerView::createBG(int* map){
                 break;
             // Home Base. 2 is skipped due to current design
             case 1:
+                //(*new_bg)->setViewLocation(0, 0);
                 sprite_bg.setViewLocation(0, 0);
-                std::cout << i << " Case 1" << std::endl;
                 break;
             // Potential Tower Location, skips 4 since shouldn't be any prebuilt towers
             case 3:
+                //(*new_bg)->setViewLocation(300, 0);
                 sprite_bg.setViewLocation(300, 0);
-                std::cout << i << " Case 3" << std::endl;
                 break;
             // North-South Path
             case 5:
+                //(*new_bg)->setViewLocation(200, 0);
                 sprite_bg.setViewLocation(200, 0);
-                std::cout << i << " Case 5" << std::endl;
                 break;
             // East-West Path
             case 6:
+                //(*new_bg)->setViewLocation(150, 0);
                 sprite_bg.setViewLocation(150, 0);
-                std::cout << i << " Case 6" << std::endl;
                 break;
             // South-East Corner
             case 7:
+                //(*new_bg)->setViewLocation(100, 0);
                 sprite_bg.setViewLocation(100, 0);
-                std::cout << i << " Case 7" << std::endl;
                 break;
             // South-West Corner
             case 8:
+                //(*new_bg)->setViewLocation(400, 0);
                 sprite_bg.setViewLocation(400, 0);
-                std::cout << i << " Case 8" << std::endl;
                 break;
             // North-East Corner
             case 9:
+                //(*new_bg)->setViewLocation(50, 0);
                 sprite_bg.setViewLocation(50, 0);
-                std::cout << i << " Case 9" << std::endl;
                 break;
             // North-West Corner
             case 10:
+                //(*new_bg)->setViewLocation(350, 0);
                 sprite_bg.setViewLocation(350, 0);
-                std::cout << i << " Case 10" << std::endl;
                 break;
             default:
             // Shouldn't reach this
-                std::cout << i << " Defaulted" << std::endl;
                 break;
         }
     }
@@ -105,10 +104,13 @@ void PlayerView::createBG(int* map){
 
 void PlayerView::drawBG(){
     //Draws everything contained in the list of background tiles
+    std::cout << "start" << std::endl;
     for (auto const& i : background)
     {
+        std::cout << "draw" << std::endl;
         window.draw(i->getSprite());
     }
+    std::cout << "done" << std::endl;
 }
 
 void PlayerView::drawTowers(std::list<Tower*> towers){
