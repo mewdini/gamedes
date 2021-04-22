@@ -42,11 +42,11 @@ void PlayerView::createBG(int* map){
         Ypos = 50*(i/16);
 
         // These params set initial textureRect to the basic background
-        auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
-        background[i] = sprite_bg;
-        background[i].setTexture(texture);
+        //auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
+        background[i] = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
+        background[i].setTexture(&texture);
 
-        std::cout << "Map[" << i << "] = " << *(map + i) << std::endl;
+        //std::cout << "Map[" << i << "] = " << *(map + i) << std::endl; Used to test that map was populated correctly
         // Sets the IntRect's location to where the desired image is
         // Currently using ThirdSpriteSheet's layout, will need to update alongside art changes
         switch(map[i]){
@@ -112,7 +112,7 @@ void PlayerView::drawBG(){
     for (i = 0; i < 192; i++)
     {
         window.draw(background[i].getSprite());
-        std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl;
+        //std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl; Tested that proper pixel location was set
     }
     std::cout << "done" << std::endl;
 }

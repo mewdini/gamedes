@@ -19,12 +19,13 @@ class SpriteActor : public Actor{
         void setViewLocation(int, int);
         void setViewDimensions(int, int);
         void move(float, float);
-        void setTexture(sf::Texture);
+        void setTexture(sf::Texture*);
         sf::Sprite getSprite();
 
     protected:
         sf::Sprite sprite;
         sf::IntRect textureRect;
+        //sf::Texture* textPtr;
 
 
 };
