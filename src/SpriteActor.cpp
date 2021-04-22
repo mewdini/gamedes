@@ -35,8 +35,9 @@ void SpriteActor::move(float deltaX, float deltaY){
     sprite.move(deltaX, deltaY);
 }
 
-void SpriteActor::setTexture(sf::Texture texture){
-    sprite.setTexture(texture);
+void SpriteActor::setTexture(sf::Texture* text){
+    //textPtr = text;
+    sprite.setTexture(*text);
 }
 
 sf::Sprite SpriteActor::getSprite(){
