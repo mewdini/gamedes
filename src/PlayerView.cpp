@@ -6,7 +6,7 @@ PlayerView::PlayerView(){
     //Might want additional fonts/textures in future, but early build will just have one texture
     window.create(sf::VideoMode(800,600,32), "COVID Champion", sf::Style::Close);
     //font.loadFromFile("insert font here");
-    texture.loadFromFile("..\\data\\ThirdSpriteSheet.png");
+    texture.loadFromFile("../data/ThirdSpriteSheet.png");
 }
 
 void PlayerView::init(){
