@@ -4,8 +4,8 @@
 
 #ifndef COVIDGAME_GAME_H
 #define COVIDGAME_GAME_H
+#include "ProcessManager.h"
 
-#include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Stage.h"
 #include "Tower.h"
@@ -17,15 +17,35 @@ class Game
 
 {
 public:
-    Game(PlayerView*);
+    //Game(PlayerView*);
+    Game();
+    virtual ~Game();
+    void updateSFMLEvents();
+    void update();
+    void render();
+    void run();
+    void updateDt();
 
 private:
-    void update(sf::Int64);
-    sf::Int64 time_per_frame;
-    void click(int x, int y); // event.mouseButton is int
-    Stage level;
-    sf::RenderWindow* app;
-    PlayerView* view;
+    //Variables
+    //delta time
+    sf::Clock dtClock;
+    float dt;
+    std::stack<State*> states;
+    sf::RenderWindow *window;
+    sf::Event sfEvent;
+
+    //Initialization
+    void initWindow();
+    void initStates();
+
+
+//    void update(sf::Int64);
+//    sf::Int64 time_per_frame;
+//    void click(int x, int y); // event.mouseButton is int
+//    Stage level;
+//    sf::RenderWindow* app;
+//    PlayerView* view;
 };
 
 
