@@ -6,6 +6,7 @@ Level1::Level1():Stage(){
      level=1;
      width=16;
      height=12;
+     base_loc = Vector2f(7,6);
      //static int e[width*height];
      //pointer for enemylist
      //initialize enemylist
@@ -63,6 +64,12 @@ Level1::Level1():Stage(){
 //     setGold(100);
 //     start1=15;
 //     start2=6;     //the position on the map where the enemies are spawned
+
+    // populate virus_list with pairs of type and how many seconds after last virus to be released
+    for (int i = 0; i < 50; i++) {
+        auto virus_timing = std::pair<Virus::Viruses, sf::Int64>(Virus::Viruses::covid, 1000000); // time in microseconds
+        virus_list.push_back(&virus_timing);
+    }
      
 };
 void Level1::startLevel1(){

@@ -11,8 +11,7 @@ Stage::Stage()
     map[192];
     tower_count = 20;
     virus_count = 100;
-    cur_tower = tower_list.begin();
-    cur_virus = virus_list.begin();
+    cur_virus_pair = virus_list.begin();
 }
 
 Stage::Stage(int x){
@@ -25,8 +24,7 @@ Stage::Stage(int x){
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
     virus_count = 100;
-    cur_tower = tower_list.begin();
-    cur_virus = virus_list.begin();
+    cur_virus_pair = virus_list.begin();
     start1 = 15;
     start2 = 6;
 }
@@ -81,19 +79,8 @@ bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player 
     //determine by enum
     Tower new_tower = Tower(posx,posy,tower);
     tower_list.push_back(&new_tower);
-    cur_tower++;
     return true;
 
-}
-void Stage::spawnVirus()
-{
-    if (virus_count > 0)
-    {
-        Virus* enemy = *cur_virus;
-        enemy->spawn(start1,start2,0,13);
-        cur_virus++;
-        virus_count--;
-    };
 }
 
 void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower
@@ -114,12 +101,6 @@ void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower,
     }
 }
 
-void Stage::updateTowers(){
-    for (auto const& tower : tower_list) {
-        attackFirstVirus(tower);
-    }
-}
-
 std::list<Tower*>* Stage::getTowerList()
 {
     return &tower_list;
@@ -130,10 +111,85 @@ std::list<Virus*>* Stage::getVirusList()
     return &virus_list;
 }
 
-// TODO make towers attack at different speeds
-void Stage::allAttack()
+void Stage::update(sf::Int64 elapsedTime)
 {
-    for (auto const& tower : tower_list) {
-        attackFirstVirus(tower);
+    // check if time to spawn virus
+    virus_timer += elapsedTime;
+    if (virus_timer >= curr_virus_pair.second && virus_count > 0) {
+        spawnVirus(start1, start2, curr_virus_pair.first, 13);
+        curr_virus_pair++;
+        virus_timer = 0;
+        virus_count--;
     }
+
+    // update all viruses
+    for (auto const& virus : virus_list) {
+        virus->update(elapsedTime, base_loc);
+    }
+
+    // update all towers
+    for (auto const& tower : tower_list) {
+        tower->Update(elapsedTime);
+    }
+}
+
+void Stage::spawnVirus(float startX, float startY, Virus::Viruses type, int seed)
+{
+    switch(type)
+    {
+        case Virus::Viruses::covid:
+            //Covid Virus
+            //this m_Sprite variable will pull the sprite of the Zombie
+            //We should probably create a TextureHolder Class from where we
+            // load it
+            m_Texture.loadFromFile("../data/coronavirus_0.png");
+            m_Sprite.setTexture(m_Texture);
+            m_Sprite.setOrigin(15, 6);
+            m_Speed = COVID_VIRUS_SPEED;
+            m_Health = COVID_VIRUS_HEALTH;
+            break;
+
+        case Virus::Viruses::resistant:
+            // Resistant Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = RESISTANT_STRAIN_SPEED;
+            m_Health = RESISTANT_STRAIN_HEALTH;
+            break;
+
+        case Virus::Viruses::contagious:
+            // Contagious Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = CONTAGIOUS_STRAIN_SPEED;
+            m_Health = CONTAGIOUS_STRAIN_HEALTH;
+            break;
+
+        case Virus::Viruses::airborn:
+            // Airborn Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = AIRBORN_STRAIN_SPEED;
+            m_Health = AIRBORN_STRAIN_HEALTH;
+            break;
+
+        case Virus::Viruses::coughing:
+            // Coughing Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = COUGHING_PERSON_SPEED;
+            m_Health = COUGHING_PERSON_HEALTH;
+            break;
+    }
+
+    m_Alive = true;
+
+    //Every virus has a unique speed
+    srand((int)time(0) * seed);
+    float modifier = (rand() % MAX_VARIANCE) + OFFSET;
+    modifier /= 100;  //it will equal between .7 and 1
+    m_Speed *= modifier;
+
+    // Location of the virus
+    m_Position.x = startX;
+    m_Position.y = startY;
+    //Setting origin
+    //m_Sprite.setOrigin(location);
+    //m_Sprite.setPosition(m_Position);
 }

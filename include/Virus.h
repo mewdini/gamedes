@@ -12,6 +12,8 @@ class Virus: public SpriteActor{
 
 public:
     Virus();
+
+    enum Viruses {covid, resistant, contagious, airborn, coughing};
     
     //When virus is hit
     bool hit(float);
@@ -21,7 +23,7 @@ public:
 
     void movement();
     //Spawn a new virus
-    void spawn(float startX, float startY, int type, int seed);
+    void spawn(float startX, float startY, Virus::Viruses type, int seed);
 
     //Return position
     Vector2f getPosition();
