@@ -1,25 +1,27 @@
 //CREATED BY MIODRAG 13/4/2021
-#ifndef PROCESSMANAGER_H
-#define PROCESSMANAGER_H
+//#ifndef PROCESSMANAGER_H
+//#define PROCESSMANAGER_H
 
-#include "State.h"
-#pragma once
-
-class ProcessManager: //GameState
-        public State
-{
-private:
-
-public:
-    ProcessManager(sf::RenderWindow* window);
-    virtual ~ProcessManager();
-
-    //functions
-    void endState();
-    void update(const float& dt);
-    void render(sf::RenderTarget* target = nullptr);
-};
-
+//#include "State.h"
+//
+//
+//class ProcessManager: //GameState
+//        public State
+//{
+//private:
+//    Entity player;
+//    void initKeyBinds();
+//public:
+//    ProcessManager(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys);
+//    virtual ~ProcessManager();
+//
+//    //functions
+//    void updateInput(const float& dt);
+//    void endState();
+//    void update(const float& dt);
+//    void render(sf::RenderTarget* target = nullptr);
+//};
+//
 
 
 ////#include "SharedContext.h"

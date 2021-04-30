@@ -4,7 +4,8 @@
 
 #ifndef COVIDGAME_GAME_H
 #define COVIDGAME_GAME_H
-#include "ProcessManager.h"
+
+#include "MainMenuState.h"
 
 #include "Player.h"
 #include "Stage.h"
@@ -20,18 +21,27 @@ public:
     //Game(PlayerView*);
     Game();
     virtual ~Game();
+
+    //reg
+    void endApplication();
+    //update
     void updateSFMLEvents();
     void update();
-    void render();
-    void run();
     void updateDt();
 
+    //render
+    void render();
+    //core
+    void run();
 private:
     //Variables
     //delta time
     sf::Clock dtClock;
     float dt;
     std::stack<State*> states;
+    std::map<string, int> supportedKeys;
+    //initialization
+    void initKeys();
     sf::RenderWindow *window;
     sf::Event sfEvent;
 

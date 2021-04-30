@@ -1,34 +1,78 @@
 
 
-#include "ProcessManager.h"
-
-
-ProcessManager::ProcessManager(sf::RenderWindow* window)
-    : State(window)
-{
-
-}
-
-ProcessManager::~ProcessManager()
-{
-
-}
-
-void ProcessManager::update(const float& dt)
-{
-    std::cout << "Hello from game state" << "\n";
-}
-
-void ProcessManager::render(sf::RenderTarget* target)
-{
-
-}
-
-void ProcessManager::endState()
-{
-
-}
-
+//#include "ProcessManager.h"
+//
+//
+//void ProcessManager::initKeyBinds()
+//{
+//
+//    std::ifstream ifs("../data/gameStateKeybinds.ini");
+//    if (ifs.is_open())
+//    {
+//        std::string key = "";
+//        std::string key2 = "";
+//        while(ifs >> key >> key2)
+//        {
+//            this->keybinds[key] = this->supportedKeys->at(key2);
+//        }
+//    }
+//
+//    ifs.close();
+////    this->keybinds["Move_Left"] = this->supportedKeys->at("A");
+////    this->keybinds["Move_Right"] = this->supportedKeys->at("D");
+////    this->keybinds["Move_Up"] = this->supportedKeys->at("W");
+////    this->keybinds["Move_Down"] = this->supportedKeys->at("S");
+////    this->keybinds["Close"] = this->supportedKeys->at("Escape");
+//}
+//
+//ProcessManager::ProcessManager(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys)
+//    : State(window, supportedKeys)
+//{
+//    this->initKeyBinds();
+//}
+//
+//ProcessManager::~ProcessManager()
+//{
+//
+//}
+//
+//void ProcessManager::update(const float& dt)
+//{
+//    this->updateInput(dt);
+//
+//    this->player.update(dt);
+//}
+//
+//void ProcessManager::render(sf::RenderTarget* target)
+//{
+//    if (!target)
+//        target = this->window;
+//
+//    this->player.render(window);
+//
+//
+//}
+//
+//void ProcessManager::endState()
+//{
+//    std::cout << "Ending game state" << "\n";
+//}
+//
+//void ProcessManager::updateInput(const float &dt)
+//{
+//    //it will quit as soon as we press escape
+//    this->checkForQuit();
+//
+//    //player input
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Left"))))
+//        this->player.move(dt,-1.f, 0.f);
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Right"))))
+//        this->player.move(dt,1.f, 0.f);
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Up"))))
+//        this->player.move(dt,0.f, -1.f);
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Down"))))
+//        this->player.move(dt,0.f, 1.f);
+//}
 //#include "ProcessManager.h"
 //
 //
