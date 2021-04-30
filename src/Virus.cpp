@@ -5,12 +5,65 @@
 #include "Virus.h"
 #include <cstdlib>
 #include <ctime>
-using namespace  std;
+using namespace std;
 
 
-Virus::Virus()
+Virus::Virus(int start_x, int start_y, Virus::Viruses type, int seed)
 {
-    ;
+    switch(type)
+    {
+        case Virus::Viruses::covid:
+            //Covid Virus
+            //this m_Sprite variable will pull the sprite of the Zombie
+            //We should probably create a TextureHolder Class from where we
+            // load it
+            m_Texture.loadFromFile("../data/coronavirus_0.png");
+            m_Sprite.setTexture(m_Texture);
+            m_Sprite.setOrigin(15, 6);
+            m_Speed = COVID_VIRUS_SPEED;
+            m_Health = COVID_VIRUS_HEALTH;
+            break;
+
+        case Virus::Viruses::resistant:
+            // Resistant Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = RESISTANT_STRAIN_SPEED;
+            m_Health = RESISTANT_STRAIN_HEALTH;
+            break;
+
+        case Virus::Viruses::contagious:
+            // Contagious Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = CONTAGIOUS_STRAIN_SPEED;
+            m_Health = CONTAGIOUS_STRAIN_HEALTH;
+            break;
+
+        case Virus::Viruses::airborn:
+            // Airborn Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = AIRBORN_STRAIN_SPEED;
+            m_Health = AIRBORN_STRAIN_HEALTH;
+            break;
+
+        case Virus::Viruses::coughing:
+            // Coughing Strain
+            // m_Sprite = Sprite(TextureHolder)
+            m_Speed = COUGHING_PERSON_SPEED;
+            m_Health = COUGHING_PERSON_HEALTH;
+            break;
+    }
+
+    m_Alive = false;
+
+    //Every virus has a unique speed
+    srand((int)time(0) * seed);
+    float modifier = (rand() % MAX_VARIANCE) + OFFSET;
+    modifier /= 100;  //it will equal between .7 and 1
+    m_Speed *= modifier;
+
+    // Location of the virus
+    m_Position.x = start_x;
+    m_Position.y = start_y;
 }
 
 // void Virus::setStage(Stage* s)

@@ -27,6 +27,13 @@ Stage::Stage(int x){
     cur_virus_pair = virus_list.begin();
     start1 = 15;
     start2 = 6;
+    // use malloc if these are local variables?
+    // populate virus list
+    for (int i = 0; i < virus_count; i++) {
+        auto temp_virus = Virus(start1, start2, Virus::Viruses::covid; 13);
+        auto temp_pair = std::pair<Virus*, sf::Int64>(&temp_virus, 1000000);
+        virus_list.push_back(&temp_pair);
+    }
 }
 
 Stage::Stage(int x, int y)
@@ -115,11 +122,9 @@ void Stage::update(sf::Int64 elapsedTime)
 {
     // check if time to spawn virus
     virus_timer += elapsedTime;
-    if (virus_timer >= curr_virus_pair.second && virus_count > 0) {
-        spawnVirus(start1, start2, curr_virus_pair.first, 13);
-        curr_virus_pair++;
+    if (virus_timer >= cur_virus_pair.second && virus_count > 0) {
+        spawnVirus();
         virus_timer = 0;
-        virus_count--;
     }
 
     // update all viruses
@@ -133,63 +138,8 @@ void Stage::update(sf::Int64 elapsedTime)
     }
 }
 
-void Stage::spawnVirus(float startX, float startY, Virus::Viruses type, int seed)
-{
-    switch(type)
-    {
-        case Virus::Viruses::covid:
-            //Covid Virus
-            //this m_Sprite variable will pull the sprite of the Zombie
-            //We should probably create a TextureHolder Class from where we
-            // load it
-            m_Texture.loadFromFile("../data/coronavirus_0.png");
-            m_Sprite.setTexture(m_Texture);
-            m_Sprite.setOrigin(15, 6);
-            m_Speed = COVID_VIRUS_SPEED;
-            m_Health = COVID_VIRUS_HEALTH;
-            break;
-
-        case Virus::Viruses::resistant:
-            // Resistant Strain
-            // m_Sprite = Sprite(TextureHolder)
-            m_Speed = RESISTANT_STRAIN_SPEED;
-            m_Health = RESISTANT_STRAIN_HEALTH;
-            break;
-
-        case Virus::Viruses::contagious:
-            // Contagious Strain
-            // m_Sprite = Sprite(TextureHolder)
-            m_Speed = CONTAGIOUS_STRAIN_SPEED;
-            m_Health = CONTAGIOUS_STRAIN_HEALTH;
-            break;
-
-        case Virus::Viruses::airborn:
-            // Airborn Strain
-            // m_Sprite = Sprite(TextureHolder)
-            m_Speed = AIRBORN_STRAIN_SPEED;
-            m_Health = AIRBORN_STRAIN_HEALTH;
-            break;
-
-        case Virus::Viruses::coughing:
-            // Coughing Strain
-            // m_Sprite = Sprite(TextureHolder)
-            m_Speed = COUGHING_PERSON_SPEED;
-            m_Health = COUGHING_PERSON_HEALTH;
-            break;
-    }
-
-    m_Alive = true;
-
-    //Every virus has a unique speed
-    srand((int)time(0) * seed);
-    float modifier = (rand() % MAX_VARIANCE) + OFFSET;
-    modifier /= 100;  //it will equal between .7 and 1
-    m_Speed *= modifier;
-
-    // Location of the virus
-    m_Position.x = startX;
-    m_Position.y = startY;
-    //Setting origin
-    //m_Sprite.setOrigin(location);
-    //m_Sprite.setPosition(m_Position);
+void Stage::spawnVirus() {
+    cur_virus_pair.first.m_alive = true;
+    cur_virus_pair++;
+    virus_count--;
 }

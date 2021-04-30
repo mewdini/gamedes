@@ -8,12 +8,13 @@
 #include <SFML/Graphics.hpp>
 #include "SpriteActor.h"
 using namespace sf;
+
 class Virus: public SpriteActor{
 
 public:
-    Virus();
-
     enum Viruses {covid, resistant, contagious, airborn, coughing};
+
+    Virus(int, int, Virus::Viruses, int);
     
     //When virus is hit
     bool hit(float);

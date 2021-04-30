@@ -35,17 +35,17 @@ class Stage {
         int map[192];                           //might need to import the size of screen from other files instead of hardcoding
         int tower_count;
         int virus_count;
-        std::list<std::pair<Virus::Viruses, sf::Int64>>::iterator cur_virus_pair;
+        std::list<std::pair<Virus::Viruses, sf::Int64>*>::iterator cur_virus_pair;
         std::list<Tower*> tower_list;
         std::list<std::pair<Virus::Viruses, sf::Int64>*> virus_list;                 //the list of enemies/towers for this level
         void attackFirstVirus(Tower*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
-        void spawnVirus(float, float, Virus::Viruses, int);
         sf::Int64 virus_timer;
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)
         int start1;                         //where enemies are spawned
         int start2;
         Vector2f base_loc;
+        void spawnVirus();
 };
 
 #endif /* _STAGE_H_ */
