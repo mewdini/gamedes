@@ -47,7 +47,6 @@ void PlayerView::createBG(int* map){
         background[i] = SpriteActor(Xpos, Ypos, 0, 450, 50, 50);
         background[i].setTexture(&texture);
 
-        //std::cout << "Map[" << i << "] = " << *(map + i) << std::endl; Used to test that map was populated correctly
         // Sets the IntRect's location to where the desired image is
         // Currently using ThirdSpriteSheet's layout, will need to update alongside art changes
         switch(map[i]){
@@ -58,7 +57,6 @@ void PlayerView::createBG(int* map){
                 break;
             // Home Base. 2 is skipped due to current design
             case 1:
-                //(*new_bg)->setViewLocation(0, 0);
                 background[i].setViewLocation(0, 0);
                 break;
             // Potential Tower Location, skips 4 since shouldn't be any prebuilt towers
@@ -67,7 +65,10 @@ void PlayerView::createBG(int* map){
                 background[i].setViewLocation(0, 300);
                 break;
             case 4:
+
                 background[i].setViewLocation(0,250);
+
+
                 break;
             // North-South Path
             case 5:
@@ -103,9 +104,6 @@ void PlayerView::createBG(int* map){
             // Shouldn't reach this
                 break;
         }
-
-        //background[i] = sprite_bg;
-
     }
 }
 
@@ -117,7 +115,6 @@ void PlayerView::drawBG(sf::RenderWindow* window){
         window->draw(background[i].getSprite());
         //std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl; Tested that proper pixel location was set
     }
-
 }
 
 void PlayerView::drawTowers(std::list<Tower*> towers){
@@ -150,7 +147,7 @@ void PlayerView::drawViruses(std::list<Virus*> viruses){
 //        // Leaving room for potential additions
 //        window.display();
 //
-//        // Using pollEvent to check for input, event manager handles something else?
+//        // Using pollEvent to check for input
 //        sf::Event event;
 //        while(window.pollEvent(event)){
 //            if(event.type == sf::Event::Closed){
@@ -162,20 +159,6 @@ void PlayerView::drawViruses(std::list<Virus*> viruses){
 //                    window.close();
 //                }
 //            }
-//            // switch (Event.type) {
-//            //     // Exit
-//            //     case(sf::Event::Closed):
-//            //     App.close();
-//            //     break;
-//
-//            //     // Mouse Clicked
-//            //     case(sf::Event::MouseButtonPressed):
-//            //     if (event.mouseButton.button == sf::Mouse::Left)
-//            //     {
-//            //         game.click(event.mouseButton.x, event.mouseButton.y);
-//            //     }
-//            //     break;
-//            // }
 //        }
 //    }
 //}
