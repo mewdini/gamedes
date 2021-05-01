@@ -11,20 +11,30 @@ Stage::Stage()
     map[192];
     tower_count = 20;
     virus_count = 100;
+    std::list<Tower*> tl;
+    this->tower_list=tl;
+    std::list<Virus*> vl;
+    this->virus_list=vl;
+    this->gold=100;
     cur_tower = tower_list.begin();
     cur_virus = virus_list.begin();
 }
 
 Stage::Stage(int x){
     // Test to set up first stage
-    height = 16;
-    width = 12;
+    height = 12;
+    width = 16;
     int map_values[192] = {0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,7,6,6,6,6,6,6,8,0,0,0,0,0,0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,
     0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,1,0,0,5,0,0,0,7,6,0,0,0,5,0,0,0,5,0,0,5,0,0,0,5,3,0,0,0,5,0,0,0,5,0,3,5,3,0,3,5,0,0,0,0,5,3,0,3,5,0,0,9,6,6,6,10,0,0,0,0,9,6,6,6,10,0,0,0,0,3,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
     virus_count = 100;
+    std::list<Tower*> tl;
+    this->tower_list=tl;
+    std::list<Virus*> vl;
+    this->virus_list=vl;
+    this->gold=100;
     cur_tower = tower_list.begin();
     cur_virus = virus_list.begin();
     start1 = 15;
@@ -60,28 +70,32 @@ void Stage::setValueOnMap(int x, int y, int v){
 }
 bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
     if(map[posx + width * posy] != 3){
+        int a=map[posx + width * posy];
+        printf("Invalid Position of value %d.\n",a);
+        
         return false;   //position is not valid;
     }
-    int tower_cost;
+    int tower_cost=100;
     switch (tower)
     {
         case Tower::Towers::first:
-            tower_cost = 100;
+            tower_cost = 20; //cost of the tower
             break;
     }
 
     if(gold < tower_cost){
+        printf("Insufficient Funds, %d.\n",gold);
         return false;
     }
 
     gold -= tower_cost;
-    
+    printf("Remaining gold %d.\n",gold);
     setValueOnMap(posx,posy,4);
-
+    printf("Tower Built.");
     //determine by enum
     Tower new_tower = Tower(posx,posy,tower);
     tower_list.push_back(&new_tower);
-    cur_tower++;
+    //cur_tower=boost::next(cur_tower);
     return true;
 
 }
