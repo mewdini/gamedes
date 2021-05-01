@@ -110,7 +110,7 @@ Sprite Virus::getSprite()
 }
 
 // This function has to update virus location from the base
-void Virus::update(float elapsedTime)
+void Virus::update(Int64 elapsedTime)
 {
     if (m_Alive)
     {
@@ -119,7 +119,7 @@ void Virus::update(float elapsedTime)
         Vector2i gridPos = Stage::pixelToGrid(pixelPos);
 
         updateDirection();
-        moveDir(m_Dir);
+        moveDir(m_Dir, elapsedTime);
 
         // check if in new grid position
         // gridPos is old at this point
@@ -257,7 +257,25 @@ void Virus::updateDirection()
     }
 }
 
-void Virus::moveDir(Directions dir)
+void Virus::moveDir(Directions dir, Int64 delta)
 {
-    ;
+    float pixels_x, pixels_y = 0;
+    float C = 500000; // combats delta being in microseconds
+    switch (dir)
+    {
+        case Up:
+            pixels_y = -(m_Speed * delta) / C;
+            break;
+        case Down:
+            pixels_y = (m_Speed * delta) / C;
+            break;
+        case Left:
+            pixels_x = -(m_Speed * delta) / C;
+            break;
+        case Right:
+            pixels_x = (m_Speed * delta) / C;
+    }
+
+    // move virus sprite
+    move(pixels_x, pixels_y);
 }
