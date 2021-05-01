@@ -31,7 +31,7 @@ Stage::Stage(int x){
     // use malloc if these are local variables?
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
-        auto temp_virus = Virus(start1, start2, Virus::Viruses::covid, 13);
+        auto temp_virus = Virus(start1, start2, Left, Virus::Viruses::covid, 13, this);
         auto temp_pair = std::pair<Virus*, sf::Int64>(&temp_virus, 1000000);
         virus_list.push_back(&temp_pair);
     }
@@ -93,8 +93,9 @@ bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player 
 }
 
 void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower
-    for (auto const& enemy : virus_list) {
-        if(enemy->first.isAlive()){
+    for (auto const& virus : virus_list) {
+        Virus* enemy = virus->first;
+        if(enemy->isAlive()){
             auto virus_pos = enemy->getPosition();
             float posx = virus_pos.x;
             float posy = virus_pos.y;
@@ -115,23 +116,23 @@ std::list<Tower*>* Stage::getTowerList()
     return &tower_list;
 }
 
-std::list<Virus*>* Stage::getVirusList()
+std::list<std::pair<Virus*, Int64>*>* Stage::getVirusList()
 {
     return &virus_list;
 }
 
-void Stage::update(sf::Int64 elapsedTime)
+void Stage::update(Int64 elapsedTime)
 {
     // check if time to spawn virus
     virus_timer += elapsedTime;
-    if (virus_timer >= cur_virus_pair.second && virus_count > 0) {
+    if ((virus_timer >= (*cur_virus_pair)->second) && (virus_count > 0)) {
         spawnVirus();
         virus_timer = 0;
     }
 
     // update all viruses
-    for (auto const& virus : virus_list) {
-        virus->update(elapsedTime);
+    for (auto const& pair : virus_list) {
+        pair->first->update(elapsedTime);
     }
 
     // update all towers
@@ -141,7 +142,7 @@ void Stage::update(sf::Int64 elapsedTime)
 }
 
 void Stage::spawnVirus() {
-    cur_virus_pair.first.m_alive = true;
+    (*cur_virus_pair)->first->setAlive(true);
     cur_virus_pair++;
     virus_count--;
 }

@@ -26,8 +26,8 @@ class Stage {
         void allAttack();
         bool build(Tower::Towers, int, int);
         std::list<Tower*>* getTowerList();
-        std::list<Virus*>* getVirusList();
-        void update(sf::Int64);
+        std::list<std::pair<Virus*, Int64>*>* getVirusList();
+        void update(Int64);
         static Vector2i pixelToGrid(Vector2f);
         static Vector2f gridToPixelMiddle(Vector2i);
     protected:
@@ -38,9 +38,9 @@ class Stage {
         int map[192];                           //might need to import the size of screen from other files instead of hardcoding
         int tower_count;
         int virus_count;
-        std::list<std::pair<Virus*, sf::Int64>*>::iterator cur_virus_pair;
+        std::list<std::pair<Virus*, Int64>*>::iterator cur_virus_pair;
         std::list<Tower*> tower_list;
-        std::list<std::pair<Virus*, sf::Int64>*> virus_list;                 //the list of enemies/towers for this level
+        std::list<std::pair<Virus*, Int64>*> virus_list;                 //the list of enemies/towers for this level
         void attackFirstVirus(Tower*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         sf::Int64 virus_timer;

@@ -98,6 +98,11 @@ bool Virus::isAlive()
     return m_Alive;
 }
 
+void Virus::setAlive(bool alive)
+{
+    m_Alive = alive;
+}
+
 Vector2f Virus::getPosition()
 {
     return m_Sprite.getPosition();

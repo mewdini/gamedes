@@ -25,6 +25,8 @@ public:
     //Find out if virus is alive
     bool isAlive();
 
+    void setAlive(bool);
+
     void movement();
     //Spawn a new virus
     void spawn(float startX, float startY, Virus::Viruses type, int seed);
