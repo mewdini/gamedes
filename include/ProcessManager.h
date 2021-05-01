@@ -1,6 +1,29 @@
-////CREATED BY MIODRAG 13/4/2020
+//CREATED BY MIODRAG 13/4/2021
 //#ifndef PROCESSMANAGER_H
 //#define PROCESSMANAGER_H
+
+//#include "State.h"
+//
+//
+//class ProcessManager: //GameState
+//        public State
+//{
+//private:
+//    Entity player;
+//    void initKeyBinds();
+//public:
+//    ProcessManager(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys);
+//    virtual ~ProcessManager();
+//
+//    //functions
+//    void updateInput(const float& dt);
+//    void endState();
+//    void update(const float& dt);
+//    void render(sf::RenderTarget* target = nullptr);
+//};
+//
+
+
 ////#include "SharedContext.h"
 //#include "BaseState.h"
 //#include <vector>
@@ -79,4 +102,4 @@
 //
 //
 //
-//#endif  /*PROCESSMANAGER_H*/
+#endif  /*PROCESSMANAGER_H*/
