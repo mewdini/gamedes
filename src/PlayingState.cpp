@@ -3,7 +3,7 @@
 //
 
 #include "PlayingState.h"
-
+#include "PlayerView.h"
 
 
 
@@ -53,7 +53,10 @@ void PlayingState::render(sf::RenderTarget* target)
 {
     if (!target)
         target = this->window;
-
+    PlayerView* pView = new PlayerView();
+    Stage stage(7);
+    pView->createBG(stage.getMap());
+    pView->drawBG(window);
     this->player.render(window);
 
 

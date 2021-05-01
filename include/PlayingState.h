@@ -7,7 +7,7 @@
 
 
 #include "State.h"
-
+#include "SpriteActor.h"
 
 class PlayingState: //GameState
         public State
@@ -15,6 +15,7 @@ class PlayingState: //GameState
 private:
     Entity player;
     void initKeyBinds();
+    SpriteActor background[192];
 public:
     PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys, std::stack<State*>*  states);
     virtual ~PlayingState();

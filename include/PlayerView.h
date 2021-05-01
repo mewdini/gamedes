@@ -13,10 +13,11 @@
 class PlayerView{
 
     public:
+        
         PlayerView();
         void init();
         void createBG(int*);
-        void drawBG();
+        void drawBG(sf::RenderWindow* window);
         void drawTowers(std::list<Tower*>);
         void drawViruses(std::list<Virus*>);
         //void update(Stage); omitted for testing
