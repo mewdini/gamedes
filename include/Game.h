@@ -6,9 +6,8 @@
 #define COVIDGAME_GAME_H
 
 #include <SFML/Graphics.hpp>
-#include "Player.h"
 #include "Stage.h"
-#include "Tower.h"
+#include "Player.h"
 #include "PlayerView.h"
 
 

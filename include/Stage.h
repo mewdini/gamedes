@@ -4,10 +4,13 @@
 #ifndef _STAGE_H_
 #define _STAGE_H_
 
+class Stage;
+class Tower;
+class Virus;
+
 #include <SFML/Graphics.hpp>
-#include "Tower.h"
 #include "Virus.h"
-#include "Game.h"
+#include "Tower.h"
 #include <math.h>
 
 #include <list>
@@ -27,8 +30,8 @@ class Stage {
         int getValueOnMap(int , int);
         void setValueOnMap(int, int, int);
         void allAttack();
-        bool build(Tower::Towers, int, int);
         std::list<Tower*>* getTowerList();
+        bool build(int, int, int);
         std::list<std::pair<Virus*, Int64>*>* getVirusList();
         void update(Int64);
         static Vector2i pixelToGrid(Vector2f);

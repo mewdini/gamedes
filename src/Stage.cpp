@@ -64,14 +64,14 @@ int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the 
 void Stage::setValueOnMap(int x, int y, int v){
     map[y * width + x] = v;
 }
-bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
+bool Stage::build(int type, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
     if(map[posx + width * posy] != 3){
         return false;   //position is not valid;
     }
     int tower_cost;
-    switch (tower)
+    switch (type)
     {
-        case Tower::Towers::first:
+        case 1:
             tower_cost = 100;
             break;
     }
@@ -85,7 +85,7 @@ bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player 
     setValueOnMap(posx,posy,4);
 
     //determine by enum
-    Tower new_tower = Tower(posx,posy,tower);
+    Tower new_tower = Tower(posx,posy,type);
     tower_list.push_back(&new_tower);
     return true;
 

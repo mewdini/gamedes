@@ -5,10 +5,13 @@
 #ifndef GAMEDES_VIRUSES_H
 #define GAMEDES_VIRUSES_H
 
+class Virus;
+class Stage;
+
 #include <SFML/Graphics.hpp>
 #include "SpriteActor.h"
-#include "Directions.h"
 #include "Stage.h"
+#include "Directions.h"
 
 using namespace sf;
 
