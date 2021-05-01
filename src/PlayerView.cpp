@@ -65,6 +65,9 @@ void PlayerView::createBG(int* map){
                 //(*new_bg)->setViewLocation(300, 0);
                 background[i].setViewLocation(300, 0);
                 break;
+            case 4:
+                background[i].setViewLocation(250,0);
+                break;
             // North-South Path
             case 5:
                 //(*new_bg)->setViewLocation(200, 0);
