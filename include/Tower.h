@@ -4,18 +4,18 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
-#ifndef GAMEDES_TOWER_H
-#define GAMEDES_TOWER_H
 #include "Virus.h"
 #include "Bullet.h"
 
 using namespace std;
 using namespace sf;
+class Tower;
+class Virus;
+
 class Tower : public SpriteActor
 {
 public:
     Tower();
-    enum Towers {first};
     //void Draw(RenderTarget *Whatever)
     explicit Tower(int x, int y, int level);
     //draw function needs a target to draw
@@ -46,7 +46,3 @@ protected:
     float gold_cost;
 
 };
-
-
-
-#endif //GAMEDES_TOWER_H

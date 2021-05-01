@@ -15,6 +15,7 @@ class MainMenuState
 private:
     sf::RectangleShape background;
     sf::Font font;
+    sf::Texture backgroundSprite;
 
     std::map<std::string, Button*>buttons;
     //Button* mainMenuButton;
@@ -22,6 +23,8 @@ private:
     void initKeyBinds();
     void initFonts();
     void initButtons();
+    void initBackg();
+    void initVariab();
 
 public:
     MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys,std::stack<State*>*  states);

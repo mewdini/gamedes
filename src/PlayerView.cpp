@@ -66,7 +66,10 @@ void PlayerView::createBG(int* map){
                 break;
             // Tower Location
             case 4:
-                background[i].setViewLocation(0, 250);
+
+                background[i].setViewLocation(0,250);
+
+
                 break;
             // North-South Path
             case 5:

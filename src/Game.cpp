@@ -19,7 +19,9 @@ void Game::updateSFMLEvents()
         if (this->sfEvent.type == sf::Event::Closed)
             this->window->close();
     }
+
 }
+
 
 void Game::update()
 {
@@ -120,7 +122,6 @@ void Game::initKeys()
             this->supportedKeys[key] = key_value;
         }
     }
-
     ifs.close();
 
 //    this->supportedKeys["Escape"] = sf::Keyboard::Key::Escape;

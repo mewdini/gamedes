@@ -8,11 +8,20 @@
 #include "Tower.h"
 void PlayingState::initButtons()
 {
-
+    this->buttons["Hint"]  = new Button(150, 550, 500, 50, &this->font,
+                                       "Click to build towers! Kill viruses to gain more gold!",sf::Color(70,70,70,0),
+                                       sf::Color(150,150,150,0),
+                                       sf::Color(20,20,20,0) );
+    this->buttons["Gold"]  = new Button(650, 0, 150, 100, &this->font,
+                                       "Gold:100",sf::Color(70,70,70,0),
+                                       sf::Color(150,150,150,0),
+                                       sf::Color(20,20,20,0) );
     this->buttons["Tower1"]  = new Button(300, 0, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
+
                                        sf::Color(20,20,20,0) );
+
 
     this->buttons["Tower2"]  = new Button(200, 100, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
@@ -25,16 +34,22 @@ this->buttons["Tower3"]  = new Button(450, 100, 50, 50, &this->font,
 this->buttons["Tower4"]  = new Button(200, 250, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
+
                                        sf::Color(20,20,20,0) );
-    this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
+
+this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
+
                                        sf::Color(255,0,0,200),
                                        sf::Color(20,20,20,0) );
 
-    this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
+
+this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
+
                                        sf::Color(255,0,0,200),
                                        sf::Color(20,20,20,0) );
+
 this->buttons["Tower7"]  = new Button(450, 400, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
@@ -137,6 +152,7 @@ void PlayingState::updateButtons()
     {
         itr.second->update(this->mousePosView);
     }
+    this->buttons["Gold"]->changeGold(this->stage.getGold());
     //Build Towers 
     if(this->buttons["Tower1"]->isPressed())
     {
