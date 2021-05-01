@@ -3,10 +3,71 @@
 //
 
 #include "PlayingState.h"
+#include "PlayerView.h"
 
 
+void PlayingState::initButtons()
+{
+    this->buttons["Tower1"]  = new Button(300, 0, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
 
+    this->buttons["Tower2"]  = new Button(200, 100, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower3"]  = new Button(450, 100, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower4"]  = new Button(200, 250, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+    this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
 
+    this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower7"]  = new Button(450, 400, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower8"]  = new Button(550, 400, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower9"]  = new Button(650, 400, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+
+    this->buttons["Tower10"]  = new Button(200, 450, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower11"]  = new Button(300, 450, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+this->buttons["Tower12"]  = new Button(600, 500, 50, 50, &this->font,
+                                       "",sf::Color(70,70,70,200),
+                                       sf::Color(255,0,0,200),
+                                       sf::Color(20,20,20,200) );
+                                       
+}
+void PlayingState::initFonts()
+{
+    if(!this->font.loadFromFile("../data/8bitOperatorPlus-Regular.ttf"))
+    {
+        throw("Error: MainMenuState::Could not load font");
+    }
+}
 
 void PlayingState::initKeyBinds()
 {
@@ -33,7 +94,9 @@ void PlayingState::initKeyBinds()
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
+    this->initFonts();
     this->initKeyBinds();
+    this->initButtons();
 }
 
 PlayingState::~PlayingState()
@@ -45,7 +108,7 @@ void PlayingState::update(const float& dt)
 {
     this->updateMousePositions();
     this->updateInput(dt);
-
+    this->updateButtons();
     this->player.update(dt);
 }
 
@@ -53,9 +116,44 @@ void PlayingState::render(sf::RenderTarget* target)
 {
     if (!target)
         target = this->window;
-
+    PlayerView* pView = new PlayerView();
+    Stage stage(7);
+    pView->createBG(stage.getMap());
+    pView->drawBG(window);
+    this->renderButtons(window);
     this->player.render(window);
 
+
+}
+void PlayingState::updateButtons()
+{
+
+    /*updates the buttons in their states and takes care of their functionality*/
+    for(auto &itr : this->buttons)
+    {
+        itr.second->update(this->mousePosView);
+    }
+    //play game
+    if(this->buttons["Tower1"]->isPressed())
+    {
+        //build tower
+    }
+
+
+    //quit the game
+    if(this->buttons["Tower2"]->isPressed())
+    {
+        //build tower
+    }
+
+}
+void PlayingState::renderButtons(sf::RenderTarget* target)
+{
+    for(auto &itr : this->buttons)
+    {
+        itr.second->render(target);
+    }
+    //this->mainMenuButton->render(target);
 
 }
 
