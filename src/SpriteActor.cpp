@@ -37,7 +37,6 @@ void SpriteActor::move(float deltaX, float deltaY){
 }
 
 void SpriteActor::setTexture(sf::Texture* text){
-    //textPtr = text;
     sprite.setTexture(*text);
 }
 

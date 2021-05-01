@@ -64,6 +64,7 @@ void PlayerView::createBG(int* map){
                 //(*new_bg)->setViewLocation(300, 0);
                 background[i].setViewLocation(0, 300);
                 break;
+            // Tower Location
             case 4:
 
                 background[i].setViewLocation(0,250);
@@ -133,35 +134,37 @@ void PlayerView::drawViruses(std::list<Virus*> viruses){
     }
 }
 
-//void PlayerView::update(Stage stage){
-//    //Will likely want to change return type to better react to this call
-//    // Needs to draw everything and accept player input
-//
-//    if(window.isOpen()){
-//        // Draws the background, then the towers, then the enemies
-//        drawBG();
-//        // These gets don't exist yet
-//        drawTowers(stage.getTowerList());
-//        drawViruses(stage.getVirusList());
-//
-//        // Leaving room for potential additions
-//        window.display();
-//
-//        // Using pollEvent to check for input
-//        sf::Event event;
-//        while(window.pollEvent(event)){
-//            if(event.type == sf::Event::Closed){
-//                window.close();
-//            }
-//            if(event.type == sf::Event::KeyPressed){
-//                // Need to agree on controls, will at least include ability to close window with escape
-//                if(event.key.code == sf::Keyboard::Escape){
-//                    window.close();
-//                }
-//            }
-//        }
-//    }
-//}
+/*
+void PlayerView::update(Stage stage){
+    //Will likely want to change return type to better react to this call
+    // Needs to draw everything and accept player input
+
+    if(window.isOpen()){
+        // Draws the background, then the towers, then the enemies
+        drawBG();
+        // These gets don't exist yet
+        drawTowers(stage.getTowerList());
+        drawViruses(stage.getVirusList());
+
+        // Leaving room for potential additions
+        window.display();
+
+        // Using pollEvent to check for input
+        sf::Event event;
+        while(window.pollEvent(event)){
+            if(event.type == sf::Event::Closed){
+                window.close();
+            }
+            if(event.type == sf::Event::KeyPressed){
+                // Need to agree on controls, will at least include ability to close window with escape
+                if(event.key.code == sf::Keyboard::Escape){
+                    window.close();
+                }
+            }
+        }
+    }
+}
+*/
 
 // void Game::render()
 // {

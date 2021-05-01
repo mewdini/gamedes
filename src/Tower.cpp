@@ -117,5 +117,11 @@ const int Tower::GetUpgradeLevel()
 
 void Tower::Attack(Virus* virus)
 {
-    virus->hit(damage);
+    // TODO animate attack
+
+    // Creates a bullet on top of tower and sets its target to the given virus
+    bullet = Bullet(sprite.getPosition().x + 15, sprite.getPosition().y + 15, 0, 550, 20, 20, virus);
+    
+
+    //virus->hit(damage);
 }
