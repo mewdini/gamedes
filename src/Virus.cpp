@@ -8,7 +8,7 @@
 using namespace std;
 
 
-Virus::Virus(int start_x, int start_y, Virus::Viruses type, int seed)
+Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int seed, Stage* level)
 {
     switch(type)
     {
@@ -64,6 +64,8 @@ Virus::Virus(int start_x, int start_y, Virus::Viruses type, int seed)
     // Location of the virus
     m_Position.x = start_x;
     m_Position.y = start_y;
+
+    m_Stage = level;
 }
 
 // void Virus::setStage(Stage* s)
@@ -91,15 +93,6 @@ bool Virus::hit(float damage)
 
 }
 
-// void Virus::movement()
-// {
-//     stage.getValueOnMap();
-//     move(1,1);
-
-// }
-
-
-
 bool Virus::isAlive()
 {
     return m_Alive;
@@ -116,16 +109,155 @@ Sprite Virus::getSprite()
    return m_Sprite;
 }
 
-
-
-// TODOOOOOO
-
 // This function has to update virus location from the base
-//void Virus::update(float elapsedTime, Vector2f baseLocation)
-//{
-//    float baseX = baseLocation.x;
-//    float baseY = baseLocation.y;
-//    //Update Virus position
-//
-//
-//}
+void Virus::update(float elapsedTime)
+{
+    if (m_Alive)
+    {
+        // check value at current tile in grid
+        Vector2f pixelPos = getPosition();
+        Vector2i gridPos = Stage::pixelToGrid(pixelPos);
+
+        updateDirection();
+        moveDir(m_Dir);
+
+        // check if in new grid position
+        // gridPos is old at this point
+        if (gridPos != Stage::pixelToGrid(getPosition()))
+        {
+            // prevents Virus from changing directions more than once at a corner
+            m_Turned = false;
+        }
+    }
+}
+
+// irrelevant function since map has corners programmed in
+// Directions Virus::pathDir()
+// {
+//     Vector2f pixelPos = getPosition();
+//     Vector2f gridPos{pixelPos.x / 50, pixelPos.y / 50};
+//     std::vector<Directions> pot_dirs{Left, Right, Up, Down};
+
+//     // erase direction Virus came from from directions to check
+//     auto iter = std::find(pot_dirs.begin(), pot_dirs.end(), last_Direction);
+//     if (iter != pot_dirs.end())
+//         pot_dirs.erase(iter);
+
+//     // make sure not going out of bounds (fix in the getValueOnMap method?)
+//     int pos_path;
+//     for (auto const& dir : pot_dirs) {
+//         switch (dir)
+//         {
+//             case Left:
+//                 pos_path = stage->getValueOnMap(gridPos.x - 1, gridPos.y);
+//                 break;
+//             case Right:
+//                 pos_path = stage->getValueOnMap(gridPos.x + 1, gridPos.y);
+//                 break;
+//             case Up:
+//                 pos_path = stage->getValueOnMap(gridPos.x, gridPos.y - 1);
+//                 break;
+//             case Down:
+//                 pos_path = stage->getValueOnMap(gridPos.x, gridPos.y + 1);
+//         }
+
+//         // check if it's the value for path
+//     }    
+//     // check remaining directions, but make sure we dont go out of bounds (catch errors?)
+//     // stage->getValueOnMap(gridPos.x, gridPos.y);
+//     // ^ check opposite of where you were last, then left and right in grid. check for which is path value and return that direction
+//     // set last_Direction
+// }
+
+void Virus::updateDirection()
+{
+    Vector2f pixelPos = getPosition();
+    Vector2i gridPos = Stage::pixelToGrid(pixelPos);
+    int tile_val = m_Stage->getValueOnMap(gridPos.x, gridPos.y);
+    if ((tile_val >= 5) && (tile_val <= 10))
+    {
+        // middle of grid in pixel coords
+        Vector2f mid = Stage::gridToPixelMiddle(gridPos);
+
+        switch (m_Dir)
+        {
+            case Up:
+                // if y is less than middle of box's y
+                if (pixelPos.y - mid.y <= 0)
+                {
+                    // turn
+                    // 7 for corner connecting south-east path
+                    if (tile_val == 7)
+                    {
+                        m_Dir = Right;
+                    }
+                    //8 for corner connecting south-west path
+                    else if (tile_val == 8)
+                    {
+                        m_Dir = Left;
+                    }
+                    m_Turned = true;
+                }
+                break;
+            case Down:
+                // if y is more than middle of box's y
+                if (pixelPos.y - mid.y >= 0)
+                {
+                    // turn
+                    // 9 for corner connecting north-east path
+                    if (tile_val == 9)
+                    {
+                        m_Dir = Right;
+                    }
+                    // 10 for corner connecting north-west path
+                    else if (tile_val == 10)
+                    {
+                        m_Dir = Left;
+                    }
+                    m_Turned = true;
+                }
+                break;
+            case Left:
+                // if x is less than middle of grid's x
+                if (pixelPos.x - mid.x <= 0)
+                {
+                    // turn
+                    // 7 for corner connecting south-east path
+                    if (tile_val == 7)
+                    {
+                        m_Dir = Down;
+                    }
+                    // 9 for corner connecting north-east path
+                    else if (tile_val == 9)
+                    {
+                        m_Dir = Up;
+                    }
+                    m_Turned = true;
+                }
+                break;
+            case Right:
+                // if x is more than middle of grid's x
+                if (pixelPos.x - mid.x >= 0)
+                {
+                    // turn
+                    // 8 for corner connecting south-west path
+                    if (tile_val == 8)
+                    {
+                        m_Dir = Down;
+                    }
+                    // 10 for corner connecting north-west path
+                    else if (tile_val == 10)
+                    {
+                        m_Dir = Up;
+                    }
+                    m_Turned = true;
+                }
+                break;
+        }
+    }
+}
+
+void Virus::moveDir(Directions dir)
+{
+    ;
+}

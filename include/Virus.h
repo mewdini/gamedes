@@ -7,6 +7,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "SpriteActor.h"
+#include "Directions.h"
+#include "Stage.h"
+
 using namespace sf;
 
 class Virus: public SpriteActor{
@@ -14,7 +17,7 @@ class Virus: public SpriteActor{
 public:
     enum Viruses {covid, resistant, contagious, airborn, coughing};
 
-    Virus(int, int, Virus::Viruses, int);
+    Virus(int, int, Directions, Virus::Viruses, int, Stage*);
     
     //When virus is hit
     bool hit(float);
@@ -35,7 +38,13 @@ public:
     //Update Virus Each Frame, baseLocation is the location of the
     //base that is on the end of the road, we are updating the virus
     //while its chasing towards the base on the end of the road
-    void update(float elapsedTime, Vector2f baseLocation);
+    void update(float elapsedTime);
+
+    void updateDirection();
+
+    void moveDir(Directions);
+
+    // Directions pathDir();
 
 private:
     //Virus speeds
@@ -73,6 +82,12 @@ private:
     //Is it still alive?
     bool m_Alive;
 
+    Stage* m_Stage;
+
+    Directions m_Dir;
+
+    //Did the virus already turn in this box?
+    bool m_Turned;
 };
 
 
