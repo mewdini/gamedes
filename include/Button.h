@@ -37,6 +37,7 @@ public:
 
     //acs
 
+    void changeGold(int txt);
     const bool isPressed() const;
     //func
     //button is clicked
