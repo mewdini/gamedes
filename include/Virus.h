@@ -13,7 +13,7 @@ class Virus: public SpriteActor{
 public:
     Virus();
     
-    //When virus is hit
+    //When virus is hit 
     bool hit(float);
 
     //Find out if virus is alive
@@ -56,10 +56,7 @@ private:
     //Position of the Virus
     Vector2f m_Position;
 
-    //Sprite for Virus
-    Sprite m_Sprite;
-
-    Texture m_Texture;
+    // Zack - removed sprite and texture
 
     //How fast can virus move
     float m_Speed;

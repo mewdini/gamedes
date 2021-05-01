@@ -4,60 +4,70 @@
 
 #include "PlayingState.h"
 #include "PlayerView.h"
-
-
+#include "Stage.h"
+#include "Tower.h"
 void PlayingState::initButtons()
 {
+
     this->buttons["Tower1"]  = new Button(300, 0, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+
+                                       sf::Color(20,20,20,0) );
+
+
     this->buttons["Tower2"]  = new Button(200, 100, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 this->buttons["Tower3"]  = new Button(450, 100, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 this->buttons["Tower4"]  = new Button(200, 250, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+
+                                       sf::Color(20,20,20,0) );
+
 this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
+
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
+
 
 this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
+
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
+
 this->buttons["Tower7"]  = new Button(450, 400, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 this->buttons["Tower8"]  = new Button(550, 400, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 this->buttons["Tower9"]  = new Button(650, 400, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 
     this->buttons["Tower10"]  = new Button(200, 450, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 this->buttons["Tower11"]  = new Button(300, 450, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
 this->buttons["Tower12"]  = new Button(600, 500, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,200),
+                                       "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,200) );
+                                       sf::Color(20,20,20,0) );
                                        
 }
 void PlayingState::initFonts()
@@ -93,6 +103,10 @@ void PlayingState::initKeyBinds()
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
+    Stage s(7);
+    this->stage=s;
+    //s.setValueOnMap(6,0,4);
+    PlayerView* pView = new PlayerView();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons();
@@ -115,11 +129,10 @@ void PlayingState::render(sf::RenderTarget* target)
 {
     if (!target)
         target = this->window;
-    PlayerView* pView = new PlayerView();
-    Stage stage(7);
-    pView->createBG(stage.getMap());
-    pView->drawBG(window);
-    this->renderButtons(window);
+    //this->stage.setValueOnMap(6,0,4);
+    PlayingState::pView.createBG(this->stage.getMap()); // drawing the default background
+    PlayingState::pView.drawBG(window);
+    this->renderButtons(window);       // drawing the buttons
     this->player.render(window);
 
 
@@ -132,17 +145,73 @@ void PlayingState::updateButtons()
     {
         itr.second->update(this->mousePosView);
     }
-    //play game
+    //Build Towers 
     if(this->buttons["Tower1"]->isPressed())
     {
-        //build tower
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,6,0);
+        
+        
+       
     }
-
-
-    //quit the game
-    if(this->buttons["Tower2"]->isPressed())
+    else if(this->buttons["Tower2"]->isPressed())
     {
-        //build tower
+        Tower::Towers tower=Tower::Towers::first;
+        //int a=this->stage.getValueOnMap(4,2);
+        //printf("%d",a);
+        this->stage.build(tower,4,2);
+        
+        
+    }
+    if(this->buttons["Tower3"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+                this->stage.build(tower,9,2);
+    }
+if(this->buttons["Tower4"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,4,5);
+    }
+    if(this->buttons["Tower5"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,9,5);
+    }
+if(this->buttons["Tower6"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,15,7);
+    }
+if(this->buttons["Tower7"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,9,8);
+    }
+if(this->buttons["Tower8"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,11,8);
+    }
+    if(this->buttons["Tower9"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,13,8);
+    }
+if(this->buttons["Tower10"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,4,9);
+    }
+if(this->buttons["Tower11"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,6,9);
+    }
+if(this->buttons["Tower12"]->isPressed())
+    {
+        Tower::Towers tower=Tower::Towers::first;
+        this->stage.build(tower,12,10);
     }
 
 }

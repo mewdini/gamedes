@@ -21,44 +21,48 @@ Virus::Virus()
 // TODO make virus enum
 void Virus::spawn(float startX, float startY, int type, int seed)
 {
+    // Zack - changed to use existing sprite from inherited SpriteActor
+    // doesn't solve problem of loading a new texture, should have reference to
+    // PView's texture and load from that instead
+    sf::Texture m_Texture;
+    m_Texture.loadFromFile("../data/coronavirus_0.png");
     switch(type)
     {
         case 0:
             //Covid Virus
-            //this m_Sprite variable will pull the sprite of the Zombie
+            //this sprite variable will pull the sprite of the Zombie
             //We should probably create a TextureHolder Class from where we
             // load it
-            m_Texture.loadFromFile("../data/coronaviurs_0.png");
-            m_Sprite.setTexture(m_Texture);
-            m_Sprite.setOrigin(15, 6);
+            this->setTexture(&m_Texture);
+            //sprite.setOrigin(15, 6); 
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
             break;
 
         case 1:
             // Resistant Strain
-            // m_Sprite = Sprite(TextureHolder)
+            // sprite = Sprite(TextureHolder)
             m_Speed = RESISTANT_STRAIN_SPEED;
             m_Health = RESISTANT_STRAIN_HEALTH;
             break;
 
         case 2:
             // Contagious Strain
-            // m_Sprite = Sprite(TextureHolder)
+            // sprite = Sprite(TextureHolder)
             m_Speed = CONTAGIOUS_STRAIN_SPEED;
             m_Health = CONTAGIOUS_STRAIN_HEALTH;
             break;
 
         case 3:
             // Airborn Strain
-            // m_Sprite = Sprite(TextureHolder)
+            // sprite = Sprite(TextureHolder)
             m_Speed = AIRBORN_STRAIN_SPEED;
             m_Health = AIRBORN_STRAIN_HEALTH;
             break;
 
         case 4:
             // Coughing Strain
-            // m_Sprite = Sprite(TextureHolder)
+            // sprite = Sprite(TextureHolder)
             m_Speed = COUGHING_PERSON_SPEED;
             m_Health = COUGHING_PERSON_HEALTH;
             break;
@@ -79,8 +83,8 @@ void Virus::spawn(float startX, float startY, int type, int seed)
     m_Position.x = startX;
     m_Position.y = startY;
     //Setting origin
-    //m_Sprite.setOrigin(location);
-    //m_Sprite.setPosition(m_Position);
+    //sprite.setOrigin(location);
+    //sprite.setPosition(m_Position);
 
 }
 
@@ -91,7 +95,7 @@ bool Virus::hit(float damage)
     {
         //DEAD
         m_Alive = false;
-        //m_Sprite.setTexture(TextureHolder::GetTexture("graphicsHere")
+        //sprite.setTexture(TextureHolder::GetTexture("graphicsHere")
         //this sprite creates a dead Virus on the map if we want that
         // we can just make it disappear
         return true;
@@ -120,13 +124,13 @@ bool Virus::isAlive()
 
 Vector2f Virus::getPosition()
 {
-    return m_Sprite.getPosition();
+    return sprite.getPosition();
 }
 
 
 Sprite Virus::getSprite()
 {
-   return m_Sprite;
+   return sprite;
 }
 
 
