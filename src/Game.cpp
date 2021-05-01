@@ -8,7 +8,7 @@
 void Game::updateDt()
 {
     /*updates the dt variable with the time it takes to update and render one frame*/
-    this->dt = this->dtClock.restart().asSeconds();
+    this->dt = this->dtClock.restart().asMicroseconds();
 
 }
 
@@ -30,7 +30,7 @@ void Game::update()
     {
 
         this->states.top()->update(this->dt);
-        if (this-> states.top()->getQuit())
+        if (this->states.top()->getQuit())
         {
             this->states.top()->endState();
             delete this->states.top();
@@ -61,7 +61,6 @@ void Game::run()
         this->updateDt();
         this->update();
         this->render();
-
     }
 }
 

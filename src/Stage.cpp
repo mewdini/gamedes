@@ -1,5 +1,6 @@
 #include "Stage.h"
 #include <SFML/Graphics.hpp>
+#include <typeinfo>
 
 // Zack - Removed a bunch of ; at end of methods
 
@@ -87,7 +88,7 @@ bool Stage::build(int type, int posx, int posy ){    //If the player clicks on a
     printf("Remaining gold %d.\n",gold);
     setValueOnMap(posx,posy,4);
     printf("Tower Built.");
-    //determine by enum
+    //determine by int (replaced enum)
     Tower new_tower = Tower(posx,posy,type);
     tower_list.push_back(&new_tower);
     //cur_tower=boost::next(cur_tower);

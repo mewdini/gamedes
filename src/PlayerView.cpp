@@ -117,19 +117,19 @@ void PlayerView::drawBG(sf::RenderWindow* window){
     }
 }
 
-void PlayerView::drawTowers(std::list<Tower*> towers){
-    //Draws everything contained in the list of towers
-    for (auto const& i : towers)
-    {
-        window.draw(i->getSprite());
-    }
-}
+// void PlayerView::drawTowers(std::list<Tower*> towers){
+//     //Draws everything contained in the list of towers
+//     for (auto const& i : towers)
+//     {
+//         window.draw(i->getSprite());
+//     }
+// }
 
-void PlayerView::drawViruses(std::list<Virus*> viruses){
+void PlayerView::drawViruses(std::list<std::pair<Virus*, Int64>*>* viruses){
     //Draws everything contained in the list of viruses
-    for (auto const& i : viruses)
+    for (auto const& i : *viruses)
     {
-        window.draw(i->getSprite());
+        window.draw(i->first->getSprite());
     }
 }
 

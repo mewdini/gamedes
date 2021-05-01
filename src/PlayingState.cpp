@@ -110,8 +110,7 @@ void PlayingState::initKeyBinds()
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
-    Stage s(7);
-    this->stage=s;
+    this->stage = Stage(7);
     //s.setValueOnMap(6,0,4);
     PlayerView* pView = new PlayerView();
     this->initFonts();
@@ -121,7 +120,7 @@ PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* 
 
 PlayingState::~PlayingState()
 {
-
+    ;
 }
 
 void PlayingState::update(const float& dt)
@@ -130,6 +129,7 @@ void PlayingState::update(const float& dt)
     this->updateInput(dt);
     this->updateButtons();
     this->player.update(dt);
+    stage.update(dt);
 }
 
 void PlayingState::render(sf::RenderTarget* target)
@@ -137,12 +137,12 @@ void PlayingState::render(sf::RenderTarget* target)
     if (!target)
         target = this->window;
     //this->stage.setValueOnMap(6,0,4);
-    PlayingState::pView.createBG(this->stage.getMap()); // drawing the default background
-    PlayingState::pView.drawBG(window);
+    pView.createBG(this->stage.getMap()); // drawing the default background
+    pView.drawBG(window);
+    auto vlist = stage.getVirusList();
+    pView.drawViruses(vlist);
     this->renderButtons(window);       // drawing the buttons
     this->player.render(window);
-
-
 }
 void PlayingState::updateButtons()
 {
@@ -159,7 +159,7 @@ void PlayingState::updateButtons()
     {
         this->stage.build(tower,6,0);
     }
-    else if(this->buttons["Tower2"]->isPressed())
+    if(this->buttons["Tower2"]->isPressed())
     {
         //int a=this->stage.getValueOnMap(4,2);
         //printf("%d",a);
@@ -205,6 +205,7 @@ void PlayingState::updateButtons()
     {
         this->stage.build(tower,12,10);
     }
+    // printf("hi"); <-- causes crash
 }
 void PlayingState::renderButtons(sf::RenderTarget* target)
 {
@@ -229,10 +230,10 @@ void PlayingState::updateInput(const float &dt)
     //player input
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Left"))))
         this->player.move(dt,-1.f, 0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Right"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Right"))))
         this->player.move(dt,1.f, 0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Up"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Up"))))
         this->player.move(dt,0.f, -1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Down"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Down"))))
         this->player.move(dt,0.f, 1.f);
 }

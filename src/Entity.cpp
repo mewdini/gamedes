@@ -15,18 +15,18 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-
+    ;
 }
 
 void Entity::move(const float& dt, const float dir_x, const float dir_y)
 {
-    this->shape.move(dir_x * this->movementSpeed * dt, dir_y * this->movementSpeed * dt);
+    auto temp = shape.getPosition(); // this makes down movement not crash -- even not assigning doesn't fix it
+    this->shape.move(dir_x * this->movementSpeed * dt/1000000, dir_y * this->movementSpeed * dt/1000000);
 }
 
 void Entity::update(const float &dt)
 {
-
-
+    ;
 }
 
 void Entity::render(sf::RenderTarget* target)
