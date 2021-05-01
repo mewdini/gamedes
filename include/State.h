@@ -31,7 +31,7 @@ protected:
 
     virtual void initKeyBinds() = 0;
 public:
-
+    //virtual int statenumber(); //to decide what the current state is for Game
     const bool& getQuit() const;
     virtual void updateInput(const float& dt) = 0;
     State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys,std::stack<State*>*  states);

@@ -25,6 +25,9 @@ void MainMenuState::initFonts()
         throw("Error: MainMenuState::Could not load font");
     }
 }
+//int MainMenuState::statenumber(){
+//    return 0;
+//}
 void MainMenuState::initKeyBinds()
 {
 

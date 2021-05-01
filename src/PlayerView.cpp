@@ -18,7 +18,7 @@ void PlayerView::init(){
         sf::Event event;
 
         window.clear(sf::Color::Green);
-        window.display();
+        //window.display();
 
         // Waits for any keypress before continuing
         /*
@@ -107,14 +107,14 @@ void PlayerView::createBG(int* map){
 
 void PlayerView::drawBG(){
     //Draws everything contained in the list of background tiles
-    std::cout << "start" << std::endl;
+
     int i;
     for (i = 0; i < 192; i++)
     {
         window.draw(background[i].getSprite());
         //std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl; Tested that proper pixel location was set
     }
-    std::cout << "done" << std::endl;
+
 }
 
 void PlayerView::drawTowers(std::list<Tower*> towers){

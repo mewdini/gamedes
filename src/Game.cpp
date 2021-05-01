@@ -2,7 +2,7 @@
 
 #include "Game.h"
 #include "Player.h"
-
+#include "iostream"
 
 //Functions
 void Game::updateDt()
@@ -18,6 +18,22 @@ void Game::updateSFMLEvents()
     {
         if (this->sfEvent.type == sf::Event::Closed)
             this->window->close();
+        auto temp=this->states.top();
+        State* tempstate;
+        tempstate=temp;
+        if (1==0){
+            if (this->sfEvent.type == sf::Event::MouseButtonPressed){
+                if(this->sfEvent.mouseButton.button == sf::Mouse::Left){
+                    auto pos=sf::Mouse::getPosition();
+                    printf("%d,%d",pos.x,pos.y);
+                    Tower::Towers tower;
+                    this->stage.build(tower,pos.x,pos.y);
+                    //int a=stage.getValueOnMap(pos.x,pos.y);
+                    //printf("%d",a);
+                }
+
+            }
+        }
     }
 }
 
@@ -28,6 +44,7 @@ void Game::update()
     {
 
         this->states.top()->update(this->dt);
+        
         if (this-> states.top()->getQuit())
         {
             this->states.top()->endState();
@@ -42,20 +59,31 @@ void Game::update()
         this->window->close();
     }
 }
-
+void Game::setWindow(sf::RenderWindow *w){
+    Game::window=w;
+}
 void Game::render()
 {
     this->window->clear();
-
+    pView->createBG(stage.getMap());
+    pView->drawBG();
+    
     if(!this->states.empty())
-        this->states.top()->render();
+        this->states.top()->render(pView->getWindow());
+    setWindow(pView->getWindow());
     this->window->display();
 }
 
 void Game::run()
 {
+    PlayerView* pv = new PlayerView();
+    Stage s(7);
+    Game::stage=s;
+    Game::pView=pv;
+    stage.setValueOnMap(0,6,3);
     while(this->window->isOpen())
     {
+        //cout<< this->states.top();
         this->updateDt();
         this->update();
         this->render();

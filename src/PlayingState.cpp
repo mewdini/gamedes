@@ -48,7 +48,9 @@ void PlayingState::update(const float& dt)
 
     this->player.update(dt);
 }
-
+//int PlayingState::statenumber(){
+//    return 1;
+//}
 void PlayingState::render(sf::RenderTarget* target)
 {
     if (!target)

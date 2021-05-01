@@ -33,6 +33,7 @@ public:
     void render();
     //core
     void run();
+    void setWindow(sf::RenderWindow *window);
 private:
     //Variables
     //delta time
@@ -53,9 +54,9 @@ private:
 //    void update(sf::Int64);
 //    sf::Int64 time_per_frame;
 //    void click(int x, int y); // event.mouseButton is int
-//    Stage level;
+    Stage stage;
 //    sf::RenderWindow* app;
-//    PlayerView* view;
+    PlayerView* pView;
 };
 
 

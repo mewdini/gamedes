@@ -60,6 +60,7 @@ void Stage::setValueOnMap(int x, int y, int v){
 }
 bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
     if(map[posx + width * posy] != 3){
+        printf("Invalid position!\n");
         return false;   //position is not valid;
     }
     int tower_cost;
@@ -71,6 +72,7 @@ bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player 
     }
 
     if(gold < tower_cost){
+        printf("Insufficient fund!\n");
         return false;
     }
 

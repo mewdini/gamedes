@@ -28,7 +28,7 @@ public:
     virtual ~MainMenuState();
 
     //functions
-
+    //int statenumber();
     void updateInput(const float& dt);
     void updateButtons();
     void renderButtons(sf::RenderTarget* target = nullptr);
