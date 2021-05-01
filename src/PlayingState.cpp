@@ -8,7 +8,10 @@
 #include "Tower.h"
 void PlayingState::initButtons()
 {
-
+    this->buttons["Gold"]  = new Button(650, 0, 150, 100, &this->font,
+                                       "Gold:100",sf::Color(70,70,70,0),
+                                       sf::Color(150,150,150,0),
+                                       sf::Color(20,20,20,0) );
     this->buttons["Tower1"]  = new Button(300, 0, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
@@ -145,6 +148,7 @@ void PlayingState::updateButtons()
     {
         itr.second->update(this->mousePosView);
     }
+    this->buttons["Gold"]->changeText(this->stage.getGold());
     //Build Towers 
     if(this->buttons["Tower1"]->isPressed())
     {

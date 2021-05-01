@@ -36,7 +36,7 @@ public:
     ~Button();
 
     //acs
-
+    void changeText(int txt);
     const bool isPressed() const;
     //func
     //button is clicked

@@ -3,7 +3,8 @@
 //
 
 #include "Button.h"
-
+#include <iostream>
+#include <string> 
 
 Button::Button(float pos_x, float pos_y, float width, float height, sf::Font* font,
                std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
@@ -36,6 +37,10 @@ Button::~Button()
 
 }
 
+void Button::changeText(int txt){
+    
+    this->text.setString("Gold:"+std::to_string(txt));
+}
 const bool Button::isPressed() const
 {
     if(this->buttonState == buttonActive)
