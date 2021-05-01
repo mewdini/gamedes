@@ -153,75 +153,58 @@ void PlayingState::updateButtons()
         itr.second->update(this->mousePosView);
     }
     this->buttons["Gold"]->changeGold(this->stage.getGold());
+    int tower = 1;
     //Build Towers 
     if(this->buttons["Tower1"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,6,0);
-        
-        
-       
     }
     else if(this->buttons["Tower2"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         //int a=this->stage.getValueOnMap(4,2);
         //printf("%d",a);
-        this->stage.build(tower,4,2);
-        
-        
+        this->stage.build(tower,4,2); 
     }
     if(this->buttons["Tower3"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
                 this->stage.build(tower,9,2);
     }
-if(this->buttons["Tower4"]->isPressed())
+    if(this->buttons["Tower4"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,4,5);
     }
     if(this->buttons["Tower5"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,9,5);
     }
-if(this->buttons["Tower6"]->isPressed())
+    if(this->buttons["Tower6"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,15,7);
     }
-if(this->buttons["Tower7"]->isPressed())
+    if(this->buttons["Tower7"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,9,8);
     }
-if(this->buttons["Tower8"]->isPressed())
+    if(this->buttons["Tower8"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,11,8);
     }
     if(this->buttons["Tower9"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,13,8);
     }
-if(this->buttons["Tower10"]->isPressed())
+    if(this->buttons["Tower10"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,4,9);
     }
-if(this->buttons["Tower11"]->isPressed())
+    if(this->buttons["Tower11"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,6,9);
     }
-if(this->buttons["Tower12"]->isPressed())
+    if(this->buttons["Tower12"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
         this->stage.build(tower,12,10);
     }
-
 }
 void PlayingState::renderButtons(sf::RenderTarget* target)
 {

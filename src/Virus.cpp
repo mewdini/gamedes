@@ -14,6 +14,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
     // doesn't solve problem of loading a new texture, should have reference to
     // PView's texture and load from that instead
     sf::Texture m_Texture;
+    Vector2f pixel_pos;
     m_Texture.loadFromFile("../data/coronavirus_0.png");
     switch(type)
     {
@@ -23,7 +24,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
             //We should probably create a TextureHolder Class from where we
             // load it
             this->setTexture(&m_Texture);
-            auto pixel_pos = Stage::gridToPixelTopLeft(Vector2i{15, 6});
+            pixel_pos = Stage::gridToPixelTopLeft(Vector2i{15, 6});
             sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
