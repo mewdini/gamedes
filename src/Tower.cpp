@@ -118,5 +118,6 @@ const int Tower::GetUpgradeLevel()
 void Tower::Attack(Virus* virus)
 {
     // TODO animate attack
+    
     virus->hit(damage);
 }

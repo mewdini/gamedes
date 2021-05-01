@@ -130,6 +130,7 @@ void PlayerView::drawViruses(std::list<Virus*> viruses){
     }
 }
 
+/*
 void PlayerView::update(Stage stage){
     //Will likely want to change return type to better react to this call
     // Needs to draw everything and accept player input
@@ -159,6 +160,7 @@ void PlayerView::update(Stage stage){
         }
     }
 }
+*/
 
 // void Game::render()
 // {

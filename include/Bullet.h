@@ -5,16 +5,17 @@
 #include "SpriteActor.h"
 #include "Virus.h"
 
-class Bullet : SpriteActor{
+class Bullet : public SpriteActor{
 
     public:
-        Bullet(float, float, int, int, int, int, Virus) : SpriteActor(float, float, int, int, int, int);
+        Bullet(float, float, int, int, int, int, Virus*);
         void follow();
         bool detectHit();
+        
 
     private:
-        Virus target;
+        Virus* target;
 
-}
+};
 
 #endif
