@@ -260,20 +260,20 @@ void Virus::updateDirection()
 void Virus::moveDir(Directions dir, Int64 delta)
 {
     float pixels_x, pixels_y = 0;
-    float C = 500000; // combats delta being in microseconds
+    float C = 1000000; // combats delta being in microseconds
     switch (dir)
     {
         case Up:
-            pixels_y = -(m_Speed * delta) / C;
+            pixels_y = -(m_Speed * (delta / C));
             break;
         case Down:
-            pixels_y = (m_Speed * delta) / C;
+            pixels_y = m_Speed * (delta / C);
             break;
         case Left:
-            pixels_x = -(m_Speed * delta) / C;
+            pixels_x = -(m_Speed * (delta / C));
             break;
         case Right:
-            pixels_x = (m_Speed * delta) / C;
+            pixels_x = m_Speed * (delta / C);
     }
 
     // move virus sprite
