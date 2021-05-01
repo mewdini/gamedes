@@ -8,12 +8,19 @@
 
 #include "State.h"
 #include "SpriteActor.h"
+#include "Button.h"
 
 class PlayingState: //GameState
         public State
 {
 private:
+    void updateButtons();
+    void renderButtons(sf::RenderTarget* target);
+    sf::Font font;
+    std::map<std::string, Button*>buttons;
     Entity player;
+    void initButtons();
+    void initFonts();
     void initKeyBinds();
     SpriteActor background[192];
 public:
@@ -25,6 +32,7 @@ public:
     void endState();
     void update(const float& dt);
     void render(sf::RenderTarget* target = nullptr);
+    
 };
 
 
