@@ -6,7 +6,7 @@ Level1::Level1():Stage(){
     level=1;
     width=16;
     height=12;
-    base_loc = Vector2f(7,6);
+    base_loc = Vector2i(7,6);
     //static int e[width*height];
     //pointer for enemylist
     //initialize enemylist
@@ -57,7 +57,7 @@ Level1::Level1():Stage(){
 
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
-        auto temp_virus = Virus(start1, start2, Virus::Viruses::covid, 13);
+        auto temp_virus = Virus(start1, start2, Left, Virus::Viruses::covid, 13, this);
         auto temp_pair = std::pair<Virus*, sf::Int64>(&temp_virus, 1000000);
         virus_list.push_back(&temp_pair);
     }
