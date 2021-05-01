@@ -1,5 +1,4 @@
 #include "Stage.h"
-#include "Game.h"
 #include <SFML/Graphics.hpp>
 
 // Zack - Removed a bunch of ; at end of methods

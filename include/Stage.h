@@ -7,11 +7,14 @@
 #include <SFML/Graphics.hpp>
 #include "Tower.h"
 #include "Virus.h"
+#include "Game.h"
 #include <math.h>
 
 #include <list>
 #include <iostream>
 using namespace std;
+using namespace sf;
+
 class Stage {
     public:
         Stage();

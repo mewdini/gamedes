@@ -10,11 +10,12 @@
 
 using namespace std;
 using namespace sf;
+class Virus;
 class Tower : public SpriteActor
 {
 public:
-    Tower();
     enum Towers {first};
+    Tower();
     //void Draw(RenderTarget *Whatever)
     explicit Tower(int x, int y, int level);
     //draw function needs a target to draw
