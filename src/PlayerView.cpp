@@ -6,7 +6,8 @@ PlayerView::PlayerView(){
     //Might want additional fonts/textures in future, but early build will just have one texture
     //window.create(sf::VideoMode(800,600,32), "COVID Champion", sf::Style::Close);
     //font.loadFromFile("insert font here");
-    texture.loadFromFile("../data/ThirdSpriteSheet.png");
+    texture.loadFromFile("../data/FourthSpriteSheet.png");
+    //Fourth sheet is rotated compared to third, all x/y coords are reversed
 }
 
 void PlayerView::init(){
@@ -42,7 +43,8 @@ void PlayerView::createBG(int* map){
         Ypos = 50*(i/16);
 
         // These params set initial textureRect to the basic background
-        background[i] = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
+        //auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
+        background[i] = SpriteActor(Xpos, Ypos, 0, 450, 50, 50);
         background[i].setTexture(&texture);
 
         // Sets the IntRect's location to where the desired image is
@@ -59,31 +61,41 @@ void PlayerView::createBG(int* map){
                 break;
             // Potential Tower Location, skips 4 since shouldn't be any prebuilt towers
             case 3:
-                background[i].setViewLocation(300, 0);
+                //(*new_bg)->setViewLocation(300, 0);
+                background[i].setViewLocation(0, 300);
+                break;
+            case 4:
+                background[i].setViewLocation(0, 250);
                 break;
             // North-South Path
             case 5:
-                background[i].setViewLocation(200, 0);
+                //(*new_bg)->setViewLocation(200, 0);
+                background[i].setViewLocation(0, 200);
                 break;
             // East-West Path
             case 6:
-                background[i].setViewLocation(150, 0);
+                //(*new_bg)->setViewLocation(150, 0);
+                background[i].setViewLocation(0, 150);
                 break;
             // South-East Corner
             case 7:
-                background[i].setViewLocation(100, 0);
+                //(*new_bg)->setViewLocation(100, 0);
+                background[i].setViewLocation(0, 100);
                 break;
             // South-West Corner
             case 8:
-                background[i].setViewLocation(400, 0);
+                //(*new_bg)->setViewLocation(400, 0);
+                background[i].setViewLocation(0, 400);
                 break;
             // North-East Corner
             case 9:
-                background[i].setViewLocation(50, 0);
+                //(*new_bg)->setViewLocation(50, 0);
+                background[i].setViewLocation(0, 50);
                 break;
             // North-West Corner
             case 10:
-                background[i].setViewLocation(350, 0);
+                //(*new_bg)->setViewLocation(350, 0);
+                background[i].setViewLocation(0, 350);
                 break;
             default:
             // Shouldn't reach this

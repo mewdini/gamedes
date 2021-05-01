@@ -9,6 +9,8 @@
 #include "State.h"
 #include "SpriteActor.h"
 #include "Button.h"
+#include "Stage.h"
+#include "PlayerView.h"
 
 class PlayingState: //GameState
         public State
@@ -23,6 +25,8 @@ private:
     void initFonts();
     void initKeyBinds();
     SpriteActor background[192];
+    Stage stage;
+    PlayerView pView;
 public:
     PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys, std::stack<State*>*  states);
     virtual ~PlayingState();
