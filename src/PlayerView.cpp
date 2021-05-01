@@ -64,6 +64,7 @@ void PlayerView::createBG(int* map){
                 //(*new_bg)->setViewLocation(300, 0);
                 background[i].setViewLocation(0, 300);
                 break;
+            // Tower Location
             case 4:
                 background[i].setViewLocation(0, 250);
                 break;

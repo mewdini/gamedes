@@ -8,6 +8,7 @@
 class Bullet : public SpriteActor{
 
     public:
+        Bullet();
         Bullet(float, float, int, int, int, int, Virus*);
         void follow();
         bool detectHit();

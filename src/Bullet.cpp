@@ -1,5 +1,9 @@
 #include "Bullet.h"
 
+Bullet::Bullet(){
+    // default const, shouldn't be used
+}
+
 Bullet::Bullet(float posX, float posY, int left, int top, int width, int height, Virus* newTarget){
     // Uses spriteactor's const and adds value for the virus bullet is traveling towards
     sprite.setPosition(posX, posY);

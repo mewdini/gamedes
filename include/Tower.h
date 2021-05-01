@@ -7,6 +7,7 @@
 #ifndef GAMEDES_TOWER_H
 #define GAMEDES_TOWER_H
 #include "Virus.h"
+#include "Bullet.h"
 
 using namespace std;
 using namespace sf;
@@ -40,6 +41,7 @@ private:
     float damage;
     double angle_to_point(double x, double y);
     int upgrade_level;
+    Bullet bullet;
 protected:
     float gold_cost;
 
