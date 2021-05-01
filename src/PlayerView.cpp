@@ -4,7 +4,7 @@
 
 PlayerView::PlayerView(){
     //Might want additional fonts/textures in future, but early build will just have one texture
-    window.create(sf::VideoMode(800,600,32), "COVID Champion", sf::Style::Close);
+    //window.create(sf::VideoMode(800,600,32), "COVID Champion", sf::Style::Close);
     //font.loadFromFile("insert font here");
     texture.loadFromFile("../data/ThirdSpriteSheet.png");
 }
@@ -105,16 +105,15 @@ void PlayerView::createBG(int* map){
     }
 }
 
-void PlayerView::drawBG(){
+void PlayerView::drawBG(sf::RenderWindow* window){
     //Draws everything contained in the list of background tiles
-    std::cout << "start" << std::endl;
     int i;
     for (i = 0; i < 192; i++)
     {
-        window.draw(background[i].getSprite());
+        window->draw(background[i].getSprite());
         //std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl; Tested that proper pixel location was set
     }
-    std::cout << "done" << std::endl;
+
 }
 
 void PlayerView::drawTowers(std::list<Tower*> towers){
