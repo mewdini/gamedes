@@ -42,11 +42,9 @@ void PlayerView::createBG(int* map){
         Ypos = 50*(i/16);
 
         // These params set initial textureRect to the basic background
-        //auto sprite_bg = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
         background[i] = SpriteActor(Xpos, Ypos, 450, 0, 50, 50);
         background[i].setTexture(&texture);
 
-        //std::cout << "Map[" << i << "] = " << *(map + i) << std::endl; Used to test that map was populated correctly
         // Sets the IntRect's location to where the desired image is
         // Currently using ThirdSpriteSheet's layout, will need to update alongside art changes
         switch(map[i]){
@@ -57,64 +55,50 @@ void PlayerView::createBG(int* map){
                 break;
             // Home Base. 2 is skipped due to current design
             case 1:
-                //(*new_bg)->setViewLocation(0, 0);
                 background[i].setViewLocation(0, 0);
                 break;
             // Potential Tower Location, skips 4 since shouldn't be any prebuilt towers
             case 3:
-                //(*new_bg)->setViewLocation(300, 0);
                 background[i].setViewLocation(300, 0);
                 break;
             // North-South Path
             case 5:
-                //(*new_bg)->setViewLocation(200, 0);
                 background[i].setViewLocation(200, 0);
                 break;
             // East-West Path
             case 6:
-                //(*new_bg)->setViewLocation(150, 0);
                 background[i].setViewLocation(150, 0);
                 break;
             // South-East Corner
             case 7:
-                //(*new_bg)->setViewLocation(100, 0);
                 background[i].setViewLocation(100, 0);
                 break;
             // South-West Corner
             case 8:
-                //(*new_bg)->setViewLocation(400, 0);
                 background[i].setViewLocation(400, 0);
                 break;
             // North-East Corner
             case 9:
-                //(*new_bg)->setViewLocation(50, 0);
                 background[i].setViewLocation(50, 0);
                 break;
             // North-West Corner
             case 10:
-                //(*new_bg)->setViewLocation(350, 0);
                 background[i].setViewLocation(350, 0);
                 break;
             default:
             // Shouldn't reach this
                 break;
         }
-
-        //background[i] = sprite_bg;
-
     }
 }
 
 void PlayerView::drawBG(){
-    //Draws everything contained in the list of background tiles
-    std::cout << "start" << std::endl;
+    //Draws everything contained in the array of background tiles
     int i;
     for (i = 0; i < 192; i++)
     {
         window.draw(background[i].getSprite());
-        //std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl; Tested that proper pixel location was set
     }
-    std::cout << "done" << std::endl;
 }
 
 void PlayerView::drawTowers(std::list<Tower*> towers){
@@ -133,49 +117,35 @@ void PlayerView::drawViruses(std::list<Virus*> viruses){
     }
 }
 
-//void PlayerView::update(Stage stage){
-//    //Will likely want to change return type to better react to this call
-//    // Needs to draw everything and accept player input
-//
-//    if(window.isOpen()){
-//        // Draws the background, then the towers, then the enemies
-//        drawBG();
-//        // These gets don't exist yet
-//        drawTowers(stage.getTowerList());
-//        drawViruses(stage.getVirusList());
-//
-//        // Leaving room for potential additions
-//        window.display();
-//
-//        // Using pollEvent to check for input, event manager handles something else?
-//        sf::Event event;
-//        while(window.pollEvent(event)){
-//            if(event.type == sf::Event::Closed){
-//                window.close();
-//            }
-//            if(event.type == sf::Event::KeyPressed){
-//                // Need to agree on controls, will at least include ability to close window with escape
-//                if(event.key.code == sf::Keyboard::Escape){
-//                    window.close();
-//                }
-//            }
-//            // switch (Event.type) {
-//            //     // Exit
-//            //     case(sf::Event::Closed):
-//            //     App.close();
-//            //     break;
-//
-//            //     // Mouse Clicked
-//            //     case(sf::Event::MouseButtonPressed):
-//            //     if (event.mouseButton.button == sf::Mouse::Left)
-//            //     {
-//            //         game.click(event.mouseButton.x, event.mouseButton.y);
-//            //     }
-//            //     break;
-//            // }
-//        }
-//    }
-//}
+void PlayerView::update(Stage stage){
+    //Will likely want to change return type to better react to this call
+    // Needs to draw everything and accept player input
+
+    if(window.isOpen()){
+        // Draws the background, then the towers, then the enemies
+        drawBG();
+        // These gets don't exist yet
+        drawTowers(stage.getTowerList());
+        drawViruses(stage.getVirusList());
+
+        // Leaving room for potential additions
+        window.display();
+
+        // Using pollEvent to check for input
+        sf::Event event;
+        while(window.pollEvent(event)){
+            if(event.type == sf::Event::Closed){
+                window.close();
+            }
+            if(event.type == sf::Event::KeyPressed){
+                // Need to agree on controls, will at least include ability to close window with escape
+                if(event.key.code == sf::Keyboard::Escape){
+                    window.close();
+                }
+            }
+        }
+    }
+}
 
 // void Game::render()
 // {
