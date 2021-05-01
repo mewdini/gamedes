@@ -5,13 +5,22 @@
 #ifndef GAMEDES_VIRUSES_H
 #define GAMEDES_VIRUSES_H
 
+class Virus;
+class Stage;
+
 #include <SFML/Graphics.hpp>
 #include "SpriteActor.h"
+#include "Stage.h"
+#include "Directions.h"
+
 using namespace sf;
+
 class Virus: public SpriteActor{
 
 public:
-    Virus();
+    enum Viruses {covid, resistant, contagious, airborn, coughing};
+
+    Virus(int, int, Directions, Virus::Viruses, int, Stage*);
     
     //When virus is hit 
     bool hit(float);
@@ -19,9 +28,11 @@ public:
     //Find out if virus is alive
     bool isAlive();
 
+    void setAlive(bool);
+
     void movement();
     //Spawn a new virus
-    void spawn(float startX, float startY, int type, int seed);
+    void spawn(float startX, float startY, Virus::Viruses type, int seed);
 
     //Return position
     Vector2f getPosition();
@@ -32,7 +43,13 @@ public:
     //Update Virus Each Frame, baseLocation is the location of the
     //base that is on the end of the road, we are updating the virus
     //while its chasing towards the base on the end of the road
-    void update(float elapsedTime, Vector2f baseLocation);
+    void update(Int64);
+
+    void updateDirection();
+
+    void moveDir(Directions, Int64);
+
+    // Directions pathDir();
 
 private:
     //Virus speeds
@@ -67,6 +84,12 @@ private:
     //Is it still alive?
     bool m_Alive;
 
+    Stage* m_Stage;
+
+    Directions m_Dir;
+
+    //Did the virus already turn in this box?
+    bool m_Turned;
 };
 
 

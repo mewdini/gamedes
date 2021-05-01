@@ -122,7 +122,6 @@ void Game::initKeys()
             this->supportedKeys[key] = key_value;
         }
     }
-
     ifs.close();
 
 //    this->supportedKeys["Escape"] = sf::Keyboard::Key::Escape;
