@@ -8,16 +8,42 @@
 
 void MainMenuState::initButtons()
 {
-    this->buttons["PlayGame"]  = new Button(100, 100, 150, 50, &this->font,
+    this->buttons["PlayGame"]  = new Button(300, 400, 150, 50, &this->font,
                                        "Play Game",sf::Color(70,70,70,200),
                                        sf::Color(150,150,150,200),
                                        sf::Color(20,20,20,200) );
+
+    this->buttons["Settings"] = new Button(200, 470, 150, 50, &this->font,
+                                           "Settings",sf::Color(70,70,70,200),
+                                           sf::Color(150,150,150,200),
+                                           sf::Color(20,20,20,200) );
 
     this->buttons["ExitGame"] = new Button(100, 400, 150, 50, &this->font,
                                            "Quit",sf::Color(70,70,70,200),
                                            sf::Color(150,150,150,200),
                                            sf::Color(20,20,20,200) );
 }
+
+void MainMenuState::initBackg()
+{
+    this->background.setSize(sf::Vector2f (static_cast<float>(this->window->getSize().x),
+                                           static_cast<float>(this->window->getSize().y)
+                                           )
+
+                                           );
+
+    if(!this->backgroundSprite.loadFromFile("../data/MainMenuSprite.png"))
+    {
+        throw"ERROR::Mainmenu failed to load background sprite";
+    }
+    this->background.setTexture(&this->backgroundSprite);
+}
+
+void MainMenuState::initVariab()
+{
+
+}
+
 void MainMenuState::initFonts()
 {
     if(!this->font.loadFromFile("../data/8bitOperatorPlus-Regular.ttf"))
@@ -49,17 +75,17 @@ void MainMenuState::initKeyBinds()
 //    this->keybinds["Close"] = this->supportedKeys->at("Escape");
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>* states)
+MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
         : State(window, supportedKeys, states)
 {
+    this->initVariab();
+    this->initBackg();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons();
 
 
 
-    this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
-    this->background.setFillColor(sf::Color::Magenta);
 }
 
 MainMenuState::~MainMenuState()
@@ -82,7 +108,7 @@ void MainMenuState::updateButtons()
     //play game
     if(this->buttons["PlayGame"]->isPressed())
     {
-        this->states->push(new PlayingState(this->window, this->supportedKeys, this->states));
+        this->states->push(new PlayingState(this->window,this->supportedKeys, this->states));
     }
 
 
@@ -124,6 +150,7 @@ void MainMenuState::render(sf::RenderTarget* target)
         target = this->window;
     target->draw(this->background);
     this->renderButtons(target);
+
     //this->mainMenuButton->render(target);
 }
 

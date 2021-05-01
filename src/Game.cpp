@@ -19,7 +19,9 @@ void Game::updateSFMLEvents()
         if (this->sfEvent.type == sf::Event::Closed)
             this->window->close();
     }
+
 }
+
 
 void Game::update()
 {
