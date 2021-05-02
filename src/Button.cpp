@@ -37,7 +37,7 @@ Button::~Button()
 
 }
 
-void Button::changeGold(int txt){
+void Button::changeText(int txt){
     
     this->text.setString("Gold:"+std::to_string(txt));
 }
