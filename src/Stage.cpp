@@ -165,7 +165,12 @@ void Stage::update(Int64 elapsedTime)
 {
     // check if time to spawn virus
     virus_timer += elapsedTime;
+    
+    //cout << virus_list.front()->first->getPosition().x << endl;
+   // cout << virus_timer << endl;
+    //
     if ((virus_timer >= (*cur_virus_pair)->second) && (virus_count > 0)) {
+        cout<< "One Virus Spawned." << endl;
         spawnVirus();
         virus_timer = 0;
     }

@@ -25,7 +25,8 @@ class Stage {
         void allAttack();
         bool build(Tower::Towers, int, int);
         std::list<Tower*>* getTowerList();
-        std::list<std::pair<Virus*, Int64>*>* getVirusList();
+        std::list<std::pair<Virus*, sf::Int64>*>* getVirusList();
+        void update(sf::Int64);
     protected:
         int width;
         int height;
@@ -39,7 +40,7 @@ class Stage {
         void attackFirstVirus(Tower*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         void spawnVirus();
-        void update(Int64);
+        
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)
         int start1;                         //where enemies are spawned
         int start2;

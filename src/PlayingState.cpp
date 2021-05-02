@@ -130,6 +130,7 @@ void PlayingState::update(const float& dt)
     this->updateInput(dt);
     this->updateButtons();
     this->player.update(dt);
+    this->stage.update(dt);
 }
 
 void PlayingState::render(sf::RenderTarget* target)
@@ -139,6 +140,8 @@ void PlayingState::render(sf::RenderTarget* target)
     //this->stage.setValueOnMap(6,0,4);
     PlayingState::pView.createBG(this->stage.getMap()); // drawing the default background
     PlayingState::pView.drawBG(window);
+    auto v_list=stage.getVirusList();
+    pView.drawViruses(v_list);
     this->renderButtons(window);       // drawing the buttons
     this->player.render(window);
 

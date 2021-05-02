@@ -91,6 +91,8 @@ private:
     //Did the virus already turn in this box?
     bool m_Turned;
 
+    
+
 };
 
 

@@ -8,7 +8,7 @@
 void Game::updateDt()
 {
     /*updates the dt variable with the time it takes to update and render one frame*/
-    this->dt = this->dtClock.restart().asSeconds();
+    this->dt = this->dtClock.restart().asMicroseconds();
 
 }
 

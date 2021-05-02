@@ -3,6 +3,7 @@
 
 
 #include "Virus.h"
+#include <iostream>
 using namespace std;
 
 
@@ -11,9 +12,11 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
     // Zack - changed to use existing sprite from inherited SpriteActor
     // doesn't solve problem of loading a new texture, should have reference to
     // PView's texture and load from that instead
+    
     sf::Texture m_Texture;
     Vector2f pixel_pos;
     m_Texture.loadFromFile("../data/coronavirus_0.png");
+    this->sprite=sf::Sprite();
     switch(type)
     {
         case Virus::Viruses::covid:
@@ -23,7 +26,8 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
             // load it
             this->setTexture(&m_Texture);
             pixel_pos = gridToPixelTopLeft(Vector2i{15, 6});
-            sprite.setPosition(pixel_pos.x, pixel_pos.y);
+            
+            this->sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
             break;
@@ -104,6 +108,7 @@ bool Virus::isAlive()
 void Virus::setAlive(bool alive)
 {
     m_Alive = alive;
+    cout<< sprite.getPosition().x << endl;
 }
 
 Vector2f Virus::getPosition()
@@ -120,10 +125,13 @@ Sprite Virus::getSprite()
 // This function has to update virus location from the base
 void Virus::update(Int64 elapsedTime)
 {
+    //Vector2f pixelPos1 = getPosition();
+    //    cout << "in virus"<< pixelPos1.x << endl;
     if (m_Alive)
     {
         // check value at current tile in grid
         Vector2f pixelPos = getPosition();
+        //cout << "in virus"<< pixelPos.x << endl;
         Vector2i gridPos = pixelToGrid(pixelPos);
 
         // cout << getLocationX() << " " << getLocationY() << endl;
