@@ -36,7 +36,8 @@ public:
     ~Button();
 
     //acs
-    void changeText(int txt);
+
+    void changeGold(int txt);
     const bool isPressed() const;
     //func
     //button is clicked
