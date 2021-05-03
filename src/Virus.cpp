@@ -3,7 +3,6 @@
 
 
 #include "Virus.h"
-#include <iostream>
 using namespace std;
 
 

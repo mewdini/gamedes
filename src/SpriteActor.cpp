@@ -37,11 +37,11 @@ void SpriteActor::setViewDimensions(int newWidth, int newHeight){
 }
 
 void SpriteActor::move(float deltaX, float deltaY){
-    sprite.move(deltaX, deltaY);
+    sprite.move(deltaX, deltaY); // amount of pixels to move in X and Y directions
+    // or sprite.setLocation(X, Y);
 }
 
 void SpriteActor::setTexture(sf::Texture* text){
-    //textPtr = text;
     sprite.setTexture(*text);
 }
 

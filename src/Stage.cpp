@@ -1,5 +1,4 @@
 #include "Stage.h"
-#include "Game.h"
 #include <SFML/Graphics.hpp>
 
 // Zack - Removed a bunch of ; at end of methods
@@ -77,18 +76,18 @@ int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the 
 void Stage::setValueOnMap(int x, int y, int v){
     map[y * width + x] = v;
 }
-bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
+bool Stage::build(int type, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
     if(map[posx + width * posy] != 3){
         int a=map[posx + width * posy];
         printf("Invalid Position of value %d.\n",a);
         
         return false;   //position is not valid;
     }
-    int tower_cost=100;
-    switch (tower)
+    int tower_cost;
+    switch (type)
     {
-        case Tower::Towers::first:
-            tower_cost = 20; //cost of the tower
+        case 1:
+            tower_cost = 100;
             break;
     }
 
@@ -102,7 +101,7 @@ bool Stage::build(Tower::Towers tower, int posx, int posy ){    //If the player 
     setValueOnMap(posx,posy,4);
     printf("Tower Built.");
     //determine by enum
-    Tower new_tower = Tower(posx,posy,tower);
+    Tower new_tower = Tower(posx,posy,type);
     tower_list.push_back(&new_tower);
     //cur_tower=boost::next(cur_tower);
     return true;
@@ -140,12 +139,6 @@ void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower,
     }
 }
 
-void Stage::updateTowers(){
-    for (auto const& tower : tower_list) {
-        attackFirstVirus(tower);
-    }
-}
-
 std::list<Tower*>* Stage::getTowerList()
 {
     return &tower_list;
@@ -156,11 +149,23 @@ std::list<std::pair<Virus*, Int64>*>* Stage::getVirusList()
     return &virus_list;
 }
 
-// TODO make towers attack at different speeds
-void Stage::allAttack()
+void Stage::update(Int64 elapsedTime)
 {
+    // check if time to spawn virus
+    virus_timer += elapsedTime;
+    if ((virus_timer >= (*cur_virus_pair)->second) && (virus_count > 0)) {
+        spawnVirus();
+        virus_timer = 0;
+    }
+
+    // update all viruses
+    for (auto const& pair : virus_list) {
+        pair->first->update(elapsedTime);
+    }
+
+    // update all towers
     for (auto const& tower : tower_list) {
-        attackFirstVirus(tower);
+        tower->Update(elapsedTime);
     }
 }
 void Stage::update(Int64 elapsedTime)

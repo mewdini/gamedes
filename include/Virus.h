@@ -5,6 +5,9 @@
 #ifndef GAMEDES_VIRUSES_H
 #define GAMEDES_VIRUSES_H
 
+class Virus;
+class Stage;
+
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
@@ -93,7 +96,8 @@ private:
     bool m_Turned;
 
     sf::Sprite sprite;
-sf::IntRect textureRect;
+
+    sf::IntRect textureRect;
 };
 
 
