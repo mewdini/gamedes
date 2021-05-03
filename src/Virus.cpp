@@ -3,18 +3,20 @@
 
 
 #include "Virus.h"
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
 
-Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int seed, Stage* level)
+Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int seed, int* grid) :SpriteActor::SpriteActor( start_x, start_y, start_x, start_y, 50, 50)
 {
     // Zack - changed to use existing sprite from inherited SpriteActor
     // doesn't solve problem of loading a new texture, should have reference to
     // PView's texture and load from that instead
+    
     sf::Texture m_Texture;
+    Vector2f pixel_pos;
     m_Texture.loadFromFile("../data/coronavirus_0.png");
+    sprite=sf::Sprite();
+    
     switch(type)
     {
         case Virus::Viruses::covid:
@@ -23,7 +25,8 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
             //We should probably create a TextureHolder Class from where we
             // load it
             this->setTexture(&m_Texture);
-            auto pixel_pos = Stage::gridToPixelTopLeft(Vector2i{15, 6});
+            pixel_pos = gridToPixelTopLeft(Vector2i{15, 6});
+            
             sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
@@ -66,11 +69,10 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
     modifier /= 100;  //it will equal between .7 and 1
     m_Speed *= modifier;
 
-    // Location of the virus
-    m_Position.x = start_x;
-    m_Position.y = start_y;
+    m_Grid = grid;
 
-    m_Stage = level;
+    gridX = start_x;
+    gridY = start_y;
 }
 
 // void Virus::setStage(Stage* s)
@@ -100,40 +102,45 @@ bool Virus::hit(float damage)
 
 bool Virus::isAlive()
 {
+    
     return m_Alive;
 }
 
 void Virus::setAlive(bool alive)
 {
+    
     m_Alive = alive;
+    
 }
 
 Vector2f Virus::getPosition()
 {
-    return sprite.getPosition();
+    return this->sprite.getPosition();
 }
 
-
-Sprite Virus::getSprite()
-{
-   return sprite;
+sf::Sprite Virus::getSprite(){
+    return this->sprite;
 }
 
 // This function has to update virus location from the base
 void Virus::update(Int64 elapsedTime)
 {
+    //Vector2f pixelPos1 = getPosition();
+    //    cout << "in virus"<< pixelPos1.x << endl;
     if (m_Alive)
     {
         // check value at current tile in grid
         Vector2f pixelPos = getPosition();
-        Vector2i gridPos = Stage::pixelToGrid(pixelPos);
+        //cout << "in virus"<< pixelPos.x << endl;
+        Vector2i gridPos = pixelToGrid(pixelPos);
 
+        // cout << getLocationX() << " " << getLocationY() << endl;
         updateDirection();
         moveDir(m_Dir, elapsedTime);
 
         // check if in new grid position
         // gridPos is old at this point
-        if (gridPos != Stage::pixelToGrid(getPosition()))
+        if (gridPos != pixelToGrid(getPosition()))
         {
             // prevents Virus from changing directions more than once at a corner
             m_Turned = false;
@@ -182,12 +189,12 @@ void Virus::update(Int64 elapsedTime)
 void Virus::updateDirection()
 {
     Vector2f pixelPos = getPosition();
-    Vector2i gridPos = Stage::pixelToGrid(pixelPos);
-    int tile_val = m_Stage->getValueOnMap(gridPos.x, gridPos.y);
+    Vector2i gridPos = pixelToGrid(pixelPos);
+    int tile_val = gridPos.y *16 + gridPos.x;
     if ((tile_val >= 5) && (tile_val <= 10))
     {
         // middle of grid in pixel coords
-        Vector2f mid = Stage::gridToPixelMiddle(gridPos);
+        Vector2f mid = gridToPixelMiddle(gridPos);
 
         switch (m_Dir)
         {
@@ -288,4 +295,28 @@ void Virus::moveDir(Directions dir, Int64 delta)
 
     // move virus sprite
     move(pixels_x, pixels_y);
+}
+
+Vector2i Virus::pixelToGrid(Vector2f pixel_pos)
+{
+    Vector2i grid_pos;
+    grid_pos.x = floor(pixel_pos.x / 50);
+    grid_pos.y = floor(pixel_pos.y / 50);
+    return grid_pos;
+}
+
+// gets pixel coords of middle of grid square
+Vector2f Virus::gridToPixelMiddle(Vector2i grid_pos)
+{
+    Vector2f mid;
+    mid.x = grid_pos.x * 50 + 25;
+    mid.y = grid_pos.y * 50 + 25;
+    return mid;
+}
+Vector2f Virus::gridToPixelTopLeft(Vector2i grid_pos)
+{
+    Vector2f mid;
+    mid.x = grid_pos.x * 50;
+    mid.y = grid_pos.y * 50;
+    return mid;
 }

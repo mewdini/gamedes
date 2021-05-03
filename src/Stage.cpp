@@ -10,7 +10,11 @@ Stage::Stage()
     map[192];
     tower_count = 20;
     virus_count = 100;
-    cur_virus_pair = virus_list.begin();
+    std::list<Tower*> tl;
+    this->tower_list=tl;
+    this->virus_list=std::list<std::pair<Virus*, Int64>*>();
+    this->gold=100;
+    cur_virus_pair=virus_list.begin();
 }
 
 Stage::Stage(int x){
@@ -23,17 +27,26 @@ Stage::Stage(int x){
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
     virus_count = 100;
-    cur_virus_pair = virus_list.begin();
+    std::list<Tower*> tl;
+    this->tower_list=tl;
+    this->virus_list=std::list<std::pair<Virus*, Int64>*>();
+    this->gold=100;
     start1 = 15;
     start2 = 6;
     // use malloc if these are local variables?
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
-        auto temp_virus = Virus(start1, start2, Left, Virus::Viruses::covid, 13, this);
+        auto temp_virus = Virus(start1, start2, Left, Virus::Viruses::covid, 13, map_values);
         auto temp_pair = std::pair<Virus*, sf::Int64>(&temp_virus, 1000000);
         virus_list.push_back(&temp_pair);
     }
+    // for (auto const& i : virus_list)
+    // {
+    //     cout << i->first->getGridX() << " " << i->first->getLocationX() << " " << i->first->getPosition().x << endl;
+    // }
     base_loc = Vector2i(7,6);
+    cur_virus_pair=virus_list.begin();
+    
 }
 
 Stage::Stage(int x, int y)
@@ -94,10 +107,22 @@ bool Stage::build(int type, int posx, int posy ){    //If the player clicks on a
     return true;
 
 }
+void Stage::spawnVirus()
+{
+    
+    if (virus_count > 0)
+    {
+        (*cur_virus_pair)->first->setAlive(true);
+        //
+        //cout<< (*cur_virus_pair)->first->getPosition().x<< endl;
+        cur_virus_pair++;
+        virus_count--;
+    };
+}
 
 void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower
-    for (auto const& virus : virus_list) {
-        Virus* enemy = virus->first;
+    for (auto const& e : virus_list) {
+        auto enemy=e->first;
         if(enemy->isAlive()){
             auto virus_pos = enemy->getPosition();
             float posx = virus_pos.x;
@@ -143,34 +168,27 @@ void Stage::update(Int64 elapsedTime)
         tower->Update(elapsedTime);
     }
 }
-
-void Stage::spawnVirus() {
-    (*cur_virus_pair)->first->setAlive(true);
-    cur_virus_pair++;
-    virus_count--;
-}
-
-Vector2i Stage::pixelToGrid(Vector2f pixel_pos)
+void Stage::update(Int64 elapsedTime)
 {
-    Vector2i grid_pos;
-    grid_pos.x = floor(pixel_pos.x / 50);
-    grid_pos.y = floor(pixel_pos.y / 50);
-    return grid_pos;
-}
+    // check if time to spawn virus
+    virus_timer += elapsedTime;
+    
+    //cout << virus_list.front()->first->getPosition().x << endl;
+   // cout << virus_timer << endl;
+    //
+    if ((virus_timer >= (*cur_virus_pair)->second) && (virus_count > 0)) {
+        cout<< "One Virus Spawned." << endl;
+        spawnVirus();
+        virus_timer = 0;
+    }
 
-// gets pixel coords of middle of grid square
-Vector2f Stage::gridToPixelMiddle(Vector2i grid_pos)
-{
-    Vector2f mid;
-    mid.x = grid_pos.x * 50 + 25;
-    mid.y = grid_pos.y * 50 + 25;
-    return mid;
-}
+    // update all viruses
+    for (auto const& pair : virus_list) {
+        pair->first->update(elapsedTime);
+    }
 
-Vector2f Stage::gridToPixelTopLeft(Vector2i grid_pos)
-{
-    Vector2f mid;
-    mid.x = grid_pos.x * 50;
-    mid.y = grid_pos.y * 50;
-    return mid;
+    // update all towers
+    for (auto const& tower : tower_list) {
+        tower->Update(elapsedTime);
+    }
 }

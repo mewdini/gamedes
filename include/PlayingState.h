@@ -36,6 +36,7 @@ public:
     void endState();
     void update(const float& dt);
     void render(sf::RenderTarget* target = nullptr);
+
     
 };
 

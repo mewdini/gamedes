@@ -126,12 +126,14 @@ void PlayerView::drawTowers(std::list<Tower*> towers){
     }
 }
 
-void PlayerView::drawViruses(std::list<Virus*> viruses){
+void PlayerView::drawViruses(std::list<std::pair<Virus*, sf::Int64>*>* viruses){
     //Draws everything contained in the list of viruses
-    for (auto const& i : viruses)
+    for (auto const& pair : *viruses)
     {
-        window.draw(i->getSprite());
+        //cout << pair->first->getLocationX() << endl;
+        window.draw(pair->first->getSprite());
     }
+    
 }
 
 /*

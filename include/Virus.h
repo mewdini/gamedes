@@ -9,8 +9,10 @@ class Virus;
 class Stage;
 
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
 #include "SpriteActor.h"
-#include "Stage.h"
 #include "Directions.h"
 
 using namespace sf;
@@ -20,7 +22,7 @@ class Virus: public SpriteActor{
 public:
     enum Viruses {covid, resistant, contagious, airborn, coughing};
 
-    Virus(int, int, Directions, Virus::Viruses, int, Stage*);
+    Virus(int, int, Directions, Virus::Viruses, int, int*) ;
     
     //When virus is hit 
     bool hit(float);
@@ -49,8 +51,13 @@ public:
 
     void moveDir(Directions, Int64);
 
-    // Directions pathDir();
+    Vector2i pixelToGrid(Vector2f);
 
+    // gets pixel coords of middle of grid square
+    Vector2f gridToPixelMiddle(Vector2i);
+    Vector2f gridToPixelTopLeft(Vector2i);
+    
+    
 private:
     //Virus speeds
     float COVID_VIRUS_SPEED = 45;
@@ -70,9 +77,6 @@ private:
     int MAX_VARIANCE = 30;
     int OFFSET = 101 - MAX_VARIANCE;
 
-    //Position of the Virus
-    Vector2f m_Position;
-
     // Zack - removed sprite and texture
 
     //How fast can virus move
@@ -84,12 +88,16 @@ private:
     //Is it still alive?
     bool m_Alive;
 
-    Stage* m_Stage;
+    int* m_Grid;
 
     Directions m_Dir;
 
     //Did the virus already turn in this box?
     bool m_Turned;
+
+    sf::Sprite sprite;
+
+    sf::IntRect textureRect;
 };
 
 
