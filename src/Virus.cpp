@@ -7,7 +7,7 @@
 using namespace std;
 
 
-Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int seed, int* grid)
+Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int seed, int* grid) :SpriteActor::SpriteActor( start_x, start_y, start_x, start_y, 50, 50)
 {
     // Zack - changed to use existing sprite from inherited SpriteActor
     // doesn't solve problem of loading a new texture, should have reference to
@@ -16,7 +16,8 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
     sf::Texture m_Texture;
     Vector2f pixel_pos;
     m_Texture.loadFromFile("../data/coronavirus_0.png");
-    this->sprite=sf::Sprite();
+    sprite=sf::Sprite();
+    
     switch(type)
     {
         case Virus::Viruses::covid:
@@ -27,7 +28,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
             this->setTexture(&m_Texture);
             pixel_pos = gridToPixelTopLeft(Vector2i{15, 6});
             
-            this->sprite.setPosition(pixel_pos.x, pixel_pos.y);
+            sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
             break;
@@ -102,24 +103,24 @@ bool Virus::hit(float damage)
 
 bool Virus::isAlive()
 {
+    
     return m_Alive;
 }
 
 void Virus::setAlive(bool alive)
 {
+    
     m_Alive = alive;
-    cout<< sprite.getPosition().x << endl;
+    
 }
 
 Vector2f Virus::getPosition()
 {
-    return sprite.getPosition();
+    return this->sprite.getPosition();
 }
 
-
-Sprite Virus::getSprite()
-{
-   return sprite;
+sf::Sprite Virus::getSprite(){
+    return this->sprite;
 }
 
 // This function has to update virus location from the base

@@ -129,8 +129,10 @@ void PlayerView::drawViruses(std::list<std::pair<Virus*, sf::Int64>*>* viruses){
     //Draws everything contained in the list of viruses
     for (auto const& pair : *viruses)
     {
+        //cout << pair->first->getLocationX() << endl;
         window.draw(pair->first->getSprite());
     }
+    
 }
 
 //void PlayerView::update(Stage stage){

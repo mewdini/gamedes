@@ -143,6 +143,11 @@ void PlayingState::render(sf::RenderTarget* target)
     auto v_list=stage.getVirusList();
     pView.drawViruses(v_list);
     this->renderButtons(window);       // drawing the buttons
+    //cout<< v_list->front()->first->getPosition().y << endl;
+    //sf::RectangleShape rectangle;
+    //rectangle.setSize(sf::Vector2f(100, 50));
+    //rectangle.setPosition(50,50);
+    //window->draw(rectangle);
     this->player.render(window);
 
 

@@ -19,7 +19,7 @@ class Virus: public SpriteActor{
 public:
     enum Viruses {covid, resistant, contagious, airborn, coughing};
 
-    Virus(int, int, Directions, Virus::Viruses, int, int*);
+    Virus(int, int, Directions, Virus::Viruses, int, int*) ;
     
     //When virus is hit 
     bool hit(float);
@@ -53,7 +53,8 @@ public:
     // gets pixel coords of middle of grid square
     Vector2f gridToPixelMiddle(Vector2i);
     Vector2f gridToPixelTopLeft(Vector2i);
-
+    
+    
 private:
     //Virus speeds
     float COVID_VIRUS_SPEED = 45;
@@ -91,8 +92,8 @@ private:
     //Did the virus already turn in this box?
     bool m_Turned;
 
-    
-
+    sf::Sprite sprite;
+sf::IntRect textureRect;
 };
 
 

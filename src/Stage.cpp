@@ -114,6 +114,8 @@ void Stage::spawnVirus()
     if (virus_count > 0)
     {
         (*cur_virus_pair)->first->setAlive(true);
+        //
+        //cout<< (*cur_virus_pair)->first->getPosition().x<< endl;
         cur_virus_pair++;
         virus_count--;
     };
