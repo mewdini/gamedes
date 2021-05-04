@@ -3,9 +3,9 @@
 //
 
 #include "PlayingState.h"
-#include "PlayerView.h"
 #include "Stage.h"
 #include "Tower.h"
+
 void PlayingState::initButtons()
 {
     this->buttons["Hint"]  = new Button(150, 550, 500, 50, &this->font,
@@ -129,7 +129,12 @@ void PlayingState::update(const float& dt)
     this->updateInput(dt);
     this->updateButtons();
     this->player.update(dt);
-    this->stage.update(dt, &pView);
+    this->stage.update(dt);
+    //if (stage.baseDead())
+    //{
+        //this->states->push(new E(this->window,this->supportedKeys, this->states));
+        ;
+    //}
 }
 
 void PlayingState::render(sf::RenderTarget* target)
