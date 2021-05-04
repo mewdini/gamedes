@@ -12,9 +12,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
     // Zack - changed to use existing sprite from inherited SpriteActor
     // doesn't solve problem of loading a new texture, should have reference to
     // PView's texture and load from that instead
-    sf::Texture m_Texture;
     sf::Vector2f pixel_pos;
-    m_Texture.loadFromFile("../data/covid.png");
     switch(type)
     {
         case Viruses::covid:
@@ -22,7 +20,6 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
             //this sprite variable will pull the sprite of the Zombie
             //We should probably create a TextureHolder Class from where we
             // load it
-            this->setTexture(&m_Texture);
             pixel_pos = gridToPixelTopLeft(Vector2i{15, 6});
             sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;

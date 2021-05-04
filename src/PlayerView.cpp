@@ -129,7 +129,9 @@ void PlayerView::drawViruses(sf::RenderWindow* window, std::list<std::pair<Virus
     //Draws everything contained in the list of viruses
     for (auto& i : *pairs)
     {
-        window->draw(i.first.getSprite());
+        if (i.first.isAlive()) {
+            window->draw(i.first.getSprite());
+        }
     }
 }
 
