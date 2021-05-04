@@ -44,7 +44,7 @@ public:
     //Update Virus Each Frame, baseLocation is the location of the
     //base that is on the end of the road, we are updating the virus
     //while its chasing towards the base on the end of the road
-    void update(Int64, Vector2i*, float*);
+    bool update(Int64, Vector2i*, float*);
 
     void updateDirection();
 

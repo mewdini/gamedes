@@ -119,8 +119,9 @@ Sprite Virus::getSprite()
 }
 
 // This function has to update virus location from the base
-void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
+bool Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
 {
+    bool x=false;
     if (m_Alive)
     {
         // check value at current tile in grid
@@ -129,11 +130,22 @@ void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
 
         updateDirection();
         moveDir(m_Dir, elapsedTime);
+        
 
         // check if in new grid position
         auto oldGridPos = gridPos;
         gridPos = pixelToGrid(getPosition());
         pixelPos = getPosition();
+        int x=gridPos.x;
+        int y=gridPos.y;
+        if(m_Grid[x-1+y*16]==3||m_Grid[x+1+y*16]==3||m_Grid[x-16+y*16]==3||m_Grid[x+16+y*16]==3){
+            x=this->hit(0.3);//for demo
+            if (x){
+                return x;
+            }
+            //printf("Hit \n");
+            //cout<< x << " " <<endl;
+        }
         // gridPos is old at this point
         if (gridPos != oldGridPos)
         {
@@ -175,6 +187,7 @@ void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
             }
         }
     }
+    return x;
 }
 
 void Virus::updateDirection()

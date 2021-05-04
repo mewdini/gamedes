@@ -1,6 +1,5 @@
 #include "Stage.h"
 #include <SFML/Graphics.hpp>
-
 Stage::Stage(){
     // Test to set up first stage
     height = 12;
@@ -88,7 +87,7 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
     switch (type)
     {
         case Towers::first:
-            tower_cost = 10;
+            tower_cost = 50;
             break;
     }
 
@@ -153,7 +152,11 @@ void Stage::update(Int64 elapsedTime)
 
     // update all viruses
     for (auto& pair : virus_list) {
-        pair.first.update(elapsedTime, &base_loc, &base_health);
+        bool x=pair.first.update(elapsedTime, &base_loc, &base_health);
+        if(x){
+            gold+=10;
+           
+        }
     }
 
     // update all towers
