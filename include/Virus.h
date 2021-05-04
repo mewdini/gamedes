@@ -7,6 +7,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+
 #include "SpriteActor.h"
 #include "Directions.h"
 
@@ -76,9 +80,6 @@ private:
     int MAX_VARIANCE = 30;
     int OFFSET = 101 - MAX_VARIANCE;
 
-    //Position of the Virus
-    Vector2f m_Position;
-
     // Zack - removed sprite and texture
 
     //How fast can virus move
@@ -88,7 +89,7 @@ private:
     float m_Health;
 
     //Is it still alive?
-    bool m_Alive;
+    bool m_Alive = false;
 
     int* m_Grid;
 

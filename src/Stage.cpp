@@ -13,16 +13,19 @@ Stage::Stage(){
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
     virus_count = 100;
-    cur_virus_pair = virus_list.begin();
     start1 = 15;
     start2 = 6;
+    virus_tex = Texture();
+    virus_tex.loadFromFile("../data/covid.png");
     // use malloc if these are local variables?
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
         auto temp_virus = Virus(start1, start2, Left, Viruses::covid, 13, map_values);
-        auto temp_pair = std::pair<Virus*, sf::Int64>(&temp_virus, 1000000);
-        virus_list.push_back(&temp_pair);
+        temp_virus.setTexture(&virus_tex);
+        auto temp_pair = std::pair<Virus, sf::Int64>(temp_virus, 1000000);
+        virus_list.push_back(temp_pair);
     }
+    cur_virus_pair = virus_list.begin();
     base_loc = Vector2i(7,6);
     gold = 100;
 }
@@ -55,7 +58,6 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
         return false;   //position is not valid;
     }
     int tower_cost;
-    cout << type << endl;
     switch (type)
     {
         case Towers::first:
@@ -74,15 +76,15 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
     printf("Tower Built.");
     //determine by enum
     Tower new_tower = Tower(posx,posy,type);
-    tower_list.push_back(&new_tower);
+    tower_list.push_back(new_tower);
     //cur_tower=boost::next(cur_tower);
     return true;
 
 }
 
 void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower
-    for (auto const& virus : virus_list) {
-        Virus* enemy = virus->first;
+    for (auto & virus : virus_list) {
+        Virus* enemy = &(virus.first);
         if(enemy->isAlive()){
             auto virus_pos = enemy->getPosition();
             float posx = virus_pos.x;
@@ -99,38 +101,39 @@ void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower,
     }
 }
 
-std::list<Tower*>* Stage::getTowerList()
+std::list<Tower>* Stage::getTowerList()
 {
     return &tower_list;
 }
 
-std::list<std::pair<Virus*, Int64>*>* Stage::getVirusList()
+std::list<std::pair<Virus, Int64>>* Stage::getVirusList()
 {
     return &virus_list;
 }
 
 void Stage::update(Int64 elapsedTime)
 {
+    cout << virus_list.front().first.getLocationX() << " " << virus_list.front().first.getLocationY() << endl;
     // check if time to spawn virus
     virus_timer += elapsedTime;
-    if ((virus_timer >= (*cur_virus_pair)->second) && (virus_count > 0)) {
+    if ((virus_timer >= (*cur_virus_pair).second) && (virus_count > 0)) {
         spawnVirus();
         virus_timer = 0;
     }
 
     // update all viruses
-    for (auto const& pair : virus_list) {
-        pair->first->update(elapsedTime);
+    for (auto& pair : virus_list) {
+        pair.first.update(elapsedTime);
     }
 
     // update all towers
-    for (auto const& tower : tower_list) {
-        tower->Update(elapsedTime);
+    for (auto& tower : tower_list) {
+        tower.Update(elapsedTime);
     }
 }
 
 void Stage::spawnVirus() {
-    (*cur_virus_pair)->first->setAlive(true);
-    cur_virus_pair++;
+    (*cur_virus_pair).first.setAlive(true);
+    cur_virus_pair = next(cur_virus_pair);
     virus_count--;
 }

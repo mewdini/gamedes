@@ -3,8 +3,7 @@
 
 
 #include "Virus.h"
-#include <cstdlib>
-#include <ctime>
+
 using namespace std;
 
 
@@ -15,7 +14,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
     // PView's texture and load from that instead
     sf::Texture m_Texture;
     sf::Vector2f pixel_pos;
-    m_Texture.loadFromFile("../data/coronavirus_0.png");
+    m_Texture.loadFromFile("../data/covid.png");
     switch(type)
     {
         case Viruses::covid:
@@ -68,16 +67,14 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
     m_Speed *= modifier;
 
     // Location of the virus
-    m_Position.x = start_x;
-    m_Position.y = start_y;
+    Vector2i start_grid_pos = Vector2i(start_x, start_y);
+    Vector2f start_pixel_pos = gridToPixelTopLeft(start_grid_pos);
+    sprite.setPosition(start_pixel_pos.x, start_pixel_pos.y);
 
     m_Grid = level;
-}
 
-// void Virus::setStage(Stage* s)
-// {
-//    stage = s;
-// }
+    m_Dir = Left;
+}
 
 bool Virus::hit(float damage)
 {
@@ -139,46 +136,9 @@ void Virus::update(Int64 elapsedTime)
             // prevents Virus from changing directions more than once at a corner
             m_Turned = false;
         }
+
     }
 }
-
-// irrelevant function since map has corners programmed in
-// Directions Virus::pathDir()
-// {
-//     Vector2f pixelPos = getPosition();
-//     Vector2f gridPos{pixelPos.x / 50, pixelPos.y / 50};
-//     std::vector<Directions> pot_dirs{Left, Right, Up, Down};
-
-//     // erase direction Virus came from from directions to check
-//     auto iter = std::find(pot_dirs.begin(), pot_dirs.end(), last_Direction);
-//     if (iter != pot_dirs.end())
-//         pot_dirs.erase(iter);
-
-//     // make sure not going out of bounds (fix in the getValueOnMap method?)
-//     int pos_path;
-//     for (auto const& dir : pot_dirs) {
-//         switch (dir)
-//         {
-//             case Left:
-//                 pos_path = stage->getValueOnMap(gridPos.x - 1, gridPos.y);
-//                 break;
-//             case Right:
-//                 pos_path = stage->getValueOnMap(gridPos.x + 1, gridPos.y);
-//                 break;
-//             case Up:
-//                 pos_path = stage->getValueOnMap(gridPos.x, gridPos.y - 1);
-//                 break;
-//             case Down:
-//                 pos_path = stage->getValueOnMap(gridPos.x, gridPos.y + 1);
-//         }
-
-//         // check if it's the value for path
-//     }    
-//     // check remaining directions, but make sure we dont go out of bounds (catch errors?)
-//     // stage->getValueOnMap(gridPos.x, gridPos.y);
-//     // ^ check opposite of where you were last, then left and right in grid. check for which is path value and return that direction
-//     // set last_Direction
-// }
 
 void Virus::updateDirection()
 {
@@ -271,21 +231,23 @@ void Virus::updateDirection()
 void Virus::moveDir(Directions dir, Int64 delta)
 {
     float pixels_x, pixels_y = 0;
+    float f_delta = (float) delta;
     float C = 1000000; // combats delta being in microseconds
     switch (dir)
     {
         case Up:
-            pixels_y = -(m_Speed * (delta / C));
+            pixels_y = -(m_Speed * (f_delta / C));
             break;
         case Down:
-            pixels_y = m_Speed * (delta / C);
+            pixels_y = m_Speed * (f_delta / C);
             break;
         case Left:
-            pixels_x = -(m_Speed * (delta / C));
+            pixels_x = -(m_Speed * (f_delta / C));
             break;
         case Right:
-            pixels_x = m_Speed * (delta / C);
+            pixels_x = m_Speed * (f_delta / C);
     }
+
 
     // move virus sprite
     move(pixels_x, pixels_y);

@@ -129,6 +129,7 @@ void PlayingState::update(const float& dt)
     this->updateInput(dt);
     this->updateButtons();
     this->player.update(dt);
+    this->stage.update(dt);
 }
 
 void PlayingState::render(sf::RenderTarget* target)
@@ -140,8 +141,8 @@ void PlayingState::render(sf::RenderTarget* target)
     PlayingState::pView.drawBG(window);
     this->renderButtons(window);       // drawing the buttons
     this->player.render(window);
-
-
+    auto v_list = stage.getVirusList();
+    pView.drawViruses(window, v_list);
 }
 void PlayingState::updateButtons()
 {
@@ -245,10 +246,10 @@ void PlayingState::updateInput(const float &dt)
     //player input
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Left"))))
         this->player.move(dt,-1.f, 0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Right"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Right"))))
         this->player.move(dt,1.f, 0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Up"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Up"))))
         this->player.move(dt,0.f, -1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Down"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Down"))))
         this->player.move(dt,0.f, 1.f);
 }
