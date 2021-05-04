@@ -8,9 +8,8 @@
 
 using namespace std;
 using namespace sf;
-class Tower;
-class Virus;
 
+enum Towers{first};
 class Tower : public SpriteActor
 {
 public:

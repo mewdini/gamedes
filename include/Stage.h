@@ -4,10 +4,6 @@
 #ifndef _STAGE_H_
 #define _STAGE_H_
 
-class Stage;
-class Tower;
-class Virus;
-
 #include <SFML/Graphics.hpp>
 #include "Virus.h"
 #include "Tower.h"

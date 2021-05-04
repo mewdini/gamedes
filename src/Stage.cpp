@@ -29,7 +29,7 @@ Stage::Stage(int x){
     // use malloc if these are local variables?
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
-        auto temp_virus = Virus(start1, start2, Left, Virus::Viruses::covid, 13, this);
+        auto temp_virus = Virus(start1, start2, Left, Viruses::covid, 13, map_values);
         auto temp_pair = std::pair<Virus*, sf::Int64>(&temp_virus, 1000000);
         virus_list.push_back(&temp_pair);
     }
@@ -148,29 +148,4 @@ void Stage::spawnVirus() {
     (*cur_virus_pair)->first->setAlive(true);
     cur_virus_pair++;
     virus_count--;
-}
-
-Vector2i Stage::pixelToGrid(Vector2f pixel_pos)
-{
-    Vector2i grid_pos;
-    grid_pos.x = floor(pixel_pos.x / 50);
-    grid_pos.y = floor(pixel_pos.y / 50);
-    return grid_pos;
-}
-
-// gets pixel coords of middle of grid square
-Vector2f Stage::gridToPixelMiddle(Vector2i grid_pos)
-{
-    Vector2f mid;
-    mid.x = grid_pos.x * 50 + 25;
-    mid.y = grid_pos.y * 50 + 25;
-    return mid;
-}
-
-Vector2f Stage::gridToPixelTopLeft(Vector2i grid_pos)
-{
-    Vector2f mid;
-    mid.x = grid_pos.x * 50;
-    mid.y = grid_pos.y * 50;
-    return mid;
 }
