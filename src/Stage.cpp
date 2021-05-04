@@ -24,6 +24,7 @@ Stage::Stage(){
     cur_virus_pair = virus_list.begin();
     base_loc = Vector2i(7,6);
     gold = 100;
+    base_health = 100;
 }
 
 int* Stage::getMap()
@@ -120,7 +121,7 @@ void Stage::update(Int64 elapsedTime)
 
     // update all viruses
     for (auto& pair : virus_list) {
-        pair.first.update(elapsedTime);
+        pair.first.update(elapsedTime, &base_loc, &base_health);
     }
 
     // update all towers
