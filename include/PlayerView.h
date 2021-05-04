@@ -6,7 +6,7 @@
 #include "SpriteActor.h"
 #include "Virus.h"
 #include "Tower.h"
-#include "Stage.h"
+#include "Bullet.h"
 #include <list>
 
 
@@ -18,13 +18,12 @@ class PlayerView{
         void init();
         void createBG(int*);
         void drawBG(sf::RenderWindow* window);
-        // void drawTowers(std::list<Tower*>);
         void drawViruses(sf::RenderWindow* window, std::list<std::pair<Virus, Int64>>* pairs);
-        //void update(Stage); omitted for testing
+        void drawBullets(sf::RenderWindow*, std::list<Bullet>*);
         sf::RenderWindow* getWindow();
         bool isButtonPressed(sf::Mouse::Button);
         sf::Vector2i getMousePos();
-        sf::Texture getTexture();
+        sf::Texture* getTexture();
         sf::Texture* getTexture2(); // Will need copies if multiple textures used
         void setTexture(sf::Texture);
 

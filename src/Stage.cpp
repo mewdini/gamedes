@@ -11,7 +11,7 @@ Stage::Stage(){
     start2 = 6;
     virus_tex = Texture();
     if(virus_tex.loadFromFile("../data/covid.png")){
-        std::cout << "TEXTURE" << std::endl;
+        // std::cout << "TEXTURE" << std::endl;
     }
     // use malloc if these are local variables? 
     // populate virus list
@@ -41,7 +41,7 @@ Stage::Stage(sf::Texture* vir_tex){
     start2 = 6;
     virus_tex = Texture();
     if(virus_tex.loadFromFile("../data/covid.png")){
-        std::cout << "TEXTURE" << std::endl;
+        // std::cout << "TEXTURE" << std::endl;
     }
     // use malloc if these are local variables? 
     // populate virus list
@@ -109,7 +109,7 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
 
 }
 
-void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower, and r is the range of the tower
+void Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordinates of the tower, and r is the range of the tower 
     for (auto & virus : virus_list) {
         Virus* enemy = &(virus.first);
         if(enemy->isAlive()){
@@ -122,8 +122,7 @@ void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower,
             float r = tower->GetRadius();
             if ((posx-x)*(posx-x)+(posy-y)*(posy-y)<=r*r)
             {
-                //std::cout << "SHOT" << std::endl;
-                tower->Attack(enemy);
+                tower->Attack(enemy, pView->getTexture());
                 bullet_list.push_back(tower->getBullet());
             }
         }
@@ -140,7 +139,11 @@ std::list<std::pair<Virus, Int64>>* Stage::getVirusList()
     return &virus_list;
 }
 
-void Stage::update(Int64 elapsedTime)
+std::list<Bullet>* Stage::getBulletList(){
+    return &bullet_list;
+}
+
+void Stage::update(Int64 elapsedTime, PlayerView* pView)
 {
     // cout << virus_list.front().first.getLocationX() << " " << virus_list.front().first.getLocationY() << endl;
     // check if time to spawn virus
@@ -158,14 +161,14 @@ void Stage::update(Int64 elapsedTime)
 
     // update all towers
     for (auto& tower : tower_list) {
-        attackFirstVirus(&tower);
+        attackFirstVirus(&tower, pView);
     }
 
     // update all bullets
     for(auto& bullet : bullet_list){
-        bullet->follow(elapsedTime);
-        if(bullet->detectHit()){
-            delete bullet;
+        bullet.follow(elapsedTime);
+        if(bullet.detectHit()){
+            // Do something to get rid of bullet
         }
     }
 }

@@ -136,44 +136,13 @@ void PlayerView::drawViruses(sf::RenderWindow* window, std::list<std::pair<Virus
     }
 }
 
-//void PlayerView::update(Stage stage){
-//    //Will likely want to change return type to better react to this call
-//    // Needs to draw everything and accept player input
-//
-//    if(window.isOpen()){
-//        // Draws the background, then the towers, then the enemies
-//        drawBG();
-//        // These gets don't exist yet
-//        drawTowers(stage.getTowerList());
-//        drawViruses(stage.getVirusList());
-//
-//        // Leaving room for potential additions
-//        window.display();
-//
-//        // Using pollEvent to check for input
-//        sf::Event event;
-//        while(window.pollEvent(event)){
-//            if(event.type == sf::Event::Closed){
-//                window.close();
-//            }
-//            if(event.type == sf::Event::KeyPressed){
-//                // Need to agree on controls, will at least include ability to close window with escape
-//                if(event.key.code == sf::Keyboard::Escape){
-//                    window.close();
-//                }
-//            }
-//        }
-//    }
-//}
-
-// void Game::render()
-// {
-//     app.clear();
-//     app.draw(player);
-//     app.display();
-// }
-
-// interpret events here, then send queueEvent to EventManager
+void PlayerView::drawBullets(sf::RenderWindow* window, std::list<Bullet>* bullets){
+    //Draws everything contained in the list of viruses
+    for (auto& i : *bullets)
+    {
+        window->draw(i.getSprite());
+    }
+}
 
 sf::Vector2i PlayerView::getMousePos()
 {
@@ -190,8 +159,8 @@ sf::RenderWindow* PlayerView::getWindow()
     return &window;
 }
 
-sf::Texture PlayerView::getTexture(){
-    return texture;
+sf::Texture* PlayerView::getTexture(){
+    return &texture;
 }
 
 sf::Texture* PlayerView::getTexture2(){

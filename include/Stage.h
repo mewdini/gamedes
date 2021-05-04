@@ -8,6 +8,7 @@
 #include "Virus.h"
 #include "Tower.h"
 #include "Bullet.h"
+#include "PlayerView.h"
 #include <math.h>
 #include <iterator>
 #include <list>
@@ -29,9 +30,10 @@ class Stage {
         void setValueOnMap(int, int, int);
         void allAttack();
         std::list<Tower>* getTowerList();
+        std::list<Bullet>* getBulletList();
         bool build(Towers, int, int);
         std::list<std::pair<Virus, Int64>>* getVirusList();
-        void update(Int64);
+        void update(Int64, PlayerView*);
         static Vector2i pixelToGrid(Vector2f);
         static Vector2f gridToPixelMiddle(Vector2i);
         static Vector2f gridToPixelTopLeft(Vector2i);
@@ -48,8 +50,8 @@ class Stage {
         std::list<std::pair<Virus, Int64>>::iterator cur_virus_pair;
         std::list<Tower> tower_list;
         std::list<std::pair<Virus, Int64>> virus_list;                 //the list of enemies/towers for this level
-        std::list<Bullet*> bullet_list;
-        void attackFirstVirus(Tower*);          //choose the enemy to attack
+        std::list<Bullet> bullet_list;
+        void attackFirstVirus(Tower*, PlayerView*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         sf::Int64 virus_timer;
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)

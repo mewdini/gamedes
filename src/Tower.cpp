@@ -8,13 +8,16 @@
 using namespace sf;
 Tower::Tower(int x, int y, int level)
 {
-    // these are sf::
-    tower_sprite = Sprite();
-    tower_tex = Texture();
-
+    // Why does this pass level when the first thing it does is set level to equal the param
     TowerLevel(level);
-    tower_sprite.setPosition(x, y);
-
+    // Given grid numbers, *50 makes them pixel numbers
+    pixX = x*50;
+    pixY = y*50;
+    tower_sprite.setPosition(pixX, pixY);
+    bullet1 = Bullet();
+    bullet2 = Bullet();
+    bullet3 = Bullet();
+    bullet4 = Bullet();
 }
 
 Tower::Tower()
@@ -31,7 +34,8 @@ void Tower::TowerLevel(int lvl)
 
     switch(lvl)
     {
-        case 1:
+        // ZZ- changed to 0 since only time this is called it passes in a 0
+        case 0:
             attack_speed = 1.0f;
             damage = 15;
             break;
@@ -115,17 +119,35 @@ const int Tower::GetUpgradeLevel()
     return upgrade_level;
 }
 
-void Tower::Attack(Virus* virus)
+void Tower::Attack(Virus* virus, Texture* texture)
 {
     // TODO animate attack
 
-    // Creates a bullet on top of tower and sets its target to the given virus
-    bullet = Bullet(sprite.getPosition().x + 15, sprite.getPosition().y + 15, 0, 550, 20, 20, virus, &damage); 
+    // Creates a bullet on top of tower and sets its target to the given virus 
+    // Checks for inactive bullet to make active, allows for more based on attack speed
+    if(!bullet1.isActive() && attack_speed >= 1){
+        bullet1 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
+        bullet1.setTexture(texture);
+    }
 
+    else if(!bullet2.isActive() && attack_speed >= 2){
+        bullet2 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
+        bullet2.setTexture(texture);
+    }
 
-    //virus->hit(damage);
+    else if(!bullet3.isActive() && attack_speed >= 3){
+        bullet3 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
+        bullet3.setTexture(texture);
+    }
+
+    else if(!bullet4.isActive() && attack_speed >= 4){
+        bullet4 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
+        bullet4.setTexture(texture);
+    }
+
 }
 
-Bullet* Tower::getBullet(){
-    return &bullet;
+Bullet Tower::getBullet(){
+    //TODO add more gets for other bullets, or a way of determining which one they should get without specifying
+    return bullet1;
 }

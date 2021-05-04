@@ -129,7 +129,7 @@ void PlayingState::update(const float& dt)
     this->updateInput(dt);
     this->updateButtons();
     this->player.update(dt);
-    this->stage.update(dt);
+    this->stage.update(dt, &pView);
 }
 
 void PlayingState::render(sf::RenderTarget* target)
@@ -142,6 +142,7 @@ void PlayingState::render(sf::RenderTarget* target)
     this->renderButtons(window);       // drawing the buttons
     this->player.render(window); 
     this->pView.drawViruses(window, stage.getVirusList());
+    this->pView.drawBullets(window, stage.getBulletList());
 }
 void PlayingState::updateButtons()
 {
