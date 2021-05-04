@@ -8,8 +8,8 @@
 #include "MainMenuState.h"
 #include "Player.h"
 #include "Stage.h"
-#include "Player.h"
 #include "PlayerView.h"
+#include "EndGameState.h"
 
 
 
