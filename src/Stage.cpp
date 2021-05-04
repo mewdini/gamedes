@@ -110,7 +110,7 @@ std::list<std::pair<Virus, Int64>>* Stage::getVirusList()
 
 void Stage::update(Int64 elapsedTime)
 {
-    cout << "first virus: " << virus_list.front().first.getLocationX() << ", " << virus_list.front().first.getLocationY() << endl;
+    cout << virus_list.front().first.getLocationX() << " " << virus_list.front().first.getLocationY() << endl;
     // check if time to spawn virus
     virus_timer += elapsedTime;
     if ((virus_timer >= (*cur_virus_pair).second) && (virus_count > 0)) {

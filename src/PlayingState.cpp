@@ -141,8 +141,8 @@ void PlayingState::render(sf::RenderTarget* target)
     PlayingState::pView.drawBG(window);
     this->renderButtons(window);       // drawing the buttons
     this->player.render(window);
-
-
+    auto v_list = stage.getVirusList();
+    pView.drawViruses(window, v_list);
 }
 void PlayingState::updateButtons()
 {

@@ -18,8 +18,8 @@ class PlayerView{
         void init();
         void createBG(int*);
         void drawBG(sf::RenderWindow* window);
-        void drawTowers(std::list<Tower*>);
-        void drawViruses(std::list<Virus*>);
+        // void drawTowers(std::list<Tower*>);
+        void drawViruses(sf::RenderWindow* window, std::list<std::pair<Virus, Int64>>* pairs);
         //void update(Stage); omitted for testing
         sf::RenderWindow* getWindow();
         bool isButtonPressed(sf::Mouse::Button);
