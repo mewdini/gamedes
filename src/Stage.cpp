@@ -13,7 +13,6 @@ Stage::Stage(){
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
     virus_count = 100;
-    cur_virus_pair = virus_list.begin();
     start1 = 15;
     start2 = 6;
     // use malloc if these are local variables?
@@ -23,6 +22,7 @@ Stage::Stage(){
         auto temp_pair = std::pair<Virus, sf::Int64>(temp_virus, 1000000);
         virus_list.push_back(temp_pair);
     }
+    cur_virus_pair = virus_list.begin();
     base_loc = Vector2i(7,6);
     gold = 100;
 }
@@ -55,7 +55,6 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
         return false;   //position is not valid;
     }
     int tower_cost;
-    cout << type << endl;
     switch (type)
     {
         case Towers::first:
@@ -111,14 +110,11 @@ std::list<std::pair<Virus, Int64>>* Stage::getVirusList()
 
 void Stage::update(Int64 elapsedTime)
 {
-    // cout << "virus list length: " << virus_list.size() << endl;
-    // cout << "first virus: " << virus_list.front().first.getLocationX() << ", " << virus_list.front().first.getLocationY() << endl;
+    cout << "first virus: " << virus_list.front().first.getLocationX() << ", " << virus_list.front().first.getLocationY() << endl;
     // check if time to spawn virus
     virus_timer += elapsedTime;
     if ((virus_timer >= (*cur_virus_pair).second) && (virus_count > 0)) {
-        cout << "starting spawn" << endl;
         spawnVirus();
-        cout << "ending spawn" << endl;
         virus_timer = 0;
     }
 
@@ -134,9 +130,7 @@ void Stage::update(Int64 elapsedTime)
 }
 
 void Stage::spawnVirus() {
-    cout << "isAlive 1: " << (*cur_virus_pair).first.isAlive() << endl;
     (*cur_virus_pair).first.setAlive(true);
     cur_virus_pair = next(cur_virus_pair);
-    cout << "isAlive 2: " << (*cur_virus_pair).first.isAlive() << endl;
     virus_count--;
 }

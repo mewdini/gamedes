@@ -118,20 +118,14 @@ Sprite Virus::getSprite()
 // This function has to update virus location from the base
 void Virus::update(Int64 elapsedTime)
 {
-    // cout << "???" << endl;
     if (m_Alive)
     {
-        cout << "here0" << endl;
         // check value at current tile in grid
         Vector2f pixelPos = getPosition();
         Vector2i gridPos = pixelToGrid(pixelPos);
 
-        std::cout << "here1" << std::endl;
-
         updateDirection();
         moveDir(m_Dir, elapsedTime);
-
-        std::cout << "here2" << std::endl;
 
         // check if in new grid position
         // gridPos is old at this point
@@ -141,7 +135,6 @@ void Virus::update(Int64 elapsedTime)
             m_Turned = false;
         }
 
-        std::cout << "here3" << std::endl;
     }
 }
 
