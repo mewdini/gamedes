@@ -58,6 +58,7 @@ class Stage {
         sf::Vector2i base_loc;
         void spawnVirus();
         Texture virus_tex;
+        float base_health;
 };
 
 #endif /* _STAGE_H_ */

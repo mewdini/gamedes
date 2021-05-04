@@ -24,6 +24,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
             sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
+            m_Damage = COVID_VIRUS_DAMAGE;
             break;
 
         case Viruses::resistant:
@@ -31,6 +32,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
             // sprite = Sprite(TextureHolder)
             m_Speed = RESISTANT_STRAIN_SPEED;
             m_Health = RESISTANT_STRAIN_HEALTH;
+            m_Damage = RESISTANT_STRAIN_DAMAGE;
             break;
 
         case Viruses::contagious:
@@ -38,6 +40,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
             // sprite = Sprite(TextureHolder)
             m_Speed = CONTAGIOUS_STRAIN_SPEED;
             m_Health = CONTAGIOUS_STRAIN_HEALTH;
+            m_Damage = CONTAGIOUS_STRAIN_DAMAGE;
             break;
 
         case Viruses::airborn:
@@ -45,6 +48,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
             // sprite = Sprite(TextureHolder)
             m_Speed = AIRBORN_STRAIN_SPEED;
             m_Health = AIRBORN_STRAIN_HEALTH;
+            m_Damage = AIRBORN_STRAIN_DAMAGE;
             break;
 
         case Viruses::coughing:
@@ -52,6 +56,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
             // sprite = Sprite(TextureHolder)
             m_Speed = COUGHING_PERSON_SPEED;
             m_Health = COUGHING_PERSON_HEALTH;
+            m_Damage = COUGHING_STRAIN_DAMAGE;
             break;
     }
 
@@ -115,7 +120,7 @@ Sprite Virus::getSprite()
 }
 
 // This function has to update virus location from the base
-void Virus::update(Int64 elapsedTime)
+void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
 {
     if (m_Alive)
     {
@@ -127,13 +132,49 @@ void Virus::update(Int64 elapsedTime)
         moveDir(m_Dir, elapsedTime);
 
         // check if in new grid position
+        auto oldGridPos = gridPos;
+        gridPos = pixelToGrid(getPosition());
+        pixelPos = getPosition();
         // gridPos is old at this point
-        if (gridPos != pixelToGrid(getPosition()))
+        if (gridPos != oldGridPos)
         {
             // prevents Virus from changing directions more than once at a corner
             m_Turned = false;
         }
 
+        
+        // check if virus hit the tower
+        // if in end tile
+        if (gridPos == *base_loc)
+        {
+            // check if at or past middle of grid (using direction)
+            bool pastMid = false;
+            auto baseMid = gridToPixelMiddle(*base_loc);
+            switch (m_Dir)
+            {
+                case Up:
+                    if (baseMid.y >= pixelPos.y)
+                        pastMid = true;
+                    break;
+                case Down:
+                    if (baseMid.y <= pixelPos.y)
+                        pastMid = true;
+                    break;
+                case Left:
+                    if (baseMid.x >= pixelPos.x)
+                        pastMid = true;
+                    break;
+                case Right:
+                    if (baseMid.x <= pixelPos.x)
+                        pastMid = true;
+                    break;
+            }
+            if (pastMid)
+            {
+                setAlive(false);
+                *base_health -= m_Damage;
+            }
+        }
     }
 }
 
