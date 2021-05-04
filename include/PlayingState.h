@@ -12,6 +12,7 @@
 #include "Stage.h"
 #include "PlayerView.h"
 
+
 class PlayingState: //GameState
         public State
 {
