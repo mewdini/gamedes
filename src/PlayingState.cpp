@@ -140,9 +140,8 @@ void PlayingState::render(sf::RenderTarget* target)
     PlayingState::pView.createBG(this->stage.getMap()); // drawing the default background
     PlayingState::pView.drawBG(window);
     this->renderButtons(window);       // drawing the buttons
-    this->player.render(window);
-    auto v_list = stage.getVirusList();
-    pView.drawViruses(window, v_list);
+    this->player.render(window); 
+    this->pView.drawViruses(window, stage.getVirusList());
 }
 void PlayingState::updateButtons()
 {
