@@ -110,10 +110,9 @@ void PlayingState::initKeyBinds()
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
-    Stage s(7);
-    this->stage=s;
+    this->stage=Stage(pView.getTexture2());
     //s.setValueOnMap(6,0,4);
-    PlayerView* pView = new PlayerView();
+    //PlayerView* pView = new PlayerView();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons();
@@ -140,17 +139,9 @@ void PlayingState::render(sf::RenderTarget* target)
     //this->stage.setValueOnMap(6,0,4);
     PlayingState::pView.createBG(this->stage.getMap()); // drawing the default background
     PlayingState::pView.drawBG(window);
-    auto v_list=stage.getVirusList();
-    pView.drawViruses(v_list);
     this->renderButtons(window);       // drawing the buttons
-    //cout<< v_list->front()->first->getPosition().y << endl;
-    //sf::RectangleShape rectangle;
-    //rectangle.setSize(sf::Vector2f(100, 50));
-    //rectangle.setPosition(50,50);
-    //window->draw(rectangle);
-    this->player.render(window);
-
-
+    this->player.render(window); 
+    this->pView.drawViruses(window, stage.getVirusList());
 }
 void PlayingState::updateButtons()
 {
@@ -164,7 +155,7 @@ void PlayingState::updateButtons()
     //Build Towers 
     if(this->buttons["Tower1"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,6,0);
         
         
@@ -172,7 +163,7 @@ void PlayingState::updateButtons()
     }
     else if(this->buttons["Tower2"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         //int a=this->stage.getValueOnMap(4,2);
         //printf("%d",a);
         this->stage.build(tower,4,2);
@@ -181,52 +172,52 @@ void PlayingState::updateButtons()
     }
     if(this->buttons["Tower3"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
                 this->stage.build(tower,9,2);
     }
 if(this->buttons["Tower4"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,4,5);
     }
     if(this->buttons["Tower5"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,9,5);
     }
 if(this->buttons["Tower6"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,15,7);
     }
 if(this->buttons["Tower7"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,9,8);
     }
 if(this->buttons["Tower8"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,11,8);
     }
     if(this->buttons["Tower9"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,13,8);
     }
 if(this->buttons["Tower10"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,4,9);
     }
 if(this->buttons["Tower11"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,6,9);
     }
 if(this->buttons["Tower12"]->isPressed())
     {
-        Tower::Towers tower=Tower::Towers::first;
+        Towers tower=Towers::first;
         this->stage.build(tower,12,10);
     }
 
@@ -254,10 +245,10 @@ void PlayingState::updateInput(const float &dt)
     //player input
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Left"))))
         this->player.move(dt,-1.f, 0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Right"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Right"))))
         this->player.move(dt,1.f, 0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Up"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Up"))))
         this->player.move(dt,0.f, -1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Keyboard::Key(this->keybinds.at("Move_Down"))))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("Move_Down"))))
         this->player.move(dt,0.f, 1.f);
 }

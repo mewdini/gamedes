@@ -9,9 +9,8 @@
 
 using namespace std;
 using namespace sf;
-class Tower;
-class Virus;
 
+enum Towers{first};
 class Tower : public SpriteActor
 {
 public:
@@ -31,6 +30,7 @@ public:
     const int GetGoldCost(int level);
     void TowerLevel(int lvl);
     void Attack(Virus*);
+    Bullet* getBullet();
 
 private:
     Texture tower_tex;

@@ -3,61 +3,60 @@
 
 
 #include "Virus.h"
+
 using namespace std;
 
 
-Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int seed, int* grid) :SpriteActor::SpriteActor( start_x, start_y, start_x, start_y, 50, 50)
+Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, int* level)
 {
     // Zack - changed to use existing sprite from inherited SpriteActor
     // doesn't solve problem of loading a new texture, should have reference to
     // PView's texture and load from that instead
-    
-    sf::Texture m_Texture;
-    Vector2f pixel_pos;
-    m_Texture.loadFromFile("../data/coronavirus_0.png");
-    sprite=sf::Sprite();
-    
+    sf::Vector2f pixel_pos;
     switch(type)
     {
-        case Virus::Viruses::covid:
+        case Viruses::covid:
             //Covid Virus
             //this sprite variable will pull the sprite of the Zombie
             //We should probably create a TextureHolder Class from where we
             // load it
-            this->setTexture(&m_Texture);
             pixel_pos = gridToPixelTopLeft(Vector2i{15, 6});
-            
             sprite.setPosition(pixel_pos.x, pixel_pos.y);
             m_Speed = COVID_VIRUS_SPEED;
             m_Health = COVID_VIRUS_HEALTH;
+            m_Damage = COVID_VIRUS_DAMAGE;
             break;
 
-        case Virus::Viruses::resistant:
+        case Viruses::resistant:
             // Resistant Strain
             // sprite = Sprite(TextureHolder)
             m_Speed = RESISTANT_STRAIN_SPEED;
             m_Health = RESISTANT_STRAIN_HEALTH;
+            m_Damage = RESISTANT_STRAIN_DAMAGE;
             break;
 
-        case Virus::Viruses::contagious:
+        case Viruses::contagious:
             // Contagious Strain
             // sprite = Sprite(TextureHolder)
             m_Speed = CONTAGIOUS_STRAIN_SPEED;
             m_Health = CONTAGIOUS_STRAIN_HEALTH;
+            m_Damage = CONTAGIOUS_STRAIN_DAMAGE;
             break;
 
-        case Virus::Viruses::airborn:
+        case Viruses::airborn:
             // Airborn Strain
             // sprite = Sprite(TextureHolder)
             m_Speed = AIRBORN_STRAIN_SPEED;
             m_Health = AIRBORN_STRAIN_HEALTH;
+            m_Damage = AIRBORN_STRAIN_DAMAGE;
             break;
 
-        case Virus::Viruses::coughing:
+        case Viruses::coughing:
             // Coughing Strain
             // sprite = Sprite(TextureHolder)
             m_Speed = COUGHING_PERSON_SPEED;
             m_Health = COUGHING_PERSON_HEALTH;
+            m_Damage = COUGHING_STRAIN_DAMAGE;
             break;
     }
 
@@ -69,16 +68,14 @@ Virus::Virus(int start_x, int start_y, Directions dir, Virus::Viruses type, int 
     modifier /= 100;  //it will equal between .7 and 1
     m_Speed *= modifier;
 
-    m_Grid = grid;
+    // Location of the virus
+    Vector2i start_grid_pos = Vector2i(start_x, start_y);
+    Vector2f start_pixel_pos = gridToPixelTopLeft(start_grid_pos);
+    sprite.setPosition(start_pixel_pos.x, start_pixel_pos.y);
 
-    gridX = start_x;
-    gridY = start_y;
+
+    m_Dir = Left;
 }
-
-// void Virus::setStage(Stage* s)
-// {
-//    stage = s;
-// }
 
 bool Virus::hit(float damage)
 {
@@ -102,95 +99,91 @@ bool Virus::hit(float damage)
 
 bool Virus::isAlive()
 {
-    
     return m_Alive;
 }
 
 void Virus::setAlive(bool alive)
 {
-    
     m_Alive = alive;
-    
 }
 
 Vector2f Virus::getPosition()
 {
-    return this->sprite.getPosition();
+    return sprite.getPosition();
 }
 
-sf::Sprite Virus::getSprite(){
-    return this->sprite;
+
+Sprite Virus::getSprite()
+{
+   return sprite;
 }
 
 // This function has to update virus location from the base
-void Virus::update(Int64 elapsedTime)
+void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
 {
-    //Vector2f pixelPos1 = getPosition();
-    //    cout << "in virus"<< pixelPos1.x << endl;
     if (m_Alive)
     {
         // check value at current tile in grid
         Vector2f pixelPos = getPosition();
-        //cout << "in virus"<< pixelPos.x << endl;
         Vector2i gridPos = pixelToGrid(pixelPos);
 
-        // cout << getLocationX() << " " << getLocationY() << endl;
         updateDirection();
         moveDir(m_Dir, elapsedTime);
 
         // check if in new grid position
+        auto oldGridPos = gridPos;
+        gridPos = pixelToGrid(getPosition());
+        pixelPos = getPosition();
         // gridPos is old at this point
-        if (gridPos != pixelToGrid(getPosition()))
+        if (gridPos != oldGridPos)
         {
             // prevents Virus from changing directions more than once at a corner
             m_Turned = false;
         }
+
+        
+        // check if virus hit the tower
+        // if in end tile
+        if (gridPos == *base_loc)
+        {
+            // check if at or past middle of grid (using direction)
+            bool pastMid = false;
+            auto baseMid = gridToPixelMiddle(*base_loc);
+            switch (m_Dir)
+            {
+                case Up:
+                    if (baseMid.y >= pixelPos.y)
+                        pastMid = true;
+                    break;
+                case Down:
+                    if (baseMid.y <= pixelPos.y)
+                        pastMid = true;
+                    break;
+                case Left:
+                    if (baseMid.x >= pixelPos.x)
+                        pastMid = true;
+                    break;
+                case Right:
+                    if (baseMid.x <= pixelPos.x)
+                        pastMid = true;
+                    break;
+            }
+            if (pastMid)
+            {
+                setAlive(false);
+                *base_health -= m_Damage;
+            }
+        }
     }
 }
-
-// irrelevant function since map has corners programmed in
-// Directions Virus::pathDir()
-// {
-//     Vector2f pixelPos = getPosition();
-//     Vector2f gridPos{pixelPos.x / 50, pixelPos.y / 50};
-//     std::vector<Directions> pot_dirs{Left, Right, Up, Down};
-
-//     // erase direction Virus came from from directions to check
-//     auto iter = std::find(pot_dirs.begin(), pot_dirs.end(), last_Direction);
-//     if (iter != pot_dirs.end())
-//         pot_dirs.erase(iter);
-
-//     // make sure not going out of bounds (fix in the getValueOnMap method?)
-//     int pos_path;
-//     for (auto const& dir : pot_dirs) {
-//         switch (dir)
-//         {
-//             case Left:
-//                 pos_path = stage->getValueOnMap(gridPos.x - 1, gridPos.y);
-//                 break;
-//             case Right:
-//                 pos_path = stage->getValueOnMap(gridPos.x + 1, gridPos.y);
-//                 break;
-//             case Up:
-//                 pos_path = stage->getValueOnMap(gridPos.x, gridPos.y - 1);
-//                 break;
-//             case Down:
-//                 pos_path = stage->getValueOnMap(gridPos.x, gridPos.y + 1);
-//         }
-
-//         // check if it's the value for path
-//     }    
-//     // check remaining directions, but make sure we dont go out of bounds (catch errors?)
-//     // stage->getValueOnMap(gridPos.x, gridPos.y);
-//     // ^ check opposite of where you were last, then left and right in grid. check for which is path value and return that direction
-//     // set last_Direction
-// }
 
 void Virus::updateDirection()
 {
     Vector2f pixelPos = getPosition();
+    pixelPos.x += 25;
+    pixelPos.y += 25;
     Vector2i gridPos = pixelToGrid(pixelPos);
-    int tile_val = gridPos.y *16 + gridPos.x;
+    int tile_val = getValueOnMap(gridPos.x, gridPos.y);
     if ((tile_val >= 5) && (tile_val <= 10))
     {
         // middle of grid in pixel coords
@@ -277,21 +270,23 @@ void Virus::updateDirection()
 void Virus::moveDir(Directions dir, Int64 delta)
 {
     float pixels_x, pixels_y = 0;
+    float f_delta = (float) delta;
     float C = 1000000; // combats delta being in microseconds
     switch (dir)
     {
         case Up:
-            pixels_y = -(m_Speed * (delta / C));
+            pixels_y = -(m_Speed * (f_delta / C));
             break;
         case Down:
-            pixels_y = m_Speed * (delta / C);
+            pixels_y = m_Speed * (f_delta / C);
             break;
         case Left:
-            pixels_x = -(m_Speed * (delta / C));
+            pixels_x = -(m_Speed * (f_delta / C));
             break;
         case Right:
-            pixels_x = m_Speed * (delta / C);
+            pixels_x = m_Speed * (f_delta / C);
     }
+
 
     // move virus sprite
     move(pixels_x, pixels_y);
@@ -313,10 +308,15 @@ Vector2f Virus::gridToPixelMiddle(Vector2i grid_pos)
     mid.y = grid_pos.y * 50 + 25;
     return mid;
 }
+
 Vector2f Virus::gridToPixelTopLeft(Vector2i grid_pos)
 {
     Vector2f mid;
     mid.x = grid_pos.x * 50;
     mid.y = grid_pos.y * 50;
     return mid;
+}
+
+int Virus::getValueOnMap(int x,int y){          //inputs are coordinates on the map, top-left is (0,0)
+    return m_Grid[y * 16 + x];
 }

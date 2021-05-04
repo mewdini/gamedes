@@ -20,7 +20,7 @@ Entity::~Entity()
 
 void Entity::move(const float& dt, const float dir_x, const float dir_y)
 {
-    this->shape.move(dir_x * this->movementSpeed * dt, dir_y * this->movementSpeed * dt);
+    this->shape.move(dir_x * this->movementSpeed * (dt/1000000), dir_y * this->movementSpeed * (dt/1000000));
 }
 
 void Entity::update(const float &dt)

@@ -2,18 +2,13 @@
 #include "SpriteActor.h"
 
 SpriteActor::SpriteActor(){
-    sprite=sf::Sprite();
     sprite.setPosition(0,0);
-    
 }
 
 SpriteActor::SpriteActor(float posX, float posY, int left, int top, int width, int height){
-    
-    sprite=sf::Sprite();
+    sprite.setPosition(posX, posY);
     textureRect = sf::IntRect(left, top, width, height);
     sprite.setTextureRect(textureRect);
-    sprite.setPosition(posX, posY);
-    
 }
 
 float SpriteActor::getLocationX(){
@@ -42,6 +37,7 @@ void SpriteActor::move(float deltaX, float deltaY){
 }
 
 void SpriteActor::setTexture(sf::Texture* text){
+    //textPtr = text;
     sprite.setTexture(*text);
 }
 

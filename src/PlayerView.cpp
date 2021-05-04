@@ -7,6 +7,7 @@ PlayerView::PlayerView(){
     //window.create(sf::VideoMode(800,600,32), "COVID Champion", sf::Style::Close);
     //font.loadFromFile("insert font here");
     texture.loadFromFile("../data/FourthSpriteSheet.png");
+    texture2.loadFromFile("../data/covid.png");
     //Fourth sheet is rotated compared to third, all x/y coords are reversed
 }
 
@@ -64,7 +65,6 @@ void PlayerView::createBG(int* map){
                 //(*new_bg)->setViewLocation(300, 0);
                 background[i].setViewLocation(0, 300);
                 break;
-            // Tower Location
             case 4:
 
                 background[i].setViewLocation(0,250);
@@ -118,55 +118,53 @@ void PlayerView::drawBG(sf::RenderWindow* window){
     }
 }
 
-void PlayerView::drawTowers(std::list<Tower*> towers){
-    //Draws everything contained in the list of towers
-    for (auto const& i : towers)
-    {
-        window.draw(i->getSprite());
-    }
-}
+// void PlayerView::drawTowers(std::list<Tower*> towers){
+//     //Draws everything contained in the list of towers
+//     for (auto const& i : towers)
+//     {
+//         window.draw(i->getSprite());
+//     }
+// }
 
-void PlayerView::drawViruses(std::list<std::pair<Virus*, sf::Int64>*>* viruses){
+void PlayerView::drawViruses(sf::RenderWindow* window, std::list<std::pair<Virus, Int64>>* pairs){
     //Draws everything contained in the list of viruses
-    for (auto const& pair : *viruses)
+    for (auto& i : *pairs)
     {
-        //cout << pair->first->getLocationX() << endl;
-        window.draw(pair->first->getSprite());
-    }
-    
-}
-
-/*
-void PlayerView::update(Stage stage){
-    //Will likely want to change return type to better react to this call
-    // Needs to draw everything and accept player input
-
-    if(window.isOpen()){
-        // Draws the background, then the towers, then the enemies
-        drawBG();
-        // These gets don't exist yet
-        drawTowers(stage.getTowerList());
-        drawViruses(stage.getVirusList());
-
-        // Leaving room for potential additions
-        window.display();
-
-        // Using pollEvent to check for input
-        sf::Event event;
-        while(window.pollEvent(event)){
-            if(event.type == sf::Event::Closed){
-                window.close();
-            }
-            if(event.type == sf::Event::KeyPressed){
-                // Need to agree on controls, will at least include ability to close window with escape
-                if(event.key.code == sf::Keyboard::Escape){
-                    window.close();
-                }
-            }
+        if (i.first.isAlive()) {
+            window->draw(i.first.getSprite());
         }
     }
 }
-*/
+
+//void PlayerView::update(Stage stage){
+//    //Will likely want to change return type to better react to this call
+//    // Needs to draw everything and accept player input
+//
+//    if(window.isOpen()){
+//        // Draws the background, then the towers, then the enemies
+//        drawBG();
+//        // These gets don't exist yet
+//        drawTowers(stage.getTowerList());
+//        drawViruses(stage.getVirusList());
+//
+//        // Leaving room for potential additions
+//        window.display();
+//
+//        // Using pollEvent to check for input
+//        sf::Event event;
+//        while(window.pollEvent(event)){
+//            if(event.type == sf::Event::Closed){
+//                window.close();
+//            }
+//            if(event.type == sf::Event::KeyPressed){
+//                // Need to agree on controls, will at least include ability to close window with escape
+//                if(event.key.code == sf::Keyboard::Escape){
+//                    window.close();
+//                }
+//            }
+//        }
+//    }
+//}
 
 // void Game::render()
 // {
@@ -194,6 +192,10 @@ sf::RenderWindow* PlayerView::getWindow()
 
 sf::Texture PlayerView::getTexture(){
     return texture;
+}
+
+sf::Texture* PlayerView::getTexture2(){
+    return &texture2;
 }
 
 void PlayerView::setTexture(sf::Texture newText){
