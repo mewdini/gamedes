@@ -8,7 +8,7 @@
 #include "Virus.h"
 #include "Tower.h"
 #include <math.h>
-
+#include <iterator>
 #include <list>
 #include <iostream>
 using namespace std;
@@ -26,9 +26,9 @@ class Stage {
         int getValueOnMap(int , int);
         void setValueOnMap(int, int, int);
         void allAttack();
-        std::list<Tower*>* getTowerList();
+        std::list<Tower>* getTowerList();
         bool build(Towers, int, int);
-        std::list<std::pair<Virus*, Int64>*>* getVirusList();
+        std::list<std::pair<Virus, Int64>>* getVirusList();
         void update(Int64);
         static Vector2i pixelToGrid(Vector2f);
         static Vector2f gridToPixelMiddle(Vector2i);
@@ -41,9 +41,9 @@ class Stage {
         int map[192];                           //might need to import the size of screen from other files instead of hardcoding
         int tower_count;
         int virus_count;
-        std::list<std::pair<Virus*, Int64>*>::iterator cur_virus_pair;
-        std::list<Tower*> tower_list;
-        std::list<std::pair<Virus*, Int64>*> virus_list;                 //the list of enemies/towers for this level
+        std::list<std::pair<Virus, Int64>>::iterator cur_virus_pair;
+        std::list<Tower> tower_list;
+        std::list<std::pair<Virus, Int64>> virus_list;                 //the list of enemies/towers for this level
         void attackFirstVirus(Tower*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         sf::Int64 virus_timer;

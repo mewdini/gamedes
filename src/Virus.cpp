@@ -3,8 +3,7 @@
 
 
 #include "Virus.h"
-#include <cstdlib>
-#include <ctime>
+
 using namespace std;
 
 
@@ -68,16 +67,12 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
     m_Speed *= modifier;
 
     // Location of the virus
-    m_Position.x = start_x;
-    m_Position.y = start_y;
+    Vector2i start_grid_pos = Vector2i(start_x, start_y);
+    Vector2f start_pixel_pos = gridToPixelTopLeft(start_grid_pos);
+    sprite.setPosition(start_pixel_pos.x, start_pixel_pos.y);
 
     m_Grid = level;
 }
-
-// void Virus::setStage(Stage* s)
-// {
-//    stage = s;
-// }
 
 bool Virus::hit(float damage)
 {
@@ -123,14 +118,20 @@ Sprite Virus::getSprite()
 // This function has to update virus location from the base
 void Virus::update(Int64 elapsedTime)
 {
+    // cout << "???" << endl;
     if (m_Alive)
     {
+        cout << "here0" << endl;
         // check value at current tile in grid
         Vector2f pixelPos = getPosition();
         Vector2i gridPos = pixelToGrid(pixelPos);
 
+        std::cout << "here1" << std::endl;
+
         updateDirection();
         moveDir(m_Dir, elapsedTime);
+
+        std::cout << "here2" << std::endl;
 
         // check if in new grid position
         // gridPos is old at this point
@@ -139,6 +140,8 @@ void Virus::update(Int64 elapsedTime)
             // prevents Virus from changing directions more than once at a corner
             m_Turned = false;
         }
+
+        std::cout << "here3" << std::endl;
     }
 }
 
