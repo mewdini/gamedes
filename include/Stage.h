@@ -17,8 +17,9 @@ using namespace sf;
 class Stage {
     public:
         Stage();
-        Stage(int); // Just for testing
-        Stage(int, int);
+        Stage(Texture*);
+        //Stage(int); // Just for testing
+        //Stage(int, int);
         //void StartStage();
         int getGold();
         void setGold(int);

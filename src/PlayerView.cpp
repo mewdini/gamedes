@@ -7,6 +7,7 @@ PlayerView::PlayerView(){
     //window.create(sf::VideoMode(800,600,32), "COVID Champion", sf::Style::Close);
     //font.loadFromFile("insert font here");
     texture.loadFromFile("../data/FourthSpriteSheet.png");
+    texture2.loadFromFile("../data/covid.png");
     //Fourth sheet is rotated compared to third, all x/y coords are reversed
 }
 
@@ -191,6 +192,10 @@ sf::RenderWindow* PlayerView::getWindow()
 
 sf::Texture PlayerView::getTexture(){
     return texture;
+}
+
+sf::Texture* PlayerView::getTexture2(){
+    return &texture2;
 }
 
 void PlayerView::setTexture(sf::Texture newText){
