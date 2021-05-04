@@ -14,7 +14,7 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
     // PView's texture and load from that instead
     sf::Texture m_Texture;
     sf::Vector2f pixel_pos;
-    m_Texture.loadFromFile("../data/coronavirus_0.png");
+    m_Texture.loadFromFile("../data/covid.png");
     switch(type)
     {
         case Viruses::covid:

@@ -15,10 +15,13 @@ Stage::Stage(){
     virus_count = 100;
     start1 = 15;
     start2 = 6;
+    virus_tex = Texture();
+    virus_tex.loadFromFile("../data/covid.png");
     // use malloc if these are local variables?
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
         auto temp_virus = Virus(start1, start2, Left, Viruses::covid, 13, map_values);
+        temp_virus.setTexture(&virus_tex);
         auto temp_pair = std::pair<Virus, sf::Int64>(temp_virus, 1000000);
         virus_list.push_back(temp_pair);
     }
