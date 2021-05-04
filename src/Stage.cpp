@@ -6,7 +6,7 @@ Stage::Stage(){
     height = 12;
     width = 16;
     tower_count = 20;
-    virus_count = 100;
+    virus_count = 40;
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
@@ -144,7 +144,7 @@ void Stage::update(Int64 elapsedTime)
 {
     // cout << virus_list.front().first.getLocationX() << " " << virus_list.front().first.getLocationY() << endl;
     // check if time to spawn virus
-    virus_timer += elapsedTime;
+    virus_timer += elapsedTime/2;
     if ((virus_timer >= (*cur_virus_pair).second) && (virus_count > 0)) {
         cout << "spawned" << endl;
         spawnVirus();

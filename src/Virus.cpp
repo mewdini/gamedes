@@ -73,7 +73,6 @@ Virus::Virus(int start_x, int start_y, Directions dir, Viruses type, int seed, i
     Vector2f start_pixel_pos = gridToPixelTopLeft(start_grid_pos);
     sprite.setPosition(start_pixel_pos.x, start_pixel_pos.y);
 
-    m_Grid = level;
 
     m_Dir = Left;
 }
