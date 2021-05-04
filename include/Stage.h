@@ -27,7 +27,7 @@ class Stage {
         void setValueOnMap(int, int, int);
         void allAttack();
         std::list<Tower*>* getTowerList();
-        bool build(int, int, int);
+        bool build(Towers, int, int);
         std::list<std::pair<Virus*, Int64>*>* getVirusList();
         void update(Int64);
         static Vector2i pixelToGrid(Vector2f);

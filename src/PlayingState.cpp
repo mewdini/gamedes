@@ -110,8 +110,7 @@ void PlayingState::initKeyBinds()
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
-    Stage s(7);
-    this->stage=s;
+    this->stage=Stage();
     //s.setValueOnMap(6,0,4);
     PlayerView* pView = new PlayerView();
     this->initFonts();

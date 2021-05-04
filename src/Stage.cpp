@@ -3,17 +3,7 @@
 
 // Zack - Removed a bunch of ; at end of methods
 
-Stage::Stage()
-{
-    height = 16;
-    width = 12;
-    map[192];
-    tower_count = 20;
-    virus_count = 100;
-    cur_virus_pair = virus_list.begin();
-}
-
-Stage::Stage(int x){
+Stage::Stage(){
     // Test to set up first stage
     height = 12;
     width = 16;
@@ -34,13 +24,7 @@ Stage::Stage(int x){
         virus_list.push_back(&temp_pair);
     }
     base_loc = Vector2i(7,6);
-}
-
-Stage::Stage(int x, int y)
-{
-    width = x;
-    height = y;
-    map[width*height];
+    gold = 100;
 }
 
 int* Stage::getMap()
@@ -63,7 +47,7 @@ int Stage::getValueOnMap(int x,int y){          //inputs are coordinates on the 
 void Stage::setValueOnMap(int x, int y, int v){
     map[y * width + x] = v;
 }
-bool Stage::build(int type, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
+bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
     if(map[posx + width * posy] != 3){
         int a=map[posx + width * posy];
         printf("Invalid Position of value %d.\n",a);
@@ -71,10 +55,11 @@ bool Stage::build(int type, int posx, int posy ){    //If the player clicks on a
         return false;   //position is not valid;
     }
     int tower_cost;
+    cout << type << endl;
     switch (type)
     {
-        case 1:
-            tower_cost = 100;
+        case Towers::first:
+            tower_cost = 10;
             break;
     }
 
