@@ -16,12 +16,39 @@ Stage::Stage(){
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
-    virus_tex.loadFromFile("../data/covid.png");
-    // use malloc if these are local variables?
+    if(virus_tex.loadFromFile("../data/covid.png")){
+        std::cout << "TEXTURE" << std::endl;
+    }
+    // use malloc if these are local variables? 
     // populate virus list
     for (int i = 0; i < virus_count; i++) {
         auto temp_virus = Virus(start1, start2, Left, Viruses::covid, 13, map_values);
         temp_virus.setTexture(&virus_tex);
+        auto temp_pair = std::pair<Virus, sf::Int64>(temp_virus, 1000000);
+        virus_list.push_back(temp_pair);
+    }
+    cur_virus_pair = virus_list.begin();
+    base_loc = Vector2i(7,6);
+    gold = 100;
+}
+
+Stage::Stage(sf::Texture* vir_tex){
+    // Test to set up first stage
+    height = 12;
+    width = 16;
+    int map_values[192] = {0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,7,6,6,6,6,6,6,8,0,0,0,0,0,0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,
+    0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,1,0,0,5,0,0,0,7,6,0,0,0,5,0,0,0,5,0,0,5,0,0,0,5,3,0,0,0,5,0,0,0,5,0,3,5,3,0,3,5,0,0,0,0,5,3,0,3,5,0,0,9,6,6,6,10,0,0,0,0,9,6,6,6,10,0,0,0,0,3,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
+    tower_count = 20;
+    virus_count = 100;
+    start1 = 15;
+    start2 = 6;
+    // use malloc if these are local variables? 
+    // populate virus list
+    for (int i = 0; i < virus_count; i++) {
+        auto temp_virus = Virus(start1, start2, Left, Viruses::covid, 13, map_values);
+        temp_virus.setTexture(vir_tex);
         auto temp_pair = std::pair<Virus, sf::Int64>(temp_virus, 1000000);
         virus_list.push_back(temp_pair);
     }

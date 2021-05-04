@@ -110,9 +110,9 @@ void PlayingState::initKeyBinds()
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
-    this->stage=Stage();
+    this->stage=Stage(pView.getTexture2());
     //s.setValueOnMap(6,0,4);
-    PlayerView* pView = new PlayerView();
+    //PlayerView* pView = new PlayerView();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons();
