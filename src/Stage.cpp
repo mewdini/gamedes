@@ -178,3 +178,8 @@ void Stage::spawnVirus() {
     cur_virus_pair = next(cur_virus_pair);
     virus_count--;
 }
+
+bool Stage::baseDead()
+{
+    return base_health == 0;
+}

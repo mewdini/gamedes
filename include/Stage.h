@@ -26,6 +26,7 @@ class Stage {
         void setGold(int);
         int* getMap();
         int getValueOnMap(int , int);
+        bool baseDead();
         void setValueOnMap(int, int, int);
         void allAttack();
         std::list<Tower>* getTowerList();
