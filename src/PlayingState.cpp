@@ -133,8 +133,8 @@ void PlayingState::update(const float& dt)
     this->stage.update(dt);
     if (stage.baseDead())
     {
-        this->states->push(new End(this->window,this->supportedKeys, this->states));
-
+        // this->states->push(new End(this->window,this->supportedKeys, this->states));
+        ;
     }
 }
 

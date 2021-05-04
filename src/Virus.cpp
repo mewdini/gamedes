@@ -170,11 +170,8 @@ void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
             }
             if (pastMid)
             {
-
                 setAlive(false);
                 *base_health -= m_Damage;
-
-                }
             }
         }
     }
