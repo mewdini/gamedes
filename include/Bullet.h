@@ -9,7 +9,7 @@ class Bullet : public SpriteActor{
     public:
         Bullet();
         Bullet(float, float, int, int, int, int, Virus*, float*);
-        void follow();
+        void follow(Int64);
         bool detectHit();
         
 

@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "Virus.h"
 #include "Tower.h"
+#include "Bullet.h"
 #include <math.h>
 #include <iterator>
 #include <list>
@@ -47,6 +48,7 @@ class Stage {
         std::list<std::pair<Virus, Int64>>::iterator cur_virus_pair;
         std::list<Tower> tower_list;
         std::list<std::pair<Virus, Int64>> virus_list;                 //the list of enemies/towers for this level
+        std::list<Bullet*> bullet_list;
         void attackFirstVirus(Tower*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         sf::Int64 virus_timer;

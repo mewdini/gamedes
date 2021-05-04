@@ -1,8 +1,6 @@
 #include "Stage.h"
 #include <SFML/Graphics.hpp>
 
-// Zack - Removed a bunch of ; at end of methods
-
 Stage::Stage(){
     // Test to set up first stage
     height = 12;
@@ -118,7 +116,9 @@ void Stage::attackFirstVirus(Tower* tower){  //x,y are coordinates of the tower,
             float r = tower->GetRadius();
             if ((posx-x)*(posx-x)+(posy-y)*(posy-y)<=r*r)
             {
+                //std::cout << "SHOT" << std::endl;
                 tower->Attack(enemy);
+                bullet_list.push_back(tower->getBullet());
             }
         }
     }
@@ -152,7 +152,15 @@ void Stage::update(Int64 elapsedTime)
 
     // update all towers
     for (auto& tower : tower_list) {
-        tower.Update(elapsedTime);
+        attackFirstVirus(&tower);
+    }
+
+    // update all bullets
+    for(auto& bullet : bullet_list){
+        bullet->follow(elapsedTime);
+        if(bullet->detectHit()){
+            delete bullet;
+        }
     }
 }
 
