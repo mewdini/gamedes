@@ -140,6 +140,8 @@ void Virus::update(Int64 elapsedTime)
 void Virus::updateDirection()
 {
     Vector2f pixelPos = getPosition();
+    pixelPos.x += 25;
+    pixelPos.y += 25;
     Vector2i gridPos = pixelToGrid(pixelPos);
     int tile_val = getValueOnMap(gridPos.x, gridPos.y);
     if ((tile_val >= 5) && (tile_val <= 10))

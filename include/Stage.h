@@ -39,7 +39,9 @@ class Stage {
         int height;
         int level;
         //int difficulty;
-        int map[192];                           //might need to import the size of screen from other files instead of hardcoding
+        int map[192] = {0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,7,6,6,6,6,6,6,8,0,0,0,0,0,0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,5,0,0,0,0,0,
+    0,0,0,5,3,0,0,0,0,3,5,0,0,0,0,0,0,0,0,5,0,0,0,1,0,0,5,0,0,0,7,6,0,0,0,5,0,0,0,5,0,0,5,0,0,0,5,3,0,0,0,5,0,0,0,5,0,3,5,3,0,3,5,0,0,0,0,5,3,0,3,5,0,0,9,6,6,6,10,0,0,0,0,9,6,6,6,10,0,0,0,0,3,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};                         //might need to import the size of screen from other files instead of hardcoding
         int tower_count;
         int virus_count;
         std::list<std::pair<Virus, Int64>>::iterator cur_virus_pair;
