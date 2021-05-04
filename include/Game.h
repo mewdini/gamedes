@@ -10,6 +10,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "PlayerView.h"
+#include "EndGameState.h"
 
 
 

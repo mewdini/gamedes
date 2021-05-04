@@ -5,24 +5,29 @@
 #include "EndGameState.h"
 
 
+
+void EndGameState::updateInput(const float &dt)
+{
+    this->checkForQuit();
+}
 void EndGameState::initButtons()
 {
-    this->buttons["PlayAgain"]  = new Button(300, 400, 150, 50, &this->font,
+    this->buttons["PlayAgain"]  = new Button(450, 100, 150, 50, &this->font,
                                              "Play Again",sf::Color(70,70,70,200),
                                              sf::Color(150,150,150,200),
                                              sf::Color(20,20,20,200) );
 
-    this->buttons["Select Level"] = new Button(200, 470, 150, 50, &this->font,
+    this->buttons["Select Level"] = new Button(450, 180, 150, 50, &this->font,
                                                "Select Level",sf::Color(70,70,70,200),
                                                sf::Color(150,150,150,200),
                                                sf::Color(20,20,20,200) );
 
-    this->buttons["ExitGame"] = new Button(100, 400, 150, 50, &this->font,
+    this->buttons["ExitGame"] = new Button(450, 260, 150, 50, &this->font,
                                            "Quit",sf::Color(70,70,70,200),
                                            sf::Color(150,150,150,200),
                                            sf::Color(20,20,20,200) );
 
-    this->buttons["GoBackToMM"] = new Button(100, 400, 150, 50, &this->font,
+    this->buttons["GoBackToMM"] = new Button(450, 340, 150, 50, &this->font,
                                              "Main Menu",sf::Color(70,70,70,200),
                                              sf::Color(150,150,150,200),
                                              sf::Color(20,20,20,200) );
@@ -37,7 +42,7 @@ void EndGameState::initBackground()
 
     );
 
-    if(!this->backgroundSprite.loadFromFile("../data/MainMenuSprite.png"))
+    if(!this->backgroundSprite.loadFromFile("../data/background-c19.png"))
     {
         throw"ERROR::Mainmenu failed to load background sprite";
     }
@@ -144,11 +149,26 @@ void EndGameState::renderButtons(sf::RenderTarget* target)
 
 }
 
-void EndGameState::update(const float& dt)
-{
+void EndGameState::update(const float& dt) {
     this->updateInput(dt);
     this->updateMousePositions();
     this->updateButtons();
     //this->mainMenuButton->update(this->mousePosView);
     //system('cls');
     //std::cout << this->mousePosView.x << " " << this->mousePosView.y << "\n";
+
+}
+
+
+
+void EndGameState::render(sf::RenderTarget *target)
+{
+    if (!target)
+        target = this->window;
+    target->draw(this->background);
+    this->renderButtons(target);
+}
+void EndGameState::endState()
+{
+    ;
+}
