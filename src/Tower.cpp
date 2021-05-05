@@ -6,7 +6,7 @@
 #include <memory>
 
 using namespace sf;
-Tower::Tower(int x, int y, int level)
+Tower::Tower(int x, int y, Towers level)
 {
     // Why does this pass level when the first thing it does is set level to equal the param
     TowerLevel(level);
@@ -18,14 +18,17 @@ Tower::Tower(int x, int y, int level)
     bullet2 = Bullet();
     bullet3 = Bullet();
     bullet4 = Bullet();
-}
-
-Tower::Tower()
-{
+    ready_to_attack = false;
     radius = 128.0f;
 }
 
-void Tower::TowerLevel(int lvl)
+// Tower::Tower()
+// {
+//     radius = 128.0f;
+//     ready_to_attack = false;
+// }
+
+void Tower::TowerLevel(Towers lvl)
 {
     level = lvl;
     radius = 128;
@@ -34,30 +37,33 @@ void Tower::TowerLevel(int lvl)
 
     switch(lvl)
     {
-        // ZZ- changed to 0 since only time this is called it passes in a 0
-        case 0:
-            attack_speed = 1.0f;
+        case first:
+            attack_speed = 1.0f; // in seconds
             damage = 15;
             break;
 
-        case 2:
-            attack_speed = 2.0f;
-            damage = 30;
-            break;
+        // case 2:
+        //     attack_speed = 2.0f;
+        //     damage = 30;
+        //     break;
 
-        case 3:
-            attack_speed = 3.0f;
-            damage = 40;
-            break;
+        // case 3:
+        //     attack_speed = 3.0f;
+        //     damage = 40;
+        //     break;
 
-        case 4:
-            attack_speed = 4.0f;
-            damage = 50;
-            break;
+        // case 4:
+        //     attack_speed = 4.0f;
+        //     damage = 50;
+        //     break;
 
-        case 5:
-            attack_speed = 4.0f;
-            damage = 60;
+        // case 5:
+        //     attack_speed = 4.0f;
+        //     damage = 60;
+        //     break;
+
+        default:
+            cout << "Tower level does not exist" << endl;
     }
 
 }
@@ -109,7 +115,7 @@ const Vector2f Tower::GetCenteredPosition()
     return vec;
 }
 
-const int Tower::GetGoldCost(int level)
+const float Tower::GetGoldCost(Towers level)
 {
     return gold_cost;
 }
@@ -150,4 +156,14 @@ void Tower::Attack(Virus* virus, Texture* texture)
 Bullet Tower::getBullet(){
     //TODO add more gets for other bullets, or a way of determining which one they should get without specifying
     return bullet1;
+}
+
+bool Tower::GetReadyToAttack()
+{
+    return ready_to_attack;
+}
+
+void Tower::SetReadyToAttack(bool ready)
+{
+    ready_to_attack = ready;
 }

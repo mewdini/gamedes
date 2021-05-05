@@ -16,7 +16,7 @@ class Tower : public SpriteActor
 public:
     Tower();
     //void Draw(RenderTarget *Whatever)
-    explicit Tower(int x, int y, int level);
+    explicit Tower(int x, int y, Towers level);
     //draw function needs a target to draw
     //void Draw(RenderTarget *something);
     void Update(float elapsedTime);
@@ -27,10 +27,12 @@ public:
     const Vector2f GetCenteredPosition();
     const FloatRect GetBoundingBox();
     const int GetUpgradeLevel();
-    const int GetGoldCost(int level);
-    void TowerLevel(int lvl);
+    const float GetGoldCost(Towers level);
+    void TowerLevel(Towers lvl);
     void Attack(Virus*, Texture*);
     Bullet getBullet();
+    bool GetReadyToAttack();
+    void SetReadyToAttack(bool);
 
 private:
     Texture tower_tex;
@@ -49,6 +51,7 @@ private:
     // Pixel Position since the sprite isn't storing it
     int pixX;
     int pixY;
+    bool ready_to_attack;
 protected:
     float gold_cost;
 

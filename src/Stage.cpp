@@ -103,13 +103,13 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
     printf("Tower Built.");
     //determine by enum
     Tower new_tower = Tower(posx,posy,type);
-    tower_list.push_back(new_tower);
+    tower_list.push_back(pair<Tower, Int64>(new_tower, 0));
     //cur_tower=boost::next(cur_tower);
     return true;
 
 }
 
-void Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordinates of the tower, and r is the range of the tower 
+bool Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordinates of the tower, and r is the range of the tower 
     for (auto & virus : virus_list) {
         Virus* enemy = &(virus.first);
         if(enemy->isAlive()){
@@ -124,12 +124,14 @@ void Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordi
             {
                 tower->Attack(enemy, pView->getTexture());
                 bullet_list.push_back(tower->getBullet());
+                return true;
             }
         }
     }
+    return false;
 }
 
-std::list<Tower>* Stage::getTowerList()
+std::list<std::pair<Tower, Int64>>* Stage::getTowerList()
 {
     return &tower_list;
 }
@@ -160,8 +162,25 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
     }
 
     // update all towers
-    for (auto& tower : tower_list) {
-        attackFirstVirus(&tower, pView);
+    for (auto& pair : tower_list) {
+        auto tower = &(pair.first);
+        if ((tower->GetAttackSpeed() * 1000000) <= pair.second) // TODO doesnt use microseconds
+        {
+            tower->SetReadyToAttack(true);
+            pair.second = 0;
+        }
+        else
+        {
+            pair.second += elapsedTime;
+        }
+        if (tower->GetReadyToAttack())
+        {
+            // try to attack a virus
+            if (attackFirstVirus(&(pair.first), pView))
+            {
+                tower->SetReadyToAttack(false);
+            }
+        }
     }
 
     // update all bullets

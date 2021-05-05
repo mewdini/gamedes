@@ -29,7 +29,7 @@ class Stage {
         int getValueOnMap(int , int);
         void setValueOnMap(int, int, int);
         void allAttack();
-        std::list<Tower>* getTowerList();
+        std::list<std::pair<Tower, Int64>>* getTowerList();
         std::list<Bullet>* getBulletList();
         bool build(Towers, int, int);
         std::list<std::pair<Virus, Int64>>* getVirusList();
@@ -48,10 +48,10 @@ class Stage {
         int tower_count;
         int virus_count;
         std::list<std::pair<Virus, Int64>>::iterator cur_virus_pair;
-        std::list<Tower> tower_list;
-        std::list<std::pair<Virus, Int64>> virus_list;                 //the list of enemies/towers for this level
+        std::list<std::pair<Tower, Int64>> tower_list;                 //the list of towers for this level and how long since they last shot
+        std::list<std::pair<Virus, Int64>> virus_list;                 //the list of enemies for this level and their timings
         std::list<Bullet> bullet_list;
-        void attackFirstVirus(Tower*, PlayerView*);          //choose the enemy to attack
+        bool attackFirstVirus(Tower*, PlayerView*);          //choose the enemy to attack
         void updateTowers();              //check all towers if they can attack an enemy
         sf::Int64 virus_timer;
         int gold;                           //used to build defense, increase when enemies are killed (maybe has a static growth rate)

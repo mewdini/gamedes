@@ -129,7 +129,7 @@ void PlayingState::update(const float& dt)
     this->updateInput(dt);
     this->updateButtons();
     this->player.update(dt);
-    this->stage.update(dt);
+    this->stage.update(dt, &pView);
     //if (stage.baseDead())
     //{
         //this->states->push(new E(this->window,this->supportedKeys, this->states));
