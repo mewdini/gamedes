@@ -11,6 +11,8 @@
 #include "Button.h"
 #include "Stage.h"
 #include "PlayerView.h"
+#include "Tower.h"
+#include "EndGameState.h"
 
 class PlayingState: //GameState
         public State

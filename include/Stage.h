@@ -37,6 +37,7 @@ class Stage {
         static Vector2i pixelToGrid(Vector2f);
         static Vector2f gridToPixelMiddle(Vector2i);
         static Vector2f gridToPixelTopLeft(Vector2i);
+        bool baseAlive();
     protected:
         int width;
         int height;

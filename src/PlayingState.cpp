@@ -3,8 +3,6 @@
 //
 
 #include "PlayingState.h"
-#include "Stage.h"
-#include "Tower.h"
 
 void PlayingState::initButtons()
 {
@@ -130,11 +128,10 @@ void PlayingState::update(const float& dt)
     this->updateButtons();
     this->player.update(dt);
     this->stage.update(dt, &pView);
-    //if (stage.baseDead())
-    //{
-        //this->states->push(new E(this->window,this->supportedKeys, this->states));
-        ;
-    //}
+    if (!stage.baseAlive())
+    {
+        this->states->push(new EndGameState(this->window,this->supportedKeys, this->states));
+    }
 }
 
 void PlayingState::render(sf::RenderTarget* target)
