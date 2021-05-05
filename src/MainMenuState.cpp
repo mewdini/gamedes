@@ -82,10 +82,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string, int>
     this->initBackg();
     this->initFonts();
     this->initKeyBinds();
-    this->initButtons();
-
-
-
+    this->initButtons(); 
 }
 
 MainMenuState::~MainMenuState()
