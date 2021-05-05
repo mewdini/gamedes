@@ -140,7 +140,8 @@ void PlayerView::drawBullets(sf::RenderWindow* window, std::list<Bullet>* bullet
     //Draws everything contained in the list of viruses
     for (auto& i : *bullets)
     {
-        window->draw(i.getSprite());
+        if(i.isActive())
+            window->draw(i.getSprite());
     }
 }
 

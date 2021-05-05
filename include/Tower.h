@@ -43,11 +43,7 @@ private:
     float damage;
     double angle_to_point(double x, double y);
     int upgrade_level;
-    // Multiples Bullets to handle attack speed
-    Bullet bullet1;
-    Bullet bullet2;
-    Bullet bullet3;
-    Bullet bullet4;
+    Bullet bullet;
     // Pixel Position since the sprite isn't storing it
     int pixX;
     int pixY;

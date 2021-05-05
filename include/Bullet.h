@@ -13,6 +13,7 @@ class Bullet : public SpriteActor{
         bool detectHit();
         bool detectYOverlap();
         bool isActive();
+        bool operator==(Bullet);
         
 
     private:

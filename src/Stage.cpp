@@ -187,7 +187,7 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
     for(auto& bullet : bullet_list){
         bullet.follow(elapsedTime);
         if(bullet.detectHit()){
-            // Do something to get rid of bullet
+            //Detect hit does what would be here
         }
     }
 }

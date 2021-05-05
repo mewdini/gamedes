@@ -14,10 +14,7 @@ Tower::Tower(int x, int y, Towers level)
     pixX = x*50;
     pixY = y*50;
     tower_sprite.setPosition(pixX, pixY);
-    bullet1 = Bullet();
-    bullet2 = Bullet();
-    bullet3 = Bullet();
-    bullet4 = Bullet();
+    bullet = Bullet();
     ready_to_attack = false;
     radius = 128.0f;
 }
@@ -130,32 +127,13 @@ void Tower::Attack(Virus* virus, Texture* texture)
     // TODO animate attack
 
     // Creates a bullet on top of tower and sets its target to the given virus 
-    // Checks for inactive bullet to make active, allows for more based on attack speed
-    if(!bullet1.isActive() && attack_speed >= 1){
-        bullet1 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
-        bullet1.setTexture(texture);
-    }
-
-    else if(!bullet2.isActive() && attack_speed >= 2){
-        bullet2 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
-        bullet2.setTexture(texture);
-    }
-
-    else if(!bullet3.isActive() && attack_speed >= 3){
-        bullet3 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
-        bullet3.setTexture(texture);
-    }
-
-    else if(!bullet4.isActive() && attack_speed >= 4){
-        bullet4 = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
-        bullet4.setTexture(texture);
-    }
-
+    bullet = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
+    bullet.setTexture(texture);
 }
 
 Bullet Tower::getBullet(){
     //TODO add more gets for other bullets, or a way of determining which one they should get without specifying
-    return bullet1;
+    return bullet;
 }
 
 bool Tower::GetReadyToAttack()

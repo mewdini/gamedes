@@ -17,12 +17,19 @@ Bullet::Bullet(float posX, float posY, int left, int top, int width, int height,
 }
 
 void Bullet::follow(Int64 delta){
+    // Controls bullet's attempt to track and hit a virus
+
+    // If target was killed before bullet reaches it, ends the bullet
+    if(!target->isAlive()){
+        active = false;
+    }
+
+    // Only goes forth while active
     if(active){
         // Copied delta logic from Virus
         float offsetX, offsetY = 0;
         float f_delta = (float) delta;
         float C = 1000000; // combats delta being in microseconds
-
 
         // Current calcs assume bullet is 20x20, virus is 50x50
         // calculates center of target
@@ -36,20 +43,20 @@ void Bullet::follow(Int64 delta){
         // Determines relative location and sets movement values to send bullet towards its target 
         // Arbitraily decided to make base speed of bullets 50px?, may need to change
         if(currentX - centerX > 3){
-            offsetX = -(50 * (f_delta / C));
+            offsetX = -(65 * (f_delta / C));
         }
         else if(currentX - centerX < -3){
-            offsetX = 50 * (f_delta / C);
+            offsetX = 65 * (f_delta / C);
         }
         else{
             offsetX = 0;
         }
 
         if(currentY - centerY > 3){
-            offsetY = -50 * (f_delta / C);
+            offsetY = -65 * (f_delta / C);
         }
         else if(currentY - centerY < -3){
-            offsetY = 50 * (f_delta / C);
+            offsetY = 65 * (f_delta / C);
         }
         else{
             offsetY = 0;
@@ -83,9 +90,19 @@ bool Bullet::detectHit(){
 
 bool Bullet::detectYOverlap(){
     // Checks if bottom of bullet is below top of virus or top of bullet is above bottom of virus
-    return (getLocationY()+20 >= target->getLocationY()+8 || getLocationY() <= target->getLocationY()+42);
+    return (getLocationY()+20 >= target->getLocationY()+8 && getLocationY() <= target->getLocationY()+42);
 }
 
 bool Bullet::isActive(){
     return active;
+}
+
+bool Bullet::operator==(Bullet other){
+    // Needed to compare bullets to enable removal from list
+    // Same location should be enough, could also add checking for same target but would need overload on virus sa well
+    if(getLocationX() == other.getLocationX() && getLocationY() == other.getLocationY()){
+        return true;
+    }
+
+    return false;
 }
