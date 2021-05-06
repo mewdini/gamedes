@@ -44,7 +44,7 @@ public:
     //Update Virus Each Frame, baseLocation is the location of the
     //base that is on the end of the road, we are updating the virus
     //while its chasing towards the base on the end of the road
-    void update(Int64, Vector2i*, float*);
+    int update(Int64, Vector2i*, float*);
 
     void updateDirection();
 
@@ -77,7 +77,7 @@ private:
     float COUGHING_PERSON_HEALTH = 400;
 
     //Virus Damage
-    float COVID_VIRUS_DAMAGE = 100;
+    float COVID_VIRUS_DAMAGE = 20; //maybe end game if 5 reaches the base
     float RESISTANT_STRAIN_DAMAGE = 200;
     float CONTAGIOUS_STRAIN_DAMAGE = 300;
     float AIRBORN_STRAIN_DAMAGE = 400;
@@ -109,6 +109,8 @@ private:
 
     //Did the virus already turn in this box?
     bool m_Turned;
+
+    int gainGold=0;
 };
 
 

@@ -42,21 +42,22 @@ void Bullet::follow(Int64 delta){
 
         // Determines relative location and sets movement values to send bullet towards its target 
         // Arbitraily decided to make base speed of bullets 50px?, may need to change
+        int speed=120;
         if(currentX - centerX > 3){
-            offsetX = -(65 * (f_delta / C));
+            offsetX = -(speed * (f_delta / C));
         }
         else if(currentX - centerX < -3){
-            offsetX = 65 * (f_delta / C);
+            offsetX = speed * (f_delta / C);
         }
         else{
             offsetX = 0;
         }
 
         if(currentY - centerY > 3){
-            offsetY = -65 * (f_delta / C);
+            offsetY = -speed * (f_delta / C);
         }
         else if(currentY - centerY < -3){
-            offsetY = 65 * (f_delta / C);
+            offsetY = speed * (f_delta / C);
         }
         else{
             offsetY = 0;

@@ -84,6 +84,7 @@ bool Virus::hit(float damage)
     {
         //DEAD
         m_Alive = false;
+        gainGold=1;
         //sprite.setTexture(TextureHolder::GetTexture("graphicsHere")
         //this sprite creates a dead Virus on the map if we want that
         // we can just make it disappear
@@ -119,7 +120,7 @@ Sprite Virus::getSprite()
 }
 
 // This function has to update virus location from the base
-void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
+int Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
 {
     if (m_Alive)
     {
@@ -172,9 +173,21 @@ void Virus::update(Int64 elapsedTime, Vector2i* base_loc, float* base_health)
             {
                 setAlive(false);
                 *base_health -= m_Damage;
+
+                return 1;
             }
         }
     }
+    Vector2f pixelPos = getPosition();
+    if(gainGold==1){
+        gainGold=0;
+        
+        return 1;
+    }
+    else{
+        return 0;
+    }
+    
 }
 
 void Virus::updateDirection()

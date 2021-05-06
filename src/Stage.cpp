@@ -6,7 +6,7 @@ Stage::Stage(){
     height = 12;
     width = 16;
     tower_count = 20;
-    virus_count = 40;
+    virus_count = 100;
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
@@ -24,7 +24,7 @@ Stage::Stage(){
     cur_virus_pair = virus_list.begin();
     base_loc = Vector2i(7,6);
     gold = 100;
-    base_health = 100;
+    base_health = 10;
 }
 
 Stage::Stage(sf::Texture* vir_tex){
@@ -53,7 +53,7 @@ Stage::Stage(sf::Texture* vir_tex){
     }
     cur_virus_pair = virus_list.begin();
     base_loc = Vector2i(7,6);
-    gold = 100;
+    gold = 220;
     base_health = 100;
 }
 
@@ -88,7 +88,7 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
     switch (type)
     {
         case Towers::first:
-            tower_cost = 10;
+            tower_cost = 100;
             break;
     }
 
@@ -154,11 +154,16 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
         cout << "spawned" << endl;
         spawnVirus();
         virus_timer = 0;
+        virus_count--;
     }
 
     // update all viruses
     for (auto& pair : virus_list) {
-        pair.first.update(elapsedTime, &base_loc, &base_health);
+        int x=pair.first.update(elapsedTime, &base_loc, &base_health);
+                        cout<< x  <<endl;
+        if(x==1){
+            gold+=10;
+        }
     }
 
     // update all towers
