@@ -3,6 +3,7 @@
 #ifndef PlayerView_h
 #define PlayerView_h
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "SpriteActor.h"
 #include "Virus.h"
 #include "Tower.h"
@@ -32,6 +33,7 @@ class PlayerView{
         sf::Font font;
         sf::Texture texture;
         sf::Texture texture2;
+        sf::Music theme;
         SpriteActor background[192];
 
 };
