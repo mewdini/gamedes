@@ -78,26 +78,16 @@ void EndGameState::initKeyBinds()
     }
 
     ifs.close();
-//    this->keybinds["Move_Left"] = this->supportedKeys->at("A");
-//    this->keybinds["Move_Right"] = this->supportedKeys->at("D");
-//    this->keybinds["Move_Up"] = this->supportedKeys->at("W");
-//    this->keybinds["Move_Down"] = this->supportedKeys->at("S");
-//    this->keybinds["Close"] = this->supportedKeys->at("Escape");
 }
 
 EndGameState::EndGameState(sf::RenderWindow *window, std::map<std::string, int> *supportedKeys,
                            std::stack<State *> *states) : State(window, supportedKeys, states)
-
-
 {
     this->initVariable();
     this->initBackground();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons();
-
-
-
 }
 
 EndGameState::~EndGameState()
@@ -122,8 +112,6 @@ void EndGameState::updateButtons()
     {
         this->states->push(new PlayingState(this->window,this->supportedKeys, this->states));
     }
-
-
 
     //main menu
     if(this->buttons["GoBackToMM"]->isPressed())
@@ -153,6 +141,8 @@ void EndGameState::update(const float& dt) {
     this->updateInput(dt);
     this->updateMousePositions();
     this->updateButtons();
+    if (quit)
+        window->close();
     //this->mainMenuButton->update(this->mousePosView);
     //system('cls');
     //std::cout << this->mousePosView.x << " " << this->mousePosView.y << "\n";

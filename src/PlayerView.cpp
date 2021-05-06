@@ -9,13 +9,15 @@ PlayerView::PlayerView(){
     texture.loadFromFile("../data/FourthSpriteSheet.png");
     texture2.loadFromFile("../data/covid.png");
     theme.openFromFile("../data/theme.wav");
+    icon.loadFromFile("../data/coronavirus_0.png");
+    theme.play();
+    theme.setLoop(true);
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
     //Fourth sheet is rotated compared to third, all x/y coords are reversed
 }
 
 void PlayerView::init(){
     //Sets up initial state, probably loads up main menu or something
-    theme.play();
-    theme.setLoop(true);
 
     // Initial code just making sure window is created and started, will change later
     if(window.isOpen()){

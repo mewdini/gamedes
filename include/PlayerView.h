@@ -34,6 +34,7 @@ class PlayerView{
         sf::Texture texture;
         sf::Texture texture2;
         sf::Music theme;
+        sf::Image icon;
         SpriteActor background[192];
 
 };

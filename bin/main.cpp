@@ -10,20 +10,8 @@
 
 int main(int argc, char** argv)
 {
-
-
-
-
     Game game;
-
     game.run();
-//    sf::Clock delta;
-//    sf::Time dt;
-//
-//    // TODO handle time
-//
-//    PlayerView *p_view = new PlayerView();
-//    Game game(p_view);
 
     // Done.
     return 0;

@@ -151,7 +151,6 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
     // check if time to spawn virus
     virus_timer += elapsedTime/2;
     if ((virus_timer >= (*cur_virus_pair).second) && (virus_count > 0)) {
-        cout << "spawned" << endl;
         spawnVirus();
         virus_timer = 0;
         virus_count--;
@@ -160,7 +159,7 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
     // update all viruses
     for (auto& pair : virus_list) {
         int x=pair.first.update(elapsedTime, &base_loc, &base_health);
-                        cout<< x  <<endl;
+        // cout<< x  <<endl;
         if(x==1){
             gold+=10;
         }
