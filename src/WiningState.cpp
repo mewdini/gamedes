@@ -13,22 +13,22 @@ void WiningState::updateInput(const float &dt)
 }
 void WiningState::initButtons()
 {
-    this->buttons["PlayAgain"]  = new Button(450, 100, 150, 50, &this->font,
-                                             "Play Again",sf::Color(70,70,70,200),
+    this->buttons["NextLevel"]  = new Button(520, 200, 150, 50, &this->font,
+                                             "Next Level",sf::Color(70,70,70,200),
                                              sf::Color(150,150,150,200),
                                              sf::Color(20,20,20,200) );
 
-    this->buttons["Select Level"] = new Button(450, 180, 150, 50, &this->font,
+    this->buttons["Select Level"] = new Button(520, 250, 170, 50, &this->font,
                                                "Select Level",sf::Color(70,70,70,200),
                                                sf::Color(150,150,150,200),
                                                sf::Color(20,20,20,200) );
 
-    this->buttons["ExitGame"] = new Button(450, 260, 150, 50, &this->font,
+    this->buttons["ExitGame"] = new Button(520, 300, 150, 50, &this->font,
                                            "Quit",sf::Color(70,70,70,200),
                                            sf::Color(150,150,150,200),
                                            sf::Color(20,20,20,200) );
 
-    this->buttons["GoBackToMM"] = new Button(450, 340, 150, 50, &this->font,
+    this->buttons["GoBackToMM"] = new Button(520, 350, 150, 50, &this->font,
                                              "Main Menu",sf::Color(70,70,70,200),
                                              sf::Color(150,150,150,200),
                                              sf::Color(20,20,20,200) );
@@ -109,7 +109,7 @@ void WiningState::updateButtons()
         itr.second->update(this->mousePosView);
     }
     //play game
-    if(this->buttons["PlayAgain"]->isPressed())
+    if(this->buttons["NextLevel"]->isPressed())
     {
         this->states->push(new PlayingState(this->window,this->supportedKeys, this->states));
     }

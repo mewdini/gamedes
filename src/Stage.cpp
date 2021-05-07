@@ -110,6 +110,7 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
 }
 
 bool Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordinates of the tower, and r is the range of the tower 
+    bool gameWon = true;
     for (auto & virus : virus_list) {
         Virus* enemy = &(virus.first);
         if(enemy->isAlive()){
@@ -128,6 +129,11 @@ bool Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordi
             }
         }
     }
+
+//    if (gameWon)
+//    {
+//        this->states->push(new WiningState(this->window,this->supportedKeys, this->states));
+//    }
     return false;
 }
 

@@ -3,7 +3,8 @@
 //
 
 #include "PlayingState.h"
-# include "EndGameState.h"
+#include "EndGameState.h"
+#include "WiningState.h"
 void PlayingState::initButtons()
 {
     this->buttons["Hint"]  = new Button(150, 550, 500, 50, &this->font,
