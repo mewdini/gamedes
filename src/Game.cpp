@@ -73,8 +73,8 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-    this->states.push(new MainMenuState(this->window, &this->supportedKeys, &this->states));
-    // this->states.push(new EndGameState(this->window, &this->supportedKeys, &this->states));
+    //this->states.push(new MainMenuState(this->window, &this->supportedKeys, &this->states));
+    this->states.push(new WiningState(this->window, &this->supportedKeys, &this->states));
 }
 
 

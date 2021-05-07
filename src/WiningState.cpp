@@ -2,15 +2,16 @@
 // Created by M on 5/4/21.
 //
 
-#include "EndGameState.h"
+#include "WiningState.h"
 
 
 
-void EndGameState::updateInput(const float &dt)
+
+void WiningState::updateInput(const float &dt)
 {
     this->checkForQuit();
 }
-void EndGameState::initButtons()
+void WiningState::initButtons()
 {
     this->buttons["PlayAgain"]  = new Button(450, 100, 150, 50, &this->font,
                                              "Play Again",sf::Color(70,70,70,200),
@@ -34,7 +35,7 @@ void EndGameState::initButtons()
 
 }
 
-void EndGameState::initBackground()
+void WiningState::initBackground()
 {
     this->background.setSize(sf::Vector2f (static_cast<float>(this->window->getSize().x),
                                            static_cast<float>(this->window->getSize().y)
@@ -42,26 +43,26 @@ void EndGameState::initBackground()
 
     );
 
-    if(!this->backgroundSprite.loadFromFile("../data/background-c19.png"))
+    if(!this->backgroundSprite.loadFromFile("../data/vaxx.png"))
     {
         throw"ERROR::Endgame failed to load background sprite";
     }
     this->background.setTexture(&this->backgroundSprite);
 }
 
-void EndGameState::initVariable()
+void WiningState::initVariable()
 {
 
 }
 
-void EndGameState::initFonts()
+void WiningState::initFonts()
 {
     if(!this->font.loadFromFile("../data/8bitOperatorPlus-Regular.ttf"))
     {
         throw("Error: EndGame::Could not load font");
     }
 }
-void EndGameState::initKeyBinds()
+void WiningState::initKeyBinds()
 {
 
 
@@ -80,7 +81,7 @@ void EndGameState::initKeyBinds()
     ifs.close();
 }
 
-EndGameState::EndGameState(sf::RenderWindow *window, std::map<std::string, int> *supportedKeys,
+WiningState::WiningState(sf::RenderWindow *window, std::map<std::string, int> *supportedKeys,
                            std::stack<State *> *states) : State(window, supportedKeys, states)
 {
     this->initVariable();
@@ -90,7 +91,7 @@ EndGameState::EndGameState(sf::RenderWindow *window, std::map<std::string, int> 
     this->initButtons();
 }
 
-EndGameState::~EndGameState()
+WiningState::~WiningState()
 {
     auto itr = this->buttons.begin();
     for (itr = this->buttons.begin(); itr != this->buttons.end(); ++itr)
@@ -99,7 +100,7 @@ EndGameState::~EndGameState()
     }
 }
 
-void EndGameState::updateButtons()
+void WiningState::updateButtons()
 {
 
     /*updates the buttons in their states and takes care of their functionality*/
@@ -127,7 +128,7 @@ void EndGameState::updateButtons()
 
 }
 
-void EndGameState::renderButtons(sf::RenderTarget* target)
+void WiningState::renderButtons(sf::RenderTarget* target)
 {
     for(auto &itr : this->buttons)
     {
@@ -136,7 +137,7 @@ void EndGameState::renderButtons(sf::RenderTarget* target)
 
 }
 
-void EndGameState::update(const float& dt) {
+void WiningState::update(const float& dt) {
     this->updateInput(dt);
     this->updateMousePositions();
     this->updateButtons();
@@ -147,14 +148,14 @@ void EndGameState::update(const float& dt) {
 
 
 
-void EndGameState::render(sf::RenderTarget *target)
+void WiningState::render(sf::RenderTarget *target)
 {
     if (!target)
         target = this->window;
     target->draw(this->background);
     this->renderButtons(target);
 }
-void EndGameState::endState()
+void WiningState::endState()
 {
     ;
 }

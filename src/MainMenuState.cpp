@@ -24,7 +24,7 @@ void MainMenuState::initButtons()
                                            sf::Color(20,20,20,200) );
 }
 
-void MainMenuState::initBackg()
+void MainMenuState::initBackground()
 {
     this->background.setSize(sf::Vector2f (static_cast<float>(this->window->getSize().x),
                                            static_cast<float>(this->window->getSize().y)
@@ -39,7 +39,7 @@ void MainMenuState::initBackg()
     this->background.setTexture(&this->backgroundSprite);
 }
 
-void MainMenuState::initVariab()
+void MainMenuState::initVariable()
 {
 
 }
@@ -78,8 +78,8 @@ void MainMenuState::initKeyBinds()
 MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
         : State(window, supportedKeys, states)
 {
-    this->initVariab();
-    this->initBackg();
+    this->initVariable();
+    this->initBackground();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons(); 
@@ -132,11 +132,6 @@ void MainMenuState::update(const float& dt)
     this->updateInput(dt);
     this->updateMousePositions();
     this->updateButtons();
-    //this->mainMenuButton->update(this->mousePosView);
-    //system('cls');
-    //std::cout << this->mousePosView.x << " " << this->mousePosView.y << "\n";
-
-
 
 
 }

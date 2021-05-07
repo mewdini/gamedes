@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "PlayerView.h"
 #include "EndGameState.h"
+#include "WiningState.h"
 
 
 
