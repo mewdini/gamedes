@@ -133,6 +133,10 @@ void PlayingState::update(const float& dt)
     {
         this->states->push(new EndGameState(this->window,this->supportedKeys, this->states));
     }
+    else if (stage.allVirusKilled())
+    {
+        states->push(new WiningState(window, supportedKeys, states));
+    }
 }
 
 void PlayingState::render(sf::RenderTarget* target)

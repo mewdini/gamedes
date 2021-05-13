@@ -7,6 +7,7 @@ Stage::Stage(){
     width = 16;
     tower_count = 20;
     virus_count = 100;
+    virus_total = 100;
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
@@ -25,7 +26,8 @@ Stage::Stage(){
     base_loc = Vector2i(7,6);
     gold = 100;
     base_health = 10;
-}
+    virus_kill_count = 0;
+    }
 
 Stage::Stage(sf::Texture* vir_tex){
     // Test to set up first stage
@@ -37,6 +39,7 @@ Stage::Stage(sf::Texture* vir_tex){
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
     virus_count = 100;
+    virus_total = 100;
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
@@ -55,6 +58,7 @@ Stage::Stage(sf::Texture* vir_tex){
     base_loc = Vector2i(7,6);
     gold = 220;
     base_health = 100;
+    virus_kill_count = 0;
 }
 
 int* Stage::getMap()
@@ -110,7 +114,6 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
 }
 
 bool Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordinates of the tower, and r is the range of the tower 
-    bool gameWon = true;
     for (auto & virus : virus_list) {
         Virus* enemy = &(virus.first);
         if(enemy->isAlive()){
@@ -129,11 +132,6 @@ bool Stage::attackFirstVirus(Tower* tower, PlayerView* pView){  //x,y are coordi
             }
         }
     }
-
-//    if (gameWon)
-//    {
-//        this->states->push(new WiningState(this->window,this->supportedKeys, this->states));
-//    }
     return false;
 }
 
@@ -196,8 +194,8 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
     // update all bullets
     for(auto& bullet : bullet_list){
         bullet.follow(elapsedTime);
-        if(bullet.detectHit()){
-            //Detect hit does what would be here
+        if(bullet.detectHit()){ // if dead
+            virus_kill_count++;
         }
     }
 }
@@ -205,10 +203,14 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
 void Stage::spawnVirus() {
     (*cur_virus_pair).first.setAlive(true);
     cur_virus_pair = next(cur_virus_pair);
-    virus_count--;
 }
 
 bool Stage::baseAlive()
 {
     return (base_health > 0);
+}
+
+bool Stage::allVirusKilled()
+{
+    return (virus_kill_count == virus_list.size());
 }

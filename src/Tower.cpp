@@ -124,8 +124,6 @@ const int Tower::GetUpgradeLevel()
 
 void Tower::Attack(Virus* virus, Texture* texture)
 {
-    // TODO animate attack
-
     // Creates a bullet on top of tower and sets its target to the given virus 
     bullet = Bullet(pixX + 15, pixY + 15, 0, 550, 20, 20, virus, &damage);
     bullet.setTexture(texture);

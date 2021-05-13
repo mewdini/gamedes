@@ -68,25 +68,24 @@ void Bullet::follow(Int64 delta){
 
 bool Bullet::detectHit(){
     // Current calcs assume bullet is 20x20 and virus is 50x50
-    // Detects if bullet overlaps target virus, returns true if yes and false if no
-
+    // Detects if bullet overlaps target virus
+    // Returns if virus is dead
+    bool killed = false;
     if(active){
         //right side of bullet overlaps left side of virus
         if(getLocationX()+20 >= target->getLocationX()+8 && getLocationX()+20 <= target->getLocationX()+42 && detectYOverlap()){
-            target->hit(*damage);
+            killed = target->hit(*damage);
             active = false;
-            return true;
         }
         // left side of bullet overlaps right side of virus
         else if(getLocationX() <= target->getLocationX()+42 && getLocationX() >= target->getLocationX()+8 && detectYOverlap()){
-            target->hit(*damage);
+            killed = target->hit(*damage);
             active = false;
-            return true;
         }
     }
 
-    // If neither, returns false
-    return false;
+    // returns if virus dead
+    return killed;
 }
 
 bool Bullet::detectYOverlap(){

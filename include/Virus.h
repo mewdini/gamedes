@@ -23,7 +23,8 @@ public:
 
     Virus(int, int, Directions, Viruses, int, int*);
     
-    //When virus is hit 
+    // When virus is hit
+    // returns if dead 
     bool hit(float);
 
     //Find out if virus is alive
