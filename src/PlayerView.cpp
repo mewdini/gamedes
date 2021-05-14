@@ -175,3 +175,8 @@ sf::Texture* PlayerView::getTexture2(){
 void PlayerView::setTexture(sf::Texture newText){
     texture = newText;
 }
+
+sf::Music* PlayerView::getTheme()
+{
+    return &theme;
+}

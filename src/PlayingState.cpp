@@ -218,7 +218,8 @@ void PlayingState::renderButtons(sf::RenderTarget* target)
 
 void PlayingState::endState()
 {
-    // std::cout << "Ending game state" << "\n";
+    // std::cout << "Ending playing game state" << "\n";
+    pView.getTheme()->stop();
 }
 
 void PlayingState::updateInput(const float &dt)

@@ -108,12 +108,20 @@ void WiningState::updateButtons()
     //play game
     if(this->buttons["NextLevel"]->isPressed())
     {
+        State* temp_state = states->top();
+        states->pop();
+        states->top()->endState();
+        states->push(temp_state);
         this->states->push(new PlayingState(this->window,this->supportedKeys, this->states));
     }
 
     //main menu
     if(this->buttons["GoBackToMM"]->isPressed())
     {
+        State* temp_state = states->top();
+        states->pop();
+        states->top()->endState();
+        states->push(temp_state);
         this->states->push(new MainMenuState(this->window,this->supportedKeys, this->states));
     }
 

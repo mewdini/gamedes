@@ -27,6 +27,7 @@ class PlayerView{
         sf::Texture* getTexture();
         sf::Texture* getTexture2(); // Will need copies if multiple textures used
         void setTexture(sf::Texture);
+        sf::Music* getTheme();
 
     private:
         sf::RenderWindow window;
