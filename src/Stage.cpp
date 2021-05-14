@@ -161,24 +161,6 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
         if(x==1){
             gold+=10;
         }
-        cout << virus_list.front().first.isAlive() << endl;
-        cout << virus_list.front().first.getLocationX() << ", " << virus_list.front().first.getLocationY() << endl;
-        switch(virus_list.front().first.getDirection())
-        {
-            // Up, Down, Left, Right
-            case 0:
-                cout << "Up" << endl;
-                break;
-            case 1:
-                cout << "Down" << endl;
-                break;
-            case 2:
-                cout << "Left" << endl;
-                break;
-            case 3:
-                cout << "Right" << endl;
-                break;
-        }
     }
 
     // update all towers

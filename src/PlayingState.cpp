@@ -235,7 +235,7 @@ void PlayingState::renderButtons(sf::RenderTarget* target)
 
 void PlayingState::endState()
 {
-    std::cout << "Ending game state" << "\n";
+    // std::cout << "Ending game state" << "\n";
 }
 
 void PlayingState::updateInput(const float &dt)
