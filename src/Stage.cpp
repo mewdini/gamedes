@@ -161,6 +161,8 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
         if(x==1){
             gold+=10;
         }
+        cout << virus_list.front().first.isAlive() << endl;
+        cout << virus_list.front().first.getLocationX() << ", " << virus_list.front().first.getLocationY() << endl;
     }
 
     // update all towers
