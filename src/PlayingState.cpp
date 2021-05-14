@@ -99,19 +99,13 @@ void PlayingState::initKeyBinds()
     }
 
     ifs.close();
-//    this->keybinds["Move_Left"] = this->supportedKeys->at("A");
-//    this->keybinds["Move_Right"] = this->supportedKeys->at("D");
-//    this->keybinds["Move_Up"] = this->supportedKeys->at("W");
-//    this->keybinds["Move_Down"] = this->supportedKeys->at("S");
-//    this->keybinds["Close"] = this->supportedKeys->at("Escape");
+
 }
 
 PlayingState::PlayingState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys,std::stack<State*>*  states)
         : State(window, supportedKeys,states)
 {
     this->stage=Stage(pView.getTexture2());
-    //s.setValueOnMap(6,0,4);
-    //PlayerView* pView = new PlayerView();
     this->initFonts();
     this->initKeyBinds();
     this->initButtons();
@@ -127,7 +121,7 @@ void PlayingState::update(const float& dt)
     this->updateMousePositions();
     this->updateInput(dt);
     this->updateButtons();
-    this->player.update(dt);
+    //this->player.update(dt);
     this->stage.update(dt, &pView);
     if (!stage.baseAlive())
     {
@@ -147,7 +141,7 @@ void PlayingState::render(sf::RenderTarget* target)
     PlayingState::pView.createBG(this->stage.getMap()); // drawing the default background
     PlayingState::pView.drawBG(window);
     this->renderButtons(window);       // drawing the buttons
-    this->player.render(window); 
+   // this->player.render(window);
     this->pView.drawViruses(window, stage.getVirusList());
     this->pView.drawBullets(window, stage.getBulletList());
 }

@@ -68,11 +68,7 @@ void MainMenuState::initKeyBinds()
     }
 
     ifs.close();
-//    this->keybinds["Move_Left"] = this->supportedKeys->at("A");
-//    this->keybinds["Move_Right"] = this->supportedKeys->at("D");
-//    this->keybinds["Move_Up"] = this->supportedKeys->at("W");
-//    this->keybinds["Move_Down"] = this->supportedKeys->at("S");
-//    this->keybinds["Close"] = this->supportedKeys->at("Escape");
+
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
@@ -156,7 +152,6 @@ void MainMenuState::updateInput(const float &dt)
 {
     //it will quit as soon as we press escape
     this->checkForQuit();
-//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 
 }
 
