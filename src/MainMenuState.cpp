@@ -13,10 +13,10 @@ void MainMenuState::initButtons()
                                        sf::Color(150,150,150,200),
                                        sf::Color(20,20,20,200) );
 
-    this->buttons["Settings"] = new Button(200, 470, 150, 50, &this->font,
-                                           "Settings",sf::Color(70,70,70,200),
-                                           sf::Color(150,150,150,200),
-                                           sf::Color(20,20,20,200) );
+    //this->buttons["Settings"] = new Button(200, 470, 150, 50, &this->font,
+    //                                       "Settings",sf::Color(70,70,70,200),
+    //                                       sf::Color(150,150,150,200),
+    //                                       sf::Color(20,20,20,200) );
 
     this->buttons["ExitGame"] = new Button(100, 400, 150, 50, &this->font,
                                            "Quit",sf::Color(70,70,70,200),

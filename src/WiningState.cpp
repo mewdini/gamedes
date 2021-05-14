@@ -18,8 +18,8 @@ void WiningState::initButtons()
                                              sf::Color(150,150,150,200),
                                              sf::Color(20,20,20,200) );
 
-    this->buttons["Select Level"] = new Button(520, 250, 170, 50, &this->font,
-                                               "Select Level",sf::Color(70,70,70,200),
+    this->buttons["GoBackToMM"] = new Button(520, 250, 150, 50, &this->font,
+                                               "Main Menu",sf::Color(70,70,70,200),
                                                sf::Color(150,150,150,200),
                                                sf::Color(20,20,20,200) );
 
@@ -28,10 +28,7 @@ void WiningState::initButtons()
                                            sf::Color(150,150,150,200),
                                            sf::Color(20,20,20,200) );
 
-    this->buttons["GoBackToMM"] = new Button(520, 350, 150, 50, &this->font,
-                                             "Main Menu",sf::Color(70,70,70,200),
-                                             sf::Color(150,150,150,200),
-                                             sf::Color(20,20,20,200) );
+
 
 }
 
