@@ -6,8 +6,8 @@ Stage::Stage(){
     height = 12;
     width = 16;
     tower_count = 20;
-    virus_count = 100;
-    virus_total = 100;
+    virus_count = 50;
+    virus_total = 50;
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
@@ -39,8 +39,8 @@ Stage::Stage(sf::Texture* vir_tex){
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     std::copy(std::begin(map_values), std::end(map_values), std::begin(map));
     tower_count = 20;
-    virus_count = 100;
-    virus_total = 100;
+    virus_count = 50;
+    virus_total = 50;
     start1 = 15;
     start2 = 6;
     virus_tex = Texture();
