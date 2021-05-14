@@ -14,7 +14,7 @@ void WiningState::updateInput(const float &dt)
 void WiningState::initButtons()
 {
     this->buttons["NextLevel"]  = new Button(520, 200, 150, 50, &this->font,
-                                             "Next Level",sf::Color(70,70,70,200),
+                                             "Play Again",sf::Color(70,70,70,200),
                                              sf::Color(150,150,150,200),
                                              sf::Color(20,20,20,200) );
 
