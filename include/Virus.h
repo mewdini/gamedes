@@ -62,6 +62,8 @@ public:
 
     int getValueOnMap(int x,int y);
 
+    Directions getDirection();
+
 private:
     //Virus speeds
     float COVID_VIRUS_SPEED = 45;

@@ -119,7 +119,6 @@ void PlayerView::drawBG(sf::RenderWindow* window){
     for (i = 0; i < 192; i++)
     {
         window->draw(background[i].getSprite());
-        //std::cout << background[i].getLocationX() << ", " << background[i].getLocationY() << endl; Tested that proper pixel location was set
     }
 }
 

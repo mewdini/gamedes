@@ -197,7 +197,7 @@ void Virus::updateDirection()
     pixelPos.y += 25;
     Vector2i gridPos = pixelToGrid(pixelPos);
     int tile_val = getValueOnMap(gridPos.x, gridPos.y);
-    if ((tile_val >= 5) && (tile_val <= 10))
+    if ((tile_val >= 5) && (tile_val <= 10)) // if the tile is a corner
     {
         // middle of grid in pixel coords
         Vector2f mid = gridToPixelMiddle(gridPos);
@@ -332,4 +332,9 @@ Vector2f Virus::gridToPixelTopLeft(Vector2i grid_pos)
 
 int Virus::getValueOnMap(int x,int y){          //inputs are coordinates on the map, top-left is (0,0)
     return m_Grid[y * 16 + x];
+}
+
+Directions Virus::getDirection()
+{
+    return m_Dir;
 }
