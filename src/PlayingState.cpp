@@ -18,7 +18,6 @@ void PlayingState::initButtons()
     this->buttons["Tower1"]  = new Button(300, 0, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-
                                        sf::Color(20,20,20,0) );
     this->buttons["Tower2"]  = new Button(200, 100, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
@@ -31,16 +30,13 @@ void PlayingState::initButtons()
     this->buttons["Tower4"]  = new Button(200, 250, 50, 50, &this->font,
                                         "",sf::Color(70,70,70,0),
                                         sf::Color(255,0,0,200),
-
                                         sf::Color(20,20,20,0) );
     this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
                                         "",sf::Color(70,70,70,0),
-
                                         sf::Color(255,0,0,200),
                                         sf::Color(20,20,20,0) );
     this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
                                         "",sf::Color(70,70,70,0),
-
                                         sf::Color(255,0,0,200),
                                         sf::Color(20,20,20,0) );
     this->buttons["Tower7"]  = new Button(450, 400, 50, 50, &this->font,
@@ -67,7 +63,6 @@ void PlayingState::initButtons()
                                         "",sf::Color(70,70,70,0),
                                         sf::Color(255,0,0,200),
                                         sf::Color(20,20,20,0) );
-                                       
 }
 void PlayingState::initFonts()
 {
