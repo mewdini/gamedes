@@ -99,7 +99,8 @@ Game::~Game()
 
 void Game::endApplication()
 {
-    std::cout << "The End Game" << "\n";
+    // std::cout << "The End Game" << "\n";
+    ;
 }
 
 

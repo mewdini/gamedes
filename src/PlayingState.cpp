@@ -173,7 +173,6 @@ void PlayingState::updateButtons()
     {
         Towers tower=Towers::first;
         //int a=this->stage.getValueOnMap(4,2);
-        //printf("%d",a);
         this->stage.build(tower,4,2);
         
         

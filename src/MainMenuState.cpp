@@ -148,7 +148,8 @@ void MainMenuState::render(sf::RenderTarget* target)
 
 void MainMenuState::endState()
 {
-    std::cout << "Ending MainMenu game state" << "\n";
+    // std::cout << "Ending MainMenu game state" << "\n";
+    ;
 }
 
 void MainMenuState::updateInput(const float &dt)

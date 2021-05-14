@@ -13,6 +13,7 @@ Stage::Stage(){
     virus_tex = Texture();
     if(virus_tex.loadFromFile("../data/covid.png")){
         // std::cout << "TEXTURE" << std::endl;
+        ;
     }
     // use malloc if these are local variables? 
     // populate virus list
@@ -83,9 +84,7 @@ void Stage::setValueOnMap(int x, int y, int v){
 }
 bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks on a slot, the position of the slot should be defense object
     if(map[posx + width * posy] != 3){
-        int a=map[posx + width * posy];
-        printf("Invalid Position of value %d.\n",a);
-        
+        int a=map[posx + width * posy];        
         return false;   //position is not valid;
     }
     int tower_cost;
@@ -97,14 +96,11 @@ bool Stage::build(Towers type, int posx, int posy ){    //If the player clicks o
     }
 
     if(gold < tower_cost){
-        printf("Insufficient Funds, %d.\n",gold);
         return false;
     }
 
     gold -= tower_cost;
-    printf("Remaining gold %d.\n",gold);
     setValueOnMap(posx,posy,4);
-    printf("Tower Built.");
     //determine by enum
     Tower new_tower = Tower(posx,posy,type);
     tower_list.push_back(pair<Tower, Int64>(new_tower, 0));
@@ -151,7 +147,6 @@ std::list<Bullet>* Stage::getBulletList(){
 
 void Stage::update(Int64 elapsedTime, PlayerView* pView)
 {
-    // cout << virus_list.front().first.getLocationX() << " " << virus_list.front().first.getLocationY() << endl;
     // check if time to spawn virus
     virus_timer += elapsedTime/2;
     if ((virus_timer >= (*cur_virus_pair).second) && (virus_count > 0)) {
@@ -163,7 +158,6 @@ void Stage::update(Int64 elapsedTime, PlayerView* pView)
     // update all viruses
     for (auto& pair : virus_list) {
         int x=pair.first.update(elapsedTime, &base_loc, &base_health);
-        // cout<< x  <<endl;
         if(x==1){
             gold+=10;
         }
