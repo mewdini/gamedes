@@ -18,63 +18,51 @@ void PlayingState::initButtons()
     this->buttons["Tower1"]  = new Button(300, 0, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
-
                                        sf::Color(20,20,20,0) );
-
-
     this->buttons["Tower2"]  = new Button(200, 100, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
                                        sf::Color(20,20,20,0) );
-this->buttons["Tower3"]  = new Button(450, 100, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-this->buttons["Tower4"]  = new Button(200, 250, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-
-                                       sf::Color(20,20,20,0) );
-
-this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-
-
-this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-
-this->buttons["Tower7"]  = new Button(450, 400, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-this->buttons["Tower8"]  = new Button(550, 400, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-this->buttons["Tower9"]  = new Button(650, 400, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-
+    this->buttons["Tower3"]  = new Button(450, 100, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower4"]  = new Button(200, 250, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower5"]  = new Button(450, 250, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower6"]  = new Button(750, 350, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower7"]  = new Button(450, 400, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower8"]  = new Button(550, 400, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower9"]  = new Button(650, 400, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
     this->buttons["Tower10"]  = new Button(200, 450, 50, 50, &this->font,
                                        "",sf::Color(70,70,70,0),
                                        sf::Color(255,0,0,200),
                                        sf::Color(20,20,20,0) );
-this->buttons["Tower11"]  = new Button(300, 450, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-this->buttons["Tower12"]  = new Button(600, 500, 50, 50, &this->font,
-                                       "",sf::Color(70,70,70,0),
-                                       sf::Color(255,0,0,200),
-                                       sf::Color(20,20,20,0) );
-                                       
+    this->buttons["Tower11"]  = new Button(300, 450, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
+    this->buttons["Tower12"]  = new Button(600, 500, 50, 50, &this->font,
+                                        "",sf::Color(70,70,70,0),
+                                        sf::Color(255,0,0,200),
+                                        sf::Color(20,20,20,0) );
 }
 void PlayingState::initFonts()
 {
@@ -159,24 +147,19 @@ void PlayingState::updateButtons()
     {
         Towers tower=Towers::first;
         this->stage.build(tower,6,0);
-        
-        
-       
     }
     else if(this->buttons["Tower2"]->isPressed())
     {
         Towers tower=Towers::first;
         //int a=this->stage.getValueOnMap(4,2);
         this->stage.build(tower,4,2);
-        
-        
     }
     if(this->buttons["Tower3"]->isPressed())
     {
         Towers tower=Towers::first;
                 this->stage.build(tower,9,2);
     }
-if(this->buttons["Tower4"]->isPressed())
+    if(this->buttons["Tower4"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,4,5);
@@ -186,17 +169,17 @@ if(this->buttons["Tower4"]->isPressed())
         Towers tower=Towers::first;
         this->stage.build(tower,9,5);
     }
-if(this->buttons["Tower6"]->isPressed())
+    if(this->buttons["Tower6"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,15,7);
     }
-if(this->buttons["Tower7"]->isPressed())
+    if(this->buttons["Tower7"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,9,8);
     }
-if(this->buttons["Tower8"]->isPressed())
+    if(this->buttons["Tower8"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,11,8);
@@ -206,17 +189,17 @@ if(this->buttons["Tower8"]->isPressed())
         Towers tower=Towers::first;
         this->stage.build(tower,13,8);
     }
-if(this->buttons["Tower10"]->isPressed())
+    if(this->buttons["Tower10"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,4,9);
     }
-if(this->buttons["Tower11"]->isPressed())
+    if(this->buttons["Tower11"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,6,9);
     }
-if(this->buttons["Tower12"]->isPressed())
+    if(this->buttons["Tower12"]->isPressed())
     {
         Towers tower=Towers::first;
         this->stage.build(tower,12,10);
