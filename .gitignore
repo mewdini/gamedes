@@ -3,5 +3,6 @@ cmake-build-debug*
 .DS_Store
 .gitignore
 debug
+release
 build
 .vscode
