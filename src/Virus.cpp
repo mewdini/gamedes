@@ -282,7 +282,8 @@ void Virus::updateDirection()
 
 void Virus::moveDir(Directions dir, Int64 delta)
 {
-    float pixels_x, pixels_y = 0;
+    float pixels_x = 0;
+    float pixels_y = 0;
     float f_delta = (float) delta;
     float C = 1000000; // combats delta being in microseconds
     switch (dir)
