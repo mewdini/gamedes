@@ -26,7 +26,6 @@ private:
     sf::Text text;
     sf::Font* font;
 
-    //PROMENI OVA IMENA
     sf::Color idleColor;
     sf::Color hoverColor;
     sf::Color activeColor;
